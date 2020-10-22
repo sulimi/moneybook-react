@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const _NumberPadSection=styled.section`
+const Wrapper=styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   > .output{
       background: #fff;font-size: 36px;line-height: 72px;text-align: right;padding: 0 16px;
       box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,0.25),inset 0 5px 5px -5px rgba(0,0,0,0.25)};
@@ -23,7 +23,7 @@ const _NumberPadSection=styled.section`
 `
 const NumberPadSection:React.FC=()=>{
   return (
-    <_NumberPadSection>
+    <Wrapper>
       <div className='output'>100</div>
       <div className='pad clearfix'>
         <button>1</button>
@@ -41,7 +41,7 @@ const NumberPadSection:React.FC=()=>{
         <button className='zero'>0</button>
         <button>.</button>
       </div>
-    </_NumberPadSection>
+    </Wrapper>
   )
 }
 export {NumberPadSection}
