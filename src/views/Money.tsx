@@ -9,20 +9,32 @@ const TagsSection=styled.section`
       margin: 0 -12px;
       li{
         background: #D9D9D9;border-radius: 18px;
-        display: inline-flex;
-        padding: 3px 18px;
-        font-size: 14px;
-        margin: 3px 12px;
+        display: inline-flex;padding: 3px 18px;
+        font-size: 14px;margin: 3px 12px;
       }
   }
   button{
-    border-bottom: 1px solid #ddd;
-    padding: 2px 4px;
+    border-bottom: 1px solid #ddd;padding: 2px 4px;
     color: #666;margin-top:8px;
   }
 `
 const NotesSection=styled.section`
+  background: #f5f5f5; padding: 10px 16px;
+  font-size: 14px;
+  label{
+  display: flex;
+  align-items: center;
   
+    span{
+      margin-right: 16px;
+      flex-shrink: 0;
+      
+    }
+    input{
+      display: block;height: 72px;
+      flex-grow: 1;border: none;background: none;
+    }
+  }
 `
 const CategorySection=styled.section`
   

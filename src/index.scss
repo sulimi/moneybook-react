@@ -13,7 +13,9 @@ ul, ol {list-style: none}
 a{text-decoration: none;color: inherit; }
 
 button{font-family: inherit;background: none;border: none;}
-
+:focus{
+  outline: none;
+}
 
 body{
   font-family:$font-hei;
