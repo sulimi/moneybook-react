@@ -5,25 +5,45 @@ import styled from 'styled-components';
 import Icon from '../components/Icon';
 
 
-const TagList=styled.ol`
+const TagList = styled.ol`
    font-size: 16px; 
+   background: #fff;
    > li{
-    border: 1px solid #d5d5d9; line-height: 20px;padding: 12px 16px;background: #fff;display: flex;justify-content: space-between;align-items: center;
+    border-bottom: 1px solid #d5d5d9; line-height: 20px;padding: 12px 0 16px 0;
+    display: flex;justify-content: space-between;align-items: center;
+    margin-left: 16px;margin-right: 16px;
     .icon{
       width: .7em;height: .7em;flex-shrink: 0;
     }
    }
-`
+`;
+const Button = styled.button`
+  font-size: 18px;padding: 8px 12px;background: #f60;border-radius: 4px;color: #fff;
+`;
+const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Space = styled.div`
+  height: 16px;
+`;
+
 function Tags() {
   const {tags, setTags} = useTags();
   return (
     <Layout>
       <TagList>
-        {tags.map(tag=><li key={tag}>
-          <span className='oneLine'>{tag}很纯洁的开发进度累计发电量降幅劳动纠纷扩大解放绿卡角度来看附近的路口开绿灯解放立刻搭街坊罗迪克了解对方立刻搭街坊李达康书记</span>
-          <Icon name='right' />
+        {tags.map(tag => <li key={tag}>
+          <span className='oneLine'>{tag}</span>
+          <Icon name='right'/>
         </li>)}
       </TagList>
+      <Space/>
+      <Center>
+        <Button>新增标签</Button>
+      </Center>
+      <Space/>
     </Layout>
   );
 }
