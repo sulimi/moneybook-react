@@ -9,7 +9,6 @@ const defaultTags=[
   {id: createId(), name: '行'}
 ]
 const useTags = () => { //封装一个自定义Hook
-  console.log(111);
   const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
   return {tags, setTags};
 };
