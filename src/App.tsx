@@ -12,6 +12,7 @@ import Money from './views/Money';
 import Statistics from './views/Statis';
 import NoMatch from './views/NoMatch';
 import styled from 'styled-components';
+import {TagEdit} from './views/TagEdit';
 
 
 
@@ -23,13 +24,16 @@ function App() {
     <AppWrapper>
       <Router>
         <Switch>
-          <Route path="/tags">
+          <Route exact path="/tags">
             <Tags/>
           </Route>
-          <Route path="/money">
+          <Route exact path="/tags/:tag">
+            <TagEdit/>
+          </Route>
+          <Route exact path="/money">
             <Money/>
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics/>
           </Route>
           <Redirect exact from="/" to="/money"/>
