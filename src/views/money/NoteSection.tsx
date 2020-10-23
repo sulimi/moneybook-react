@@ -22,6 +22,9 @@ const NoteSection: React.FC = () => {
       console.log(note);
     }
   };
+  const x=()=>{
+    console.log(1);
+  }
   return (
     <Wrapper>
       <label>
@@ -29,6 +32,7 @@ const NoteSection: React.FC = () => {
         <input placeholder="在这里输入备注" type="text" defaultValue={note}
                ref={refInput}
                onBlur={changeNote}
+               onChange={x}
         />
       </label>
     </Wrapper>
