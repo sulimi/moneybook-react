@@ -1,10 +1,10 @@
-import React from 'react';
+import {CategorySection} from './money/CategorySection';
+import {NoteSection} from './money/NoteSection';
+import Layout from '../components/Layout';
 import {NumberPadSection} from './money/NumberPadSection';
 import {TagsSection} from './money/TagsSection';
-import {NotesSection} from './money/NotesSection';
-import {CategorySection} from './money/CategorySection';
 import styled from 'styled-components';
-import Layout from '../components/Layout';
+import React from 'react';
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -15,7 +15,7 @@ function Money() {
   return (
     <MyLayout>
       <TagsSection/>
-      <NotesSection/>
+      <NoteSection/>
       <CategorySection/>
       <NumberPadSection/>
     </MyLayout>
@@ -23,3 +23,4 @@ function Money() {
 }
 
 export default Money;
+
