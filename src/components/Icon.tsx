@@ -14,7 +14,7 @@ type Props = {
 }
 const Icon = (props: Props) => {
   return (
-    <svg className="icon">
+    <svg className="icon" width='1em' height='1em'>
       {props.name && <use xlinkHref={'#' + props.name}/>} //方便顶部做左中右布局时提供一个空的位置
     </svg>
   );
