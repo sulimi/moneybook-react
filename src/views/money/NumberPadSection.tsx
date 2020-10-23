@@ -39,19 +39,28 @@ const NumberPadSection: React.FC = () => {
       case '7':
       case '8':
       case '9':
-        console.log(text);
+        if (output === '0') {
+          setOutput(text); //覆盖
+        } else {
+          setOutput(output + text);
+        }
+        break;
+      case '.':
+        if (output.indexOf('.')>=0){return}
+        setOutput(output + '.');
         break;
       case '删除':
-        console.log('删除');
+        if (output.length === 1) {
+          setOutput('0');
+        } else {
+          setOutput(output.slice(0, -1));
+        }
         break;
       case '清空':
-        console.log('清空');
+        setOutput('0');
         break;
       case 'ok':
         console.log('确认');
-        break;
-      case '.':
-        console.log('点');
         break;
     }
   };
