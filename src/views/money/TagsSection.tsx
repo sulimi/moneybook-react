@@ -20,9 +20,12 @@ const Wrapper = styled.section`
     color: #666;margin-top:8px;
   }
 `;
-const TagsSection: React.FC = () => {
+
+type Props = { tags: string[], onChange: (selected: string[]) => void }
+const TagsSection: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']); //默认值
-  const [selectedTags, setSelectedTags] = useState<string[]>([]); //默认空[]
+  // const [selectedTags, setSelectedTags] = useState<string[]>([]); //默认空[]
+  const selectedTags = props.tags;
   const onAddTag = () => {
     const TagName = window.prompt('新标签的名称为');
     if (TagName !== null) {
@@ -32,9 +35,9 @@ const TagsSection: React.FC = () => {
   const onToggleTag = (tag: string) => {
     const index = selectedTags.indexOf(tag);
     if (index >= 0) {  //如果有，我就把除了你之外的所有人拿走组队不带你（Vue的话可以直接改，但是React不推荐直接改）
-      setSelectedTags(selectedTags.filter(t => t !== tag));
+      props.onChange(selectedTags.filter(t => t !== tag));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   const getClass = (tag: string) => selectedTags.indexOf(tag) >= 0 ? 'selected' : '';

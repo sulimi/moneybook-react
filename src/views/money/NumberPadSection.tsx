@@ -1,18 +1,21 @@
-import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
 import {Wrapper} from './numberPad/NumberPadWrapper';
 import {generateOutPut} from './numberPad/generateOutput';
 
-
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutput] = useState('0');
+type Props={amount: number, onChange: (amount: number)=>void, onOk?: ()=>void}
+const NumberPadSection: React.FC<Props> = (props) => {
+  // const [output, _setOutput] = useState('0');
+const output=props.amount.toString()
   const setOutput = (output: string) => {
+  let value
     if (output.length > 16) {
-      output = output.slice(0, 16);
+      value = parseFloat(output.slice(0, 16));
     } else if (output.length === 0) {
-      output = '0';
+      value = 0;
+    }else {
+      value=parseFloat(output)
     }
-    _setOutput(output)
+    props.onChange(value)
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
@@ -20,7 +23,7 @@ const NumberPadSection: React.FC = () => {
       return;
     }
     if (text==='ok'){
-      // TODO
+      if (props.onOk){props.onOk()}
       return;
     }
     type InputString = '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'删除'|'清空'|'.'
