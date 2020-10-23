@@ -22,32 +22,32 @@ const Wrapper = styled.section`
   }
 `;
 
-type Props = { tags: string[], onChange: (selected: string[]) => void }
+type Props = { tagsId: number[], onChange: (selected: number[]) => void }
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags();
   // const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']); //默认值
   // const [selectedTags, setSelectedTags] = useState<string[]>([]); //默认空[]
-  const selectedTags = props.tags;
+  const selectedTags = props.tagsId;
   const onAddTag = () => {
     const TagName = window.prompt('新标签的名称为');
     if (TagName !== null) {
-      setTags([...tags, TagName]);
+      setTags([...tags, {id: Math.random(), name:TagName}]);
     }
   };
-  const onToggleTag = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const onToggleTag = (tagId: number) => {
+    const index = selectedTags.indexOf(tagId);
     if (index >= 0) {  //如果有，我就把除了你之外的所有人拿走组队不带你（Vue的话可以直接改，但是React不推荐直接改）
-      props.onChange(selectedTags.filter(t => t !== tag));
+      props.onChange(selectedTags.filter(t => t !== tagId));
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTags, tagId]);
     }
   };
-  const getClass = (tag: string) => selectedTags.indexOf(tag) >= 0 ? 'selected' : '';
+  const getClass = (tagId: number) => selectedTags.indexOf(tagId) >= 0 ? 'selected' : '';
   return (
     <Wrapper>
       <ol>
-        {tags.map(tag => <li key={tag} onClick={() => {onToggleTag(tag);}}
-                             className={getClass(tag)}>{tag}</li>)}
+        {tags.map(tag => <li key={tag.id} onClick={() => {onToggleTag(tag.id);}}
+                             className={getClass(tag.id)}>{tag.name}</li>)}
       </ol>
       <button onClick={onAddTag}>添加标签</button>
     </Wrapper>
