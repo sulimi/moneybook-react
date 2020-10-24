@@ -6,6 +6,8 @@ import Icon from '../components/Icon';
 import {Button} from '../components/Button';
 import styled from 'styled-components';
 import {Input} from '../components/Input';
+import {Center} from '../components/Center';
+import {Space} from '../components/Space';
 
 type Params = {
   id: string
@@ -33,9 +35,13 @@ const TagEdit: React.FC = (props) => {
       <Wrapper>
         <Input text='标签名' placeholder="请输入标签名"/>
       </Wrapper>
-      <div>
+      <Space />
+      <Space />
+      <Center>
         <Button>删除标签</Button>
-      </div>
+      </Center>
+      <Space />
+      <Space />
     </Layout>
   );
 };
