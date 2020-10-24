@@ -1,5 +1,5 @@
 import React from 'react';
-import camelcase from 'camelcase';
+import cName from 'classnames';
 
 
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
@@ -16,7 +16,7 @@ type Props = {
 const Icon = (props: Props) => {
   const {name, children, className, ...rest} = props;
   return (
-    <svg className={`icon ${className ? className : ''}`} width='1em' height='1em'>
+    <svg className={cName('icon',className)} width='1em' height='1em'>
       {props.name && <use xlinkHref={'#' + props.name}/>} //方便顶部做左中右布局时提供一个空的位置
     </svg>
   );
