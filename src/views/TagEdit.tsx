@@ -21,29 +21,31 @@ const Topbar = styled.header`
   display: flex;justify-content: space-between;align-items: center;
   line-height: 20px; padding: 14px; background: #fff;
 `;
-const TagEdit: React.FC = (props) => {
-  const {findTag} = useTags();
+const TagEdit: React.FC = () => {
+  const {findTag, updateTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
   return (
     <Layout>
+      {tag.name}
       <Topbar>
         <Icon name='left'/>
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
       <Wrapper>
-        <Input text='标签名' placeholder="请输入标签名"/>
-      </Wrapper>
-      <Space />
-      <Space />
-      <Center>
-        <Button>删除标签</Button>
-      </Center>
-      <Space />
-      <Space />
-    </Layout>
-  );
-};
-
+        <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
+               onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
+         />
+         </Wrapper>
+         <Space />
+         <Space />
+         <Center>
+         <Button>删除标签</Button>
+         </Center>
+         <Space />
+         <Space />
+         </Layout>
+         );
+         };
 export {TagEdit};
