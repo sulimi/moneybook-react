@@ -12,9 +12,8 @@ type Params = {
 
 
 const Topbar=styled.header`
-  display: flex;
-  justify-content: space-between;
-  
+  display: flex;justify-content: space-between;align-items: center;
+  line-height: 20px; padding: 14px; background: #fff;
 `
 const TagEdit: React.FC = (props) => {
   const {findTag} = useTags();
