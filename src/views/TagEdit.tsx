@@ -12,13 +12,13 @@ type Params = {
 }
 
 
-const Wrapper=styled.div`
+const Wrapper = styled.div`
   background: #fff;padding: 0 16px;margin-top: 16px;
-`
-const Topbar=styled.header`
+`;
+const Topbar = styled.header`
   display: flex;justify-content: space-between;align-items: center;
   line-height: 20px; padding: 14px; background: #fff;
-`
+`;
 const TagEdit: React.FC = (props) => {
   const {findTag} = useTags();
   const {id} = useParams<Params>();
@@ -28,14 +28,10 @@ const TagEdit: React.FC = (props) => {
       <Topbar>
         <Icon name='left'/>
         <span>编辑标签</span>
-        <Icon />
+        <Icon/>
       </Topbar>
       <Wrapper>
-        {/*<label>*/}
-        {/*  <span>标签名</span>*/}
-        {/*  <input type="text" placeholder="标签名" defaultValue={tag.name}/>*/}
-        {/*</label>*/}
-        <Input text='标签名' placeholder="请输入标签名" />
+        <Input text='标签名' placeholder="请输入标签名"/>
       </Wrapper>
       <div>
         <Button>删除标签</Button>
