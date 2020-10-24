@@ -13,23 +13,26 @@ const MyLayout = styled(Layout)`
 `;
 
 type Category = '-' | '+'
+const defaultRecordData = {
+  tagsId: [] as number[],
+  note: '',
+  category: '-' as Category,
+  amount: 0
+};
 
 function Money() {
-  const [record, setRecord] = useState({
-    tagsId: [] as number[],
-    note: '',
-    category: '-' as Category,
-    amount: 0
-  });
+  const [record, setRecord] = useState(defaultRecordData);
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
       ...record,
       ...obj
     });
   };
-  const {addRecord}=useRecords()
+  const {addRecord} = useRecords();
   const submit = () => {
-    addRecord(record)
+    addRecord(record);
+    alert('记账成功');
+    setRecord(defaultRecordData);
   };
   return (
     <MyLayout>
