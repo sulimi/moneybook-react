@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTags} from '../useTags';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import Layout from '../components/Layout';
 import Icon from '../components/Icon';
 import {Button} from '../components/Button';
@@ -42,9 +42,11 @@ const TagEdit: React.FC = () => {
     </div>
   );
   const noTag = (<div><Space/><Space/><Space/><Center>标签不存在</Center></div>);
-  const onClickBack=()=>{
-
-  }
+  const history = useHistory();
+  const onClickBack = () => {
+    // window.history.back();
+    history.goBack()
+  };
   return (
     <Layout>
       <Topbar>
