@@ -31,9 +31,10 @@ function Money() {
   };
   const {addRecord} = useRecords();
   const submit = () => {
-    addRecord(record);
-    alert('记账成功');
-    setRecord(defaultRecordData);
+    if ( addRecord(record)){
+      alert('记账成功');
+      setRecord(defaultRecordData);
+    }
   };
   return (
     <MyLayout>

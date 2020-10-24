@@ -1,32 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
-// type RecordItem = {
-//   tagsId: number[]
-//   note: string
-//   category: '+' | '-'
-//   amount: number
-//   createdAt: string
-// }
-// type newRecordItem={
-//   tagsId: number[]
-//   note: string
-//   category: '+' | '-'
-//   amount: number
-// }
-
-//可以简写：
-// type newRecordItem = {
-//   tagsId: number[]
-//   note: string
-//   category: '+' | '-'
-//   amount: number
-// }
-// type RecordItem = newRecordItem & {
-//   createdAt: string
-// }
-
-//也可以：
 type RecordItem = {
   tagsId: number[]
   note: string
@@ -34,7 +8,7 @@ type RecordItem = {
   amount: number
   createdAt: string
 }
-type newRecordItem=Omit<RecordItem, 'createdAt'>
+type newRecordItem = Omit<RecordItem, 'createdAt'>
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
@@ -45,8 +19,17 @@ const useRecords = () => {
     window.localStorage.setItem('records', JSON.stringify(records));
   }, [records]);
   const addRecord = (record: newRecordItem) => {
+    if (record.amount <= 0) {
+      alert('金额小于0');
+      return false;
+    }
+    if (record.tagsId.length === 0) {
+      alert('请选择标签');
+      return false;
+    }
     const recordAddTime = {...record, createdAt: (new Date()).toISOString()};
     setRecords([...records, recordAddTime]);
+    return true
   };
   return {records, addRecord};
 };
