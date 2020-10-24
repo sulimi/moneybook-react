@@ -25,14 +25,9 @@ const Wrapper = styled.section`
 
 type Props = { tagsId: number[], onChange: (selected: number[]) => void }
 const TagsSection: React.FC<Props> = (props) => {
-  const {tags, setTags} = useTags();
+  const {tags, setTags, addTag} = useTags();
   const selectedTags = props.tagsId;
-  const onAddTag = () => {
-    const TagName = window.prompt('新标签的名称为');
-    if (TagName !== null) {
-      setTags([...tags, {id: createId(), name:TagName}]);
-    }
-  };
+
   const onToggleTag = (tagId: number) => {
     const index = selectedTags.indexOf(tagId);
     if (index >= 0) {  //如果有，我就把除了你之外的所有人拿走组队不带你（Vue的话可以直接改，但是React不推荐直接改）
@@ -48,7 +43,7 @@ const TagsSection: React.FC<Props> = (props) => {
         {tags.map(tag => <li key={tag.id} onClick={() => {onToggleTag(tag.id);}}
                              className={getClass(tag.id)}>{tag.name}</li>)}
       </ol>
-      <button onClick={onAddTag}>添加标签</button>
+      <button onClick={addTag}>新增标签</button>
     </Wrapper>
   );
 };
