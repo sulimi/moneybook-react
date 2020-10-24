@@ -5,6 +5,7 @@ import {NumberPadSection} from './money/NumberPadSection';
 import {TagsSection} from './money/TagsSection';
 import styled from 'styled-components';
 import React, {useState} from 'react';
+import {useRecords} from '../hooks/useRecords';
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -26,8 +27,9 @@ function Money() {
       ...obj
     });
   };
+  const {addRecord}=useRecords()
   const submit = () => {
-    return
+    addRecord(record)
   };
   return (
     <MyLayout>
