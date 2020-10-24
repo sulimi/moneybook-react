@@ -42,10 +42,13 @@ const TagEdit: React.FC = () => {
     </div>
   );
   const noTag = (<div><Space/><Space/><Space/><Center>标签不存在</Center></div>);
+  const onClickBack=()=>{
+
+  }
   return (
     <Layout>
       <Topbar>
-        <Icon name='left'/>
+        <Icon name='left' onClick={onClickBack}/>
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
