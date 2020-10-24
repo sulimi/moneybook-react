@@ -25,28 +25,32 @@ const TagEdit: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
-    return (
-      <Layout>
-        <Topbar>
-          <Icon name='left'/>
-          <span>编辑标签</span>
-          <Icon/>
-        </Topbar>
-        {tag?<div>
-          <Wrapper>
-            <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
-                   onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
-            />
-          </Wrapper>
-          <Space/>
-          <Space/>
-          <Center>
-            <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
-          </Center>
-          <Space/>
-          <Space/>
-        </div>:<div><Space/><Space/><Space/><Center>标签不存在</Center></div>}
-      </Layout>
-    );
+  const tagContent = (tag: { id: number, name: string }) => (
+    <div>
+      <Wrapper>
+        <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
+               onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
+        />
+      </Wrapper>
+      <Space/>
+      <Space/>
+      <Center>
+        <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
+      </Center>
+      <Space/>
+      <Space/>
+    </div>
+  );
+  const noTag = (<div><Space/><Space/><Space/><Center>标签不存在</Center></div>);
+  return (
+    <Layout>
+      <Topbar>
+        <Icon name='left'/>
+        <span>编辑标签</span>
+        <Icon/>
+      </Topbar>
+      {tag ? tagContent(tag) : noTag}
+    </Layout>
+  );
 };
 export {TagEdit};
