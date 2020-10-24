@@ -26,6 +26,9 @@ function Money() {
       ...obj
     });
   };
+  const submit = () => {
+    return
+  };
   return (
     <MyLayout>
       <TagsSection tagsId={record.tagsId}
@@ -36,7 +39,7 @@ function Money() {
                        onChange={category => onChange({category: category})}/>
       <NumberPadSection amount={record.amount}
                         onChange={amount => onChange({amount: amount})}
-                        onOk={() => {}}
+                        onOk={submit}
       />
     </MyLayout>
   );
