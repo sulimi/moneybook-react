@@ -1,16 +1,28 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {createId} from './lib/createId';
 
 
-const defaultTags = [
-  {id: createId(), name: '衣'},
-  {id: createId(), name: '食'},
-  {id: createId(), name: '住'},
-  {id: createId(), name: '行'}
-];
+// const defaultTags = [
+//   {id: createId(), name: '衣'},
+//   {id: createId(), name: '食'},
+//   {id: createId(), name: '住'},
+//   {id: createId(), name: '行'}
+// ];
 const useTags = () => { //封装一个自定义Hook
-  // const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
   const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+  useEffect(() => {
+    setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'));
+  }, []);
+  const count = useRef(0);
+  useEffect(() => {
+    count.current += 1;
+  });
+
+  useEffect(() => {
+    if (count.current>1){
+      window.localStorage.setItem('tags', JSON.stringify(tags));
+    }
+  }, [tags]);
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
   const findTagIndex = (id: number) => {
     let result = -1;  //防止找不到i会返回tags.length
@@ -25,7 +37,7 @@ const useTags = () => { //封装一个自定义Hook
   const addTag = () => {
     const TagName = window.prompt('新标签的名称为');
     if (TagName !== null) {
-      setTags([...tags, {id: createId(), name:TagName}]);
+      setTags([...tags, {id: createId(), name: TagName}]);
     }
   };
   const updateTag = (id: number, obj: { name: string }) => {
