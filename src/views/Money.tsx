@@ -17,7 +17,8 @@ const defaultRecordData = {
   tagsId: [] as number[],
   note: '',
   category: '-' as Category,
-  amount: 0
+  amount: 0,
+  // createdAt: ''
 };
 
 function Money() {
