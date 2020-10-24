@@ -22,30 +22,37 @@ const Topbar = styled.header`
   line-height: 20px; padding: 14px; background: #fff;
 `;
 const TagEdit: React.FC = () => {
-  const {findTag, updateTag} = useTags();
+  const {findTag, updateTag, deleteTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
-  return (
-    <Layout>
-      {tag.name}
-      <Topbar>
-        <Icon name='left'/>
-        <span>编辑标签</span>
-        <Icon/>
-      </Topbar>
-      <Wrapper>
-        <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
-               onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
-         />
-         </Wrapper>
-         <Space />
-         <Space />
-         <Center>
-         <Button>删除标签</Button>
-         </Center>
-         <Space />
-         <Space />
-         </Layout>
-         );
-         };
+  if (tag) {
+    return (
+      <Layout>
+        {tag.name}
+        <Topbar>
+          <Icon name='left'/>
+          <span>编辑标签</span>
+          <Icon/>
+        </Topbar>
+        <Wrapper>
+          <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
+                 onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
+          />
+        </Wrapper>
+        <Space/>
+        <Space/>
+        <Center>
+          <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
+        </Center>
+        <Space/>
+        <Space/>
+      </Layout>
+    );
+  } else {
+    return (
+      <div>标签不存在</div>
+    );
+  }
+
+};
 export {TagEdit};
