@@ -5,7 +5,7 @@ const Label = styled.label`
   display: flex;align-items: center;
     span{ margin-right: 16px;flex-shrink: 0;}
     input{
-      display: block;height: 72px;
+      display: block;height: 44px;
       flex-grow: 1;border: none;background: none;
     }
 `;
