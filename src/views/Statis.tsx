@@ -1,10 +1,13 @@
 import Layout from '../components/Layout';
-import React from 'react';
+import React, {useState} from 'react';
+import {CategorySection} from './money/CategorySection';
 
 function Statistics() {
+  const [category, setCategory]=useState<'-'|'+'>('-')
   return (
     <Layout>
-      <h2>统计统计统计</h2>
+      <CategorySection category={category}
+                       onChange={category => setCategory(category)}/>
     </Layout>
   );
 }
