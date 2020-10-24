@@ -15,17 +15,26 @@ import {useUpdate} from './useUpdate';
 //   amount: number
 // }
 
-//可以简写
-type newRecordItem = {
+//可以简写：
+// type newRecordItem = {
+//   tagsId: number[]
+//   note: string
+//   category: '+' | '-'
+//   amount: number
+// }
+// type RecordItem = newRecordItem & {
+//   createdAt: string
+// }
+
+//也可以：
+type RecordItem = {
   tagsId: number[]
   note: string
   category: '+' | '-'
   amount: number
-}
-type RecordItem = newRecordItem & {
   createdAt: string
 }
-
+type newRecordItem=Omit<RecordItem, 'createdAt'>
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
