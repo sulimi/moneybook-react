@@ -17,7 +17,7 @@ const useRecords = () => {
   }, []);
   useUpdate(() => {
     window.localStorage.setItem('records', JSON.stringify(records));
-  }, [records]);
+  }, records);
   const addRecord = (record: newRecordItem) => {
     if (record.amount <= 0) {
       alert('金额小于0');
