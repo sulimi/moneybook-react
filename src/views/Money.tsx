@@ -14,6 +14,7 @@ const MyLayout = styled(Layout)`
 
 type Category = '-' | '+'
 const defaultRecordData = {
+  // id: 0,
   tagsId: [] as number[],
   note: '',
   category: '-' as Category,
@@ -31,7 +32,7 @@ function Money() {
   };
   const {addRecord} = useRecords();
   const submit = () => {
-    if ( addRecord(record)){
+    if (addRecord(record)) {
       alert('记账成功');
       setRecord(defaultRecordData);
     }

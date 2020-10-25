@@ -1,14 +1,16 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
+import {createRecordId} from '../lib/createRecordId';
 
 export type RecordItem = {
+  id: number
   tagsId: number[]
   note: string
   category: '+' | '-'
   amount: number
   createdAt: string
 }
-type newRecordItem = Omit<RecordItem, 'createdAt'>
+type newRecordItem = Omit<RecordItem, 'id' | 'createdAt'>
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
@@ -27,11 +29,11 @@ const useRecords = () => {
       alert('请选择标签');
       return false;
     }
-    const recordAddTime = {...record, createdAt: (new Date()).toISOString()};
+    const recordAddTime = {...record, id: createRecordId(), createdAt: (new Date()).toISOString()};
     setRecords([...records, recordAddTime]);
-    return true
+    return true;
   };
   return {records, addRecord};
 };
 
-export {useRecords}
+export {useRecords};
