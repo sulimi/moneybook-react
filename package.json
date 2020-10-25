@@ -1,6 +1,7 @@
 {
   "name": "react-moneybook",
   "version": "0.1.0",
+  "homepage": "https://sulimi.github.io/moneybookwebsite-react/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",

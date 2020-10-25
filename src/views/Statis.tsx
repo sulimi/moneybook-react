@@ -48,7 +48,6 @@ function Statistics() {
         <Header>{date}</Header>
         <div>
           {records.map(r => {
-            console.log(r);
             return (
               <Item key={r.id}>
                 <div className="tags">{r.tagsId.map(tagId => <span key={tagId}>{getName(tagId)}</span>)}</div>
