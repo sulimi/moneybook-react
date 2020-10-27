@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useTags} from '../hooks/useTags';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
