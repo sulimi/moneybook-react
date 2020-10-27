@@ -1,45 +1,41 @@
 import Layout from '../components/Layout';
-import React from 'react';
+import React, {useState} from 'react';
 import {useTags} from '../hooks/useTags';
-import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
 import {Button} from '../components/Button';
 import {Center} from '../components/Center';
 import {Space} from '../components/Space';
+import {TagList} from './tag/TagList';
+import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
 
-
-const TagList = styled.ol`
-   font-size: 16px; 
-   background: #fff;
-   > li{
-    border-bottom: 1px solid #d5d5d9; line-height: 20px;
-    margin-left: 16px;margin-right: 16px;
-    > a{
-    display: flex;justify-content: space-between;align-items: center;
-    padding: 12px 0 16px 0;
-    }
-    .icon{
-      width: .7em;height: .7em;flex-shrink: 0;
-    }
-   }
-`;
 
 function Tags() {
-  const {tags, addTag} = useTags();
+  const {tags, addTag, deleteTag} = useTags();
+  const [isClick, setIsClick] = useState(0);
+  const onIsClick = (tag: Tag) => {
+    if (isClick !== 0) {
+      setIsClick(0);
+    } else {
+      setIsClick(tag.id);
+    }
+  };
+  const classN = (id: number) => isClick === id ? 'show' : '';
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
-          <li key={tag.id}>
-          <Link to={'/tags/' + tag.id}>
+          <li key={tag.id} onClick={() => onIsClick(tag)}>
             <div className='oneLine'>
               <Icon name={tag.icon}/>
               {tag.name}
             </div>
-            <Icon name='right'/>
-          </Link>
-        </li>)}
+            {isClick === tag.id ? '' : <Icon name='right'/>}
+            <ButtonWrapper className={classN(tag.id)}>
+              <DelButton onClick={()=>deleteTag(tag.id)}>删除</DelButton>
+              <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>
+            </ButtonWrapper>
+          </li>)}
       </TagList>
       <Space/>
       <Center>
