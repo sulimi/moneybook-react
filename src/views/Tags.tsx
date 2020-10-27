@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTags} from '../hooks/useTags';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
@@ -8,11 +8,14 @@ import {Center} from '../components/Center';
 import {Space} from '../components/Space';
 import {TagList} from './tag/TagList';
 import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
+import {Pop} from '../components/Pop';
 
 
 function Tags() {
-  const {tags, addTag, deleteTag} = useTags();
+  const {tags, addTag} = useTags();
   const [isClick, setIsClick] = useState(0);
+  const [pop, setPop] = useState(false);
+
   const onIsClick = (tag: Tag) => {
     if (isClick !== 0) {
       setIsClick(0);
@@ -21,6 +24,11 @@ function Tags() {
     }
   };
   const classN = (id: number) => isClick === id ? 'show' : '';
+  const onClickDel = (e: any,id: number) => {
+    e.stopPropagation()
+    // deleteTag(id);
+    setPop(true);
+  };
   return (
     <Layout>
       <TagList>
@@ -32,10 +40,12 @@ function Tags() {
             </div>
             {isClick === tag.id ? '' : <Icon name='right'/>}
             <ButtonWrapper className={classN(tag.id)}>
-              <DelButton onClick={()=>deleteTag(tag.id)}>删除</DelButton>
+              <DelButton onClick={(e) => onClickDel(e,tag.id)}>删除</DelButton>
               <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>
             </ButtonWrapper>
-          </li>)}
+          </li>
+        )}
+        {pop ? <Pop message='确定要删除该标签吗' onChange={() => setPop(!pop)}/> : ''}
       </TagList>
       <Space/>
       <Center>

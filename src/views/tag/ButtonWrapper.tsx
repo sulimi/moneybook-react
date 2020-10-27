@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+// import React from 'react';
 
 const ButtonWrapper = styled.div`
   position: absolute;right: -100%;top: 0;height: 100%;
