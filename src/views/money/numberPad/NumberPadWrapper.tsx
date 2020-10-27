@@ -4,7 +4,7 @@ const Wrapper = styled.section`
   display: flex;font-weight: bold;
   flex-direction: column; background: #65C6BB;border: 2px solid black;
   > .top{
-  display: flex;align-items: center;
+      display: flex;align-items: center;
     > .day{
       width: 20%;height: 44px;
       display: flex;align-items: center;justify-content: center;
@@ -18,6 +18,14 @@ const Wrapper = styled.section`
       border: 2px solid black;border-radius: 10px;
       margin: 5px 2%;
      };
+    //  @media (max-width:570px){
+    //  > .day{
+    //    height: 34px;font-size: 18px;
+    //  }
+    //  .output{
+    //      line-height: 52px;
+    //  }
+    //}
   }
   > .pad{
       flex-wrap: wrap;
@@ -27,7 +35,6 @@ const Wrapper = styled.section`
         width: 22.5%;height: 44px;
         float:left;font-size: 26px;
         margin: 5px 0 5px 2%;
-        //margin-left: 2%;
         &:nth-child(4),:nth-child(8){
             background: #FA8072;
             font-size: 20px;
@@ -40,6 +47,18 @@ const Wrapper = styled.section`
           width: 47%;
         }
     }
+    //@media (max-width:570px){
+    //  > button{
+    //    height: 34px;font-size: 20px;
+    //    margin: 3px 0 3px 2%;
+    //    &:nth-child(4),:nth-child(8){
+    //        font-size: 18px;
+    //    }
+    //    &.ok{
+    //      height: 78px;
+    //  }
+    //  }
+    //}
   }
 `;
 

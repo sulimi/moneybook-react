@@ -5,11 +5,11 @@ const Wrapper = styled.section`
   display: flex;justify-content: center;align-items: center;position: relative;
   > .bgdiv{
     position: absolute;background: #fff;border-radius: 6px;
-    height: 40px;width: 40px;transition: all 0.3s;
+    transition: all 0.3s;
   }
   > ul{
   display: flex;justify-content: center;align-items: center;
-  width: 25%;border-radius: 6px;background: #E6E6E6;
+  width: 30%;border-radius: 6px;background: #E6E6E6;
   margin: 6px 0;font-size: 14px;
     > li{
     width: 50%; margin: 2px;white-space: nowrap;
@@ -19,6 +19,11 @@ const Wrapper = styled.section`
       }
     }
   }
+//  @media (max-width: 570px) {
+//  > ul{
+//   font-size: 12px;
+//  }
+//}
 `;
 
 type Props = { category: Category, onChange: (category: Category) => void }

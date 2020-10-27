@@ -34,6 +34,7 @@ const NavWrapper = styled.div`
  
     }
   }
+  
 `;
 
 const Nav = () => {

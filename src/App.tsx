@@ -7,7 +7,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import Tags from './views/Tag';
+import Tags from './views/Tags';
 import Money from './views/Money';
 import Statistics from './views/Statis';
 import NoMatch from './views/NoMatch';
@@ -15,10 +15,13 @@ import styled from 'styled-components';
 import {TagEdit} from './views/TagEdit';
 
 
-
-const AppWrapper=styled.div`
+const AppWrapper = styled.div`
 color: #333;
-`
+//@media (max-width: 570px) {
+//   font-size: 12px;
+//}
+`;
+
 function App() {
   return (
     <AppWrapper>
