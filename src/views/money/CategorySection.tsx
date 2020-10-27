@@ -16,7 +16,7 @@ const Wrapper = styled.section`
   }
 `;
 
-type Props={category: '-'|'+', onChange: (category: '-'|'+')=>void}
+type Props={category: Category, onChange: (category: Category)=>void}
 const CategorySection: React.FC<Props> = (props) => {
   const categoryMap = {'-': '支出', '+': '收入'};
   type Keys = keyof typeof categoryMap

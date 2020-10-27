@@ -24,7 +24,7 @@ const Wrapper = styled.section`
 
 type Props = { tagsId: number[], onChange: (selected: number[]) => void }
 const TagsSection: React.FC<Props> = (props) => {
-  const {tags,addTag} = useTags();
+  const {tags, addTag} = useTags();
   const selectedTags = props.tagsId;
 
   const onToggleTag = (tagId: number) => {

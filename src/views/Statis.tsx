@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import React, {useState} from 'react';
 import {CategorySection} from './money/CategorySection';
-import {RecordItem, useRecords} from '../hooks/useRecords';
+import {useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import dayjs from 'dayjs';
 import styled from 'styled-components';

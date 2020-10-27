@@ -12,7 +12,7 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 
-type Category = '-' | '+'
+// type Category = '-' | '+'
 const defaultRecordData = {
   // id: 0,
   tagsId: [] as number[],

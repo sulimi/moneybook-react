@@ -21,9 +21,9 @@ const NavWrapper = styled.div`
         justify-content: center;
         align-items: center;
         &.selected{
-          color: red;
+          color: #A1DECF;
         .icon{
-          fill:red
+          fill:#A1DECF
         }
         }
         .icon{
@@ -41,10 +41,10 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <NavLink to="/tags" activeClassName="selected"><Icon name="tag"/>标签页</NavLink>
+          <NavLink to="/tags" activeClassName="selected"><Icon name="detail"/>标签页</NavLink>
         </li>
         <li>
-          <NavLink to="/money" activeClassName="selected"><Icon name="money"/>记账页</NavLink>
+          <NavLink to="/money" activeClassName="selected"><Icon name="home"/>记账页</NavLink>
         </li>
         <li>
           <NavLink to="/statistics" activeClassName="selected"><Icon name="static"/>统计页</NavLink>

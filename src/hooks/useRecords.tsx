@@ -2,15 +2,7 @@ import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 import {createRecordId} from '../lib/createRecordId';
 
-export type RecordItem = {
-  id: number
-  tagsId: number[]
-  note: string
-  category: '+' | '-'
-  amount: number
-  createdAt: string
-}
-type newRecordItem = Omit<RecordItem, 'id' | 'createdAt'>
+// type newRecordItem = Omit<RecordItem, 'id' | 'createdAt'>
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);

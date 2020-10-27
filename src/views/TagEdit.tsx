@@ -29,7 +29,7 @@ const TagEdit: React.FC = () => {
     <div>
       <Wrapper>
         <Input text='标签名' placeholder="请输入标签名" defaultValue={tag.name}
-               onChange={(e) => {updateTag(tag.id, {name: e.target.value});}}
+               onChange={(e) => {updateTag(tag.id, {name: e.target.value, icon:'', category: '-'});}}
         />
       </Wrapper>
       <Space/>

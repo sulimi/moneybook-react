@@ -30,9 +30,13 @@ function Tags() {
   return (
     <Layout>
       <TagList>
-        {tags.map(tag => <li key={tag.id}>
+        {tags.map(tag =>
+          <li key={tag.id}>
           <Link to={'/tags/' + tag.id}>
-            <span className='oneLine'>{tag.name}</span>
+            <div className='oneLine'>
+              <Icon name={tag.icon}/>
+              {tag.name}
+            </div>
             <Icon name='right'/>
           </Link>
         </li>)}
