@@ -39,12 +39,13 @@ function Money() {
   };
   return (
     <MyLayout>
+      <CategorySection category={record.category}
+                       onChange={category => onChange({category: category})}/>
       <TagsSection tagsId={record.tagsId}
                    onChange={tagsId => onChange({tagsId})}/>
       <NoteSection note={record.note}
                    onChange={note => onChange({note: note})}/>
-      <CategorySection category={record.category}
-                       onChange={category => onChange({category: category})}/>
+
       <NumberPadSection amount={record.amount}
                         onChange={amount => onChange({amount: amount})}
                         onOk={submit}
