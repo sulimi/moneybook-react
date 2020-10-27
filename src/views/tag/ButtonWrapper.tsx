@@ -7,7 +7,7 @@ const ButtonWrapper = styled.div`
   &.show{
     right:-16px;
   }
-  transition: all 0.3s;
+  transition: all 0.3s; 
   > a{
     display: block;
     height: 100%;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.section`
+const Wrapper = styled.section` 
   display: flex;font-weight: bold;
   flex-direction: column; background: #65C6BB;border: 2px solid black;
   > .top{
