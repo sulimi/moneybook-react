@@ -14,6 +14,7 @@ import NoMatch from './views/NoMatch';
 import styled from 'styled-components';
 import {TagEdit} from './views/TagEdit';
 import {AddMoney} from './views/AddMoney';
+import {Detail} from './views/Detail';
 
 
 const AppWrapper = styled.div`
@@ -30,6 +31,9 @@ function App() {
         <Switch>
           <Route exact path="/tags">
             <Tags/>
+          </Route>
+          <Route exact path="/detail">
+            <Detail />
           </Route>
           <Route exact path="/tags/:id">
             <TagEdit/>

@@ -14,8 +14,8 @@ const Wrapper = styled.section`
     }
     > .output{
       display: flex;justify-content: space-between;align-items: center;
-      background: #fff;font-size: 30px;line-height: 52px;
-      padding: 0 10px;width: 74%;
+      background: #fff;font-size: 30px;
+      padding: 5px 10px;width: 74%;
       border: 2px solid black;border-radius: 10px;
       margin: 5px 2%;overflow: hidden;
       .num{

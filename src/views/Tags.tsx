@@ -10,7 +10,23 @@ import {TagList} from './tag/TagList';
 import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
 import {Pop} from '../components/Pop';
 import {Message} from '../components/Message';
+import styled from 'styled-components';
+import {CategorySection} from './money/CategorySection';
 
+const Wrapper = styled.div`
+  display: flex;flex-direction: column;
+  .type{
+    display: flex;justify-content: center;align-items: center;
+  }
+`;
+const Header = styled.header`
+  display: flex;justify-content: space-between;align-items: center;
+  font-size: 20px;font-weight: bold;padding: 10px;
+  .icon{
+    width: 1.5em;
+    height: 1.5em;
+  }
+`;
 
 function Tags() {
   const {tags, addTag, deleteTag} = useTags();
@@ -43,10 +59,15 @@ function Tags() {
       setSuccess(false);
     }, 1000);
   };
+  const onChange=()=>{}
   return (
-    <Layout>
+    <Wrapper>
+      <Header><Icon name='quxiao'/>分类管理<Icon name='add' onClick={addTag}/></Header>
+      <div className='type'>
+        <CategorySection category='-' onChange={category => onChange()}/>
+      </div>
       <TagList>
-        {success?<Message>删除成功</Message>:''}
+        {success ? <Message>删除成功</Message> : ''}
         {tags.map(tag =>
           <React.Fragment key={tag.id}>
             <li key={tag.id} onClick={(e) => onIsClick(e, tag)}>
@@ -65,12 +86,7 @@ function Tags() {
           </React.Fragment>
         )}
       </TagList>
-      <Space/>
-      <Center>
-        <Button onClick={addTag}>新增标签</Button>
-      </Center>
-      <Space/>
-    </Layout>
+    </Wrapper>
   );
 }
 
