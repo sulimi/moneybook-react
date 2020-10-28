@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TagList = styled.ol`
-   font-size: 16px;background: #fff;
+   font-size: 16px;background: #fff;overflow-x: hidden;
    > li{
     margin-left: 16px;margin-right: 16px;
     display: flex;justify-content: space-between;align-items: center;

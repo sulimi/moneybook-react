@@ -1,41 +1,51 @@
 import React, {useState} from 'react';
 import {Wrapper} from './numberPad/NumberPadWrapper';
 import {generateOutPut} from './numberPad/generateOutput';
+import {NoteSection} from './NoteSection';
 
-type Props={amount: number, onChange: (amount: number)=>void, onOk?: ()=>void}
+type Props = { amount: number, note: string, onChange: (amount: number) => void, onOk?: () => void, onChangeNote: (note: string) => void }
 const NumberPadSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.amount.toString());
   const setOutput = (output: string) => {
-  let newOutput
+    let newOutput;
     if (output.length > 16) {
       newOutput = output.slice(0, 16);
     } else if (output.length === 0) {
       newOutput = '0';
-    }else {
-      newOutput=output
+    } else {
+      newOutput = output;
     }
-    _setOutput(newOutput)
-    props.onChange(parseFloat(newOutput))
+    _setOutput(newOutput);
+    props.onChange(parseFloat(newOutput));
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {
       return;
     }
-    if (text==='ok'){
-      if (props.onOk){props.onOk()}
+    if (text === 'ok') {
+      if (props.onOk) {
+        props.onOk();
+      }
       return;
     }
-    type InputString = '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'删除'|'清空'|'.'
-    if ('0123456789.'.split('').concat(['删除','清空']).indexOf(text)>=0){
-      setOutput(generateOutPut((text as InputString), output))
+    type InputString = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '删除' | '清空' | '.'
+    if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {
+      setOutput(generateOutPut((text as InputString), output));
     }
   };
   return (
     <Wrapper>
       <div className='top'>
         <div className='day'>日期</div>
-        <div className='output'>{output}</div>
+        <div className='output'>
+          <NoteSection note={props.note}
+                       onChange={props.onChangeNote}/>
+          <div className='num'>
+            <span className='cny'>CNY</span><span>{output}</span>
+          </div>
+
+        </div>
       </div>
       <div className='pad clearfix' onClick={onClickButtonWrapper}>
         <button>1</button>

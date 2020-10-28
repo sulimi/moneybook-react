@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section` 
   display: flex;font-weight: bold;
-  flex-direction: column; background: #65C6BB;border: 2px solid black;
+  flex-direction: column; background: #65C6BB;border: 2px solid black;flex-shrink: 0;
   > .top{
       display: flex;align-items: center;
     > .day{
@@ -10,13 +10,23 @@ const Wrapper = styled.section`
       display: flex;align-items: center;justify-content: center;
       background: #fff; margin: 5px 0 5px 2%;
       border: 2px solid black;border-radius: 10px;
-      font-size: 20px;
+      font-size: 18px;
     }
     > .output{
-      background: #fff;font-size: 36px;line-height: 62px;text-align: right;
-      padding: 0 16px;width: 74%;
+      display: flex;justify-content: space-between;align-items: center;
+      background: #fff;font-size: 30px;line-height: 52px;
+      padding: 0 10px;width: 74%;
       border: 2px solid black;border-radius: 10px;
-      margin: 5px 2%;
+      margin: 5px 2%;overflow: hidden;
+      .num{
+        flex-grow: 1;
+        flex-shrink: 0;
+        text-align: right;
+        width: 60%;
+        .cny{
+          font-size: 12px;margin-right: 2px;color: #AAAAAA;
+        }
+      }
      };
     //  @media (max-width:570px){
     //  > .day{
@@ -33,7 +43,7 @@ const Wrapper = styled.section`
         background: #fff;
         border: 2px solid black;border-radius: 10px;
         width: 22.5%;height: 44px;
-        float:left;font-size: 26px;
+        float:left;font-size: 20px;
         margin: 5px 0 5px 2%;
         &:nth-child(4),:nth-child(8){
             background: #FA8072;

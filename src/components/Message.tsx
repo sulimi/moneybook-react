@@ -14,7 +14,6 @@ const Wrapper = styled.div`
 `;
 
 const Message = (props: any) => {
-  console.log(props.children);
   return (
     <Wrapper>
       <Icon name='success'/>
