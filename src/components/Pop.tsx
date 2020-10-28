@@ -3,18 +3,25 @@ import React from 'react';
 import Icon from './Icon';
 
 const Wrapper = styled.div`
+  @keyframes show{
+    0%{height: 0; padding: 0}
+    100%{height: 20%; padding: 16px 16px 10px;}
+  }
   position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.5);
-  display: flex;justify-content: center;align-items: center;color: rgba(0,0,0,.65);z-index: 10;
+  color: rgba(0,0,0,.65);z-index: 10;
+  display: flex;justify-content: center;align-items: center;
+
   > .content{
-     width: 96%;height: 20%;background: #fff;padding: 16px 16px 10px;
+    width: 96%;height: 20%;background: #fff;padding: 16px 16px 10px;
      display: flex;flex-direction:column;justify-content: center;
+     animation: show 0.1s;
   > .message-wrapper{
-    display: flex;align-items: center;margin-bottom: 32px;
+      display: flex;align-items: center;margin-bottom: 32px;
     > .icon{
       width: 1.5em;height: 1.5em;margin-right: 10px;
     }
     > .message{
-      font-size: 14px;
+      font-size: 16px;
   }
   }
   > .button-wrapper{
@@ -26,6 +33,7 @@ const Wrapper = styled.div`
       }
    }
   }
+  
   }
 `;
 
