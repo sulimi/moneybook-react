@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Wrapper} from './numberPad/NumberPadWrapper';
-import {generateOutPut} from './numberPad/generateOutput';
-import {NoteSection} from './NoteSection';
+import {Wrapper} from './NumberPadWrapper';
+import {generateOutPut} from './generateOutput';
+import {NoteSection} from '../../components/NoteSection';
 
 type Props = { amount: number, note: string, onChange: (amount: number) => void, onOk?: () => void, onChangeNote: (note: string) => void }
 const NumberPadSection: React.FC<Props> = (props) => {

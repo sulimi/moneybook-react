@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-// import React from 'react';
 
-const ButtonWrapper = styled.div`
+const DelRewBtn = styled.div`
   position: absolute;right: -100%;top: 0;height: 100%;
   display: flex;justify-content: center;align-items: center;
   &.show{
@@ -14,7 +13,7 @@ const ButtonWrapper = styled.div`
     width: 4em;
     background: #CCE2DB;color: #fff;
   }
-  
+
 `;
 const DelButton = styled.button`
   width: 4em;height: 100%;
@@ -25,5 +24,4 @@ const RewriteButton = styled.button`
     width: 4em;
     background: #CCE2DB;color: #fff;
 `;
-
-export {ButtonWrapper, DelButton, RewriteButton};
+export {DelRewBtn, DelButton, RewriteButton};

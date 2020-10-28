@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {CategorySection} from './money/CategorySection';
-import {TagsSection} from './money/TagsSection';
-import {NumberPadSection} from './money/NumberPadSection';
+import {CategorySection} from '../components/CategorySection';
+import {TagsSection} from './tag/TagsSection';
+import {NumberPadSection} from './numberPad/NumberPadSection';
 import React, {useState} from 'react';
 import {useRecords} from '../hooks/useRecords';
 import Icon from '../components/Icon';

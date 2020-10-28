@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {useTags} from '../hooks/useTags';
-import Icon from '../components/Icon';
+import {useTags} from '../../hooks/useTags';
+import Icon from '../../components/Icon';
 import {Link, useHistory} from 'react-router-dom';
-import {TagList} from './tag/TagList';
-import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
-import {Pop} from '../components/Pop';
-import {Message} from '../components/Message';
+import {TagList} from './TagList';
+import {DelRewBtn, DelButton, RewriteButton} from './DelRewBtn';
+import {Pop} from '../../components/Pop';
+import {Message} from '../../components/Message';
 import styled from 'styled-components';
-import {CategorySection} from './money/CategorySection';
+import {CategorySection} from '../../components/CategorySection';
 
 const Wrapper = styled.div`
   display: flex;flex-direction: column;
@@ -82,10 +82,10 @@ function Tags() {
                 {tag.name}
               </div>
               {isClick === tag.id ? '' : <Icon name='mulu'/>}
-              <ButtonWrapper className={classN(tag.id)}>
+              <DelRewBtn className={classN(tag.id)}>
                 <DelButton onClick={(e) => onClickDel(e)}>删除</DelButton>
                 <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>
-              </ButtonWrapper>
+              </DelRewBtn>
             </li>
             {pop && isClick === tag.id ? <Pop message='确定要删除该标签吗' onChangePop={() => onchangePop()}
                                               onChangeDel={() => {onChangeDel(tag.id);}}/> : ''}

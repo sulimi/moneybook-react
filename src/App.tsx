@@ -7,15 +7,15 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import Tags from './views/Tags';
+import Tags from './views/tag/Tags';
 import Money from './views/Money';
 import Statistics from './views/Statis';
 import NoMatch from './views/NoMatch';
 import styled from 'styled-components';
-import {TagEdit} from './views/TagEdit';
+import {TagEdit} from './views/tag/TagEdit';
 import {AddMoney} from './views/AddMoney';
 import {Detail} from './views/Detail';
-import {TagAdd} from './views/TagAdd';
+import {TagAdd} from './views/tag/TagAdd';
 
 
 const AppWrapper = styled.div`
