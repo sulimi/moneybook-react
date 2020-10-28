@@ -9,13 +9,14 @@ import {Space} from '../components/Space';
 import {TagList} from './tag/TagList';
 import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
 import {Pop} from '../components/Pop';
+import {Message} from '../components/Message';
 
 
 function Tags() {
   const {tags, addTag, deleteTag} = useTags();
   const [isClick, setIsClick] = useState(0);
   const [pop, setPop] = useState(false);
-
+  const [success, setSuccess] = useState(false);
   const onIsClick = (e: any, tag: Tag) => {
     e.stopPropagation();
     setPop(false);
@@ -37,10 +38,15 @@ function Tags() {
   const onChangeDel = (id: number) => {
     deleteTag(id);
     setIsClick(0);
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 1000);
   };
   return (
     <Layout>
       <TagList>
+        {success?<Message>删除成功</Message>:''}
         {tags.map(tag =>
           <React.Fragment key={tag.id}>
             <li key={tag.id} onClick={(e) => onIsClick(e, tag)}>
