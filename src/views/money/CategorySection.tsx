@@ -2,15 +2,17 @@ import styled from 'styled-components';
 import React, {useEffect, useState} from 'react';
 
 const Wrapper = styled.section` 
-  display: flex;justify-content: center;align-items: center;position: relative;
+
+  display: flex;justify-content: center;align-items: center;
   > .bgdiv{
     position: absolute;background: #fff;border-radius: 6px;
-    transition: all 0.3s;
+    transition: all 0.3s;width: 50%;
   }
   > ul{
   display: flex;justify-content: center;align-items: center;
-  width: 30%;border-radius: 6px;background: #E6E6E6;
+  width: 100%;border-radius: 6px;background: #E6E6E6;
   margin: 6px 0;font-size: 14px;
+  
     > li{
     width: 50%; margin: 2px;white-space: nowrap;
     text-align: center; padding: 6px;z-index: 2;

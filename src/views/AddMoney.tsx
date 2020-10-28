@@ -4,14 +4,21 @@ import {TagsSection} from './money/TagsSection';
 import {NumberPadSection} from './money/NumberPadSection';
 import React, {useState} from 'react';
 import {useRecords} from '../hooks/useRecords';
+import Icon from '../components/Icon';
 
-const Wrapper=styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-`
-
+`;
+const Header = styled.header`
+  display: flex;justify-content: space-between;align-items: center;padding: 0 6px;
+  .icon{
+    width:2em;
+    height:2em;
+  }
+`;
 
 const defaultRecordData = {
   // id: 0,
@@ -22,7 +29,7 @@ const defaultRecordData = {
   // createdAt: ''
 };
 
-const AddMoney=()=>{
+const AddMoney = () => {
   const [record, setRecord] = useState(defaultRecordData);
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
@@ -37,10 +44,17 @@ const AddMoney=()=>{
       setRecord(defaultRecordData);
     }
   };
+  const goBack = () => {
+    window.history.back();
+  };
   return (
     <Wrapper>
-      <CategorySection category={record.category}
-                       onChange={category => onChange({category: category})}/>
+      <Header>
+        <Icon name='quxiao' onClick={goBack}/>
+        <CategorySection category={record.category}
+                         onChange={category => onChange({category: category})}/>
+        <Icon/>
+      </Header>
       <TagsSection tagsId={record.tagsId}
                    onChange={tagsId => onChange({tagsId})}/>
 
@@ -50,7 +64,7 @@ const AddMoney=()=>{
                         note={record.note} onChangeNote={note => onChange({note: note})}
       />
     </Wrapper>
-  )
-}
+  );
+};
 
-export {AddMoney}
+export {AddMoney};
