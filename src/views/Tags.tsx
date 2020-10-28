@@ -12,11 +12,13 @@ import {Pop} from '../components/Pop';
 
 
 function Tags() {
-  const {tags, addTag} = useTags();
+  const {tags, addTag, deleteTag} = useTags();
   const [isClick, setIsClick] = useState(0);
   const [pop, setPop] = useState(false);
 
-  const onIsClick = (tag: Tag) => {
+  const onIsClick = (e: any, tag: Tag) => {
+    e.stopPropagation();
+    setPop(false);
     if (isClick !== 0) {
       setIsClick(0);
     } else {
@@ -24,28 +26,38 @@ function Tags() {
     }
   };
   const classN = (id: number) => isClick === id ? 'show' : '';
-  const onClickDel = (e: any,id: number) => {
-    e.stopPropagation()
-    // deleteTag(id);
-    setPop(true);
+  const onClickDel = (e: any) => {
+    e.stopPropagation();
+    setPop(!pop);
+  };
+  const onchangePop = () => {
+    setPop(!pop);
+    setIsClick(0);
+  };
+  const onChangeDel = (id: number) => {
+    deleteTag(id);
+    setIsClick(0);
   };
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
-          <li key={tag.id} onClick={() => onIsClick(tag)}>
-            <div className='oneLine'>
-              <Icon name={tag.icon}/>
-              {tag.name}
-            </div>
-            {isClick === tag.id ? '' : <Icon name='right'/>}
-            <ButtonWrapper className={classN(tag.id)}>
-              <DelButton onClick={(e) => onClickDel(e,tag.id)}>删除</DelButton>
-              <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>
-            </ButtonWrapper>
-          </li>
+          <React.Fragment key={tag.id}>
+            <li key={tag.id} onClick={(e) => onIsClick(e, tag)}>
+              <div className='oneLine'>
+                <Icon name={tag.icon}/>
+                {tag.name}
+              </div>
+              {isClick === tag.id ? '' : <Icon name='right'/>}
+              <ButtonWrapper className={classN(tag.id)}>
+                <DelButton onClick={(e) => onClickDel(e)}>删除</DelButton>
+                <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>
+              </ButtonWrapper>
+            </li>
+            {pop && isClick === tag.id ? <Pop message='确定要删除该标签吗' onChangePop={() => onchangePop()}
+                                              onChangeDel={() => {onChangeDel(tag.id);}}/> : ''}
+          </React.Fragment>
         )}
-        {pop ? <Pop message='确定要删除该标签吗' onChange={() => setPop(!pop)}/> : ''}
       </TagList>
       <Space/>
       <Center>
