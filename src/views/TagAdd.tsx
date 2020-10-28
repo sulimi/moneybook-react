@@ -4,8 +4,6 @@ import {useParams, useHistory} from 'react-router-dom';
 import Icon from '../components/Icon';
 import styled from 'styled-components';
 import {Input} from '../components/Input';
-import {Center} from '../components/Center';
-import {Space} from '../components/Space';
 
 type Params = {
   id: string
@@ -53,19 +51,7 @@ const Button=styled.div`
     background: #65C6BB;padding: 10px 16px;color: #ffff;font-weight: bold;border-radius: 20px;
   }
 `
-const TagEdit: React.FC = () => {
-  const {findTag, updateTag} = useTags();
-  const {id} = useParams<Params>();
-  const tag = findTag(parseInt(id));
-  const tagContent = (tag: Tag) => (
-    <TagWrapper>
-      <Icon name={tag.icon}/>
-      <Input placeholder="分类名称" defaultValue={tag.name}
-             onChange={(e) => {updateTag(tag.id, {name: e.target.value, icon: '', category: '-'});}}
-      />
-    </TagWrapper>
-  );
-  const noTag = (<div><Space/><Space/><Space/><Center>标签不存在</Center></div>);
+const TagAdd: React.FC = () => {
   const history = useHistory();
   const onClickBack = () => {
     // window.history.back();
@@ -78,10 +64,13 @@ const TagEdit: React.FC = () => {
           <Icon name='left' />
           <span>分类管理</span>
         </div>
-        <span>编辑标签</span>
+        <span>新建标签</span>
         <div className='save'>保存</div>
       </Topbar>
-      {tag ? tagContent(tag) : noTag}
+      <TagWrapper>
+        <Icon name='fangdai'/>
+        <Input placeholder="分类名称" />
+      </TagWrapper>
       <Button>
         <div>选择图标</div>
       </Button>
@@ -89,4 +78,4 @@ const TagEdit: React.FC = () => {
     </Wrapper>
   );
 };
-export {TagEdit};
+export {TagAdd};

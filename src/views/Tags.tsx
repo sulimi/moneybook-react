@@ -1,11 +1,7 @@
-import Layout from '../components/Layout';
 import React, {useState} from 'react';
 import {useTags} from '../hooks/useTags';
 import Icon from '../components/Icon';
-import {Link} from 'react-router-dom';
-import {Button} from '../components/Button';
-import {Center} from '../components/Center';
-import {Space} from '../components/Space';
+import {Link, useHistory} from 'react-router-dom';
 import {TagList} from './tag/TagList';
 import {ButtonWrapper, DelButton, RewriteButton} from './tag/ButtonWrapper';
 import {Pop} from '../components/Pop';
@@ -29,7 +25,7 @@ const Header = styled.header`
 `;
 
 function Tags() {
-  const {tags, addTag, deleteTag} = useTags();
+  const {tags, deleteTag} = useTags();
   const [isClick, setIsClick] = useState(0);
   const [pop, setPop] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -59,10 +55,20 @@ function Tags() {
       setSuccess(false);
     }, 1000);
   };
-  const onChange=()=>{}
+  const history = useHistory();
+  const goBack = () => {
+    history.goBack();
+  };
+  const onChange = () => {};
   return (
     <Wrapper>
-      <Header><Icon name='quxiao'/>分类管理<Icon name='add' onClick={addTag}/></Header>
+      <Header>
+        <Icon name='quxiao' onClick={goBack}/>
+        分类管理
+        <Link to='/tagadd'>
+          <Icon name='add'/>
+        </Link>
+      </Header>
       <div className='type'>
         <CategorySection category='-' onChange={category => onChange()}/>
       </div>
@@ -75,7 +81,7 @@ function Tags() {
                 <Icon name={tag.icon}/>
                 {tag.name}
               </div>
-              {isClick === tag.id ? '' : <Icon name='right'/>}
+              {isClick === tag.id ? '' : <Icon name='mulu'/>}
               <ButtonWrapper className={classN(tag.id)}>
                 <DelButton onClick={(e) => onClickDel(e)}>删除</DelButton>
                 <Link to={'/tags/' + tag.id}><RewriteButton>编辑</RewriteButton></Link>

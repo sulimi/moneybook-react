@@ -5,7 +5,7 @@ const TagList = styled.ol`
    > li{
     margin-left: 16px;margin-right: 16px;
     display: flex;justify-content: space-between;align-items: center;
-    position:relative;
+    position:relative;border-top: 1px solid #f5f5f5;
     
     > .oneLine{
     padding: 12px 0 16px 0;flex-grow: 1;

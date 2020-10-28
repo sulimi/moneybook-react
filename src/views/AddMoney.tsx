@@ -5,6 +5,7 @@ import {NumberPadSection} from './money/NumberPadSection';
 import React, {useState} from 'react';
 import {useRecords} from '../hooks/useRecords';
 import Icon from '../components/Icon';
+import {useHistory} from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,8 +45,9 @@ const AddMoney = () => {
       setRecord(defaultRecordData);
     }
   };
+  const history=useHistory()
   const goBack = () => {
-    window.history.back();
+    history.goBack()
   };
   return (
     <Wrapper>

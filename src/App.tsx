@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import {TagEdit} from './views/TagEdit';
 import {AddMoney} from './views/AddMoney';
 import {Detail} from './views/Detail';
+import {TagAdd} from './views/TagAdd';
 
 
 const AppWrapper = styled.div`
@@ -33,10 +34,13 @@ function App() {
             <Tags/>
           </Route>
           <Route exact path="/detail">
-            <Detail />
+            <Detail/>
           </Route>
           <Route exact path="/tags/:id">
             <TagEdit/>
+          </Route>
+          <Route exact path="/tagadd">
+            <TagAdd/>
           </Route>
           <Route exact path="/money">
             <Money/>
