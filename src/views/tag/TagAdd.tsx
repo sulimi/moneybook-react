@@ -6,6 +6,7 @@ import {AddRewHtml, Button, IconList, TagWrapper, Topbar} from './AddRewHtml';
 import {TagsIcon} from '../../datas/manageTags';
 import {createId} from '../../lib/createId';
 import {useTags} from '../../hooks/useTags';
+import {Pop} from '../../components/Pop';
 
 
 
@@ -28,7 +29,7 @@ const TagAdd: React.FC = () => {
       ...obj
     });
   };
-
+  const [isNone,setIsNone]=useState(false)
   const onTagName = (e: ChangeEvent<HTMLInputElement>) => {
     setTag({
       ...tag,
@@ -36,12 +37,17 @@ const TagAdd: React.FC = () => {
     });
   };
 const save=()=>{
+  if (!tag.name||tag.name===''){
+    setIsNone(true)
+  }
   addTag({
     ...tag,
     id: createId()
   })
 }
-
+const onConti=()=>{
+  setIsNone(false)
+}
   //返回
   const history = useHistory();
   const onClickBack = () => {
@@ -50,6 +56,7 @@ const save=()=>{
   };
   return (
     <AddRewHtml>
+      {isNone?<Pop message='分类名称不能为空' onChangeDel={onConti}/>:''}
       <Topbar>
         <div className='back' onClick={onClickBack}>
           <Icon name='left'/>

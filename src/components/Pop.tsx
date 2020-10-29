@@ -40,7 +40,7 @@ const Wrapper = styled.div`
 
 type Props = {
   message: string;
-  onChangePop: () => void;
+  onChangePop?: () => void;
   onChangeDel: () => void
 }
 
@@ -53,7 +53,7 @@ const Pop = (props: Props) => {
           <div className='message'>{props.message}</div>
         </div>
         <div className='button-wrapper'>
-          <button onClick={props.onChangePop}>取消</button>
+          {props.onChangePop?<button onClick={props.onChangePop}>取消</button>:''}
           <button className='ok' onClick={props.onChangeDel}>确定</button>
         </div>
       </div>
