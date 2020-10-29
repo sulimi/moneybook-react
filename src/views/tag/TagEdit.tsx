@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTags} from '../../hooks/useTags';
 import {useParams, useHistory} from 'react-router-dom';
 import Icon from '../../components/Icon';
@@ -7,10 +7,6 @@ import {Input} from '../../components/Input';
 import {Center} from '../../components/Center';
 import {Space} from '../../components/Space';
 import {useUpdate} from '../../hooks/useUpdate';
-
-type Params = {
-  id: string
-}
 
 
 const TagWrapper = styled.div`
@@ -37,12 +33,11 @@ const Topbar = styled.header`
     font-size: 20px;font-weight: bold;
   }
 `;
-
-const Wrapper=styled.div`
+const Wrapper = styled.div`
   display: flex;flex-direction: column;
   height: 100vh;
-`
-const IconList=styled.div`
+`;
+const IconList = styled.div`
   flex-grow: 1;overflow-y: auto;
   display: flex;flex-wrap: wrap;
   margin-top: 16px;
@@ -53,18 +48,54 @@ const IconList=styled.div`
       background: #CCE2DB;
     }
   }
-`
-const Button=styled.div`
+`;
+const Button = styled.div`
   display: flex;justify-content: center;align-items: center;
   margin-top: 10px;
   > div{
     background: #65C6BB;padding: 10px 16px;color: #ffff;font-weight: bold;border-radius: 20px;
   }
-`
+`;
+
+
 const TagEdit: React.FC = () => {
+  type Params = {
+    id: string
+  }
   const {findTag, updateTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
+
+  //图标选择：
+  const TagsIconList = [
+    {icon: 'fangdai', category: '-'},
+    {icon: 'shouru', category: '+'},
+    {icon: 'yule', category: '-'},
+    {icon: 'lvxing', category: '-'},
+    {icon: 'guanli', category: '-'}
+  ];
+  const [initIcon, setInitIcon] = useState();
+  useUpdate(() => {
+    setInitIcon(tag.icon);
+  }, [tag]);
+  const [iconSelect, setIconSelect] = useState();
+  useEffect(() => {
+    setIconSelect(initIcon);
+  },[initIcon]);
+  const setClass = (icon: string) => icon === iconSelect ? 'selected' : '';
+  const chooseIcon = (icon: string) => {
+    setIconSelect(icon);
+  };
+
+
+  //返回：
+  const history = useHistory();
+  const onClickBack = () => {
+    // window.history.back();
+    history.goBack();
+  };
+
+  //结构抽离块：
   const tagContent = (tag: Tag) => (
     <TagWrapper>
       <Icon name={tag.icon}/>
@@ -74,31 +105,13 @@ const TagEdit: React.FC = () => {
     </TagWrapper>
   );
   const noTag = (<div><Space/><Space/><Space/><Center>标签不存在</Center></div>);
-  const history = useHistory();
-  const onClickBack = () => {
-    // window.history.back();
-    history.goBack();
-  };
-  const TagsIconList=[
-    {icon:'fangdai',category:'-'},
-    {icon:'shouru',category:'+'},
-    {icon:'yule',category:'-'},
-    {icon:'lvxing',category:'-'},
-    {icon:'guanli',category:'-'}
-  ]
-  const [iconSelect, setIconSelect]=useState('')
-  useUpdate(()=>{
-    setIconSelect(tag.icon)
-  },[tag])
-  const setClass=(icon: string)=>icon===iconSelect?'selected':''
-  const chooseIcon=(icon: string)=>{
-    setIconSelect(icon)
-  }
+
+
   return (
     <Wrapper>
       <Topbar>
         <div className='back' onClick={onClickBack}>
-          <Icon name='left' />
+          <Icon name='left'/>
           <span>分类管理</span>
         </div>
         <span>编辑标签</span>
@@ -109,7 +122,8 @@ const TagEdit: React.FC = () => {
         <div>选择图标</div>
       </Button>
       <IconList>
-        {TagsIconList.map(tag=><Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon} onClick={()=>chooseIcon(tag.icon)}/>)}
+        {TagsIconList.map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
+                                       onClick={() => chooseIcon(tag.icon)}/>)}
       </IconList>
     </Wrapper>
   );
