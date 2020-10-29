@@ -7,8 +7,7 @@ import {Center} from '../../components/Center';
 import {Space} from '../../components/Space';
 import {useUpdate} from '../../hooks/useUpdate';
 import {AddRewHtml, Button, IconList, TagWrapper, Topbar} from './AddRewHtml';
-
-
+import {TagsIcon} from '../../datas/manageTags';
 
 
 
@@ -21,13 +20,7 @@ const TagEdit: React.FC = () => {
   const tag = findTag(parseInt(id));
 
   //图标选择：
-  const TagsIconList = [
-    {icon: 'fangdai', category: '-'},
-    {icon: 'shouru', category: '+'},
-    {icon: 'yule', category: '-'},
-    {icon: 'lvxing', category: '-'},
-    {icon: 'guanli', category: '-'}
-  ];
+  const TagsIconList=TagsIcon
   const [initIcon, setInitIcon] = useState();
   useUpdate(() => {
     setInitIcon(tag.icon);

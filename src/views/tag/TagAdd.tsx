@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import Icon from '../../components/Icon';
 import {Input} from '../../components/Input';
 import {AddRewHtml, Button, IconList, TagWrapper, Topbar} from './AddRewHtml';
+import {TagsIcon} from '../../datas/manageTags';
 
 
 
@@ -12,13 +13,7 @@ const TagAdd: React.FC = () => {
     // window.history.back();
     history.goBack();
   };
-  const TagsIconList=[
-    {icon:'fangdai',category:'-'},
-    {icon:'shouru',category:'+'},
-    {icon:'yule',category:'-'},
-    {icon:'lvxing',category:'-'},
-    {icon:'guanli',category:'-'}
-  ]
+  const TagsIconList=TagsIcon
   const [iconSelect, setIconSelect]=useState('fangdai')
   const setClass=(icon: string)=>icon===iconSelect?'selected':''
   const chooseIcon=(icon: string)=>{
