@@ -45,11 +45,8 @@ const useTags = () => { //封装一个自定义Hook
     }
     return result;
   };
-  const addTag = () => {
-    const TagName = window.prompt('新标签的名称为');
-    if (TagName !== null && TagName !== '') {
-      setTags([...tags, {id: createId(), name: TagName, icon: '', category:'-'}]);
-    }
+  const addTag = (obj:{ id: number,name: string, icon: string, category:Category }) => {
+      setTags([...tags, obj]);
   };
   const updateTag = (id: number, obj: { name: string, icon: string, category:Category }) => {
     setTags(tags.map(tag => tag.id === id ? {id, name: obj.name, icon: '', category:'-'} : tag));

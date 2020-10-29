@@ -2,7 +2,7 @@ type RecordItem = {
   id: number
   tagsId: number[]
   note: string
-  category: '+' | '-'
+  category: Category
   amount: number
   createdAt: string
 }
@@ -11,6 +11,6 @@ type Tag = {
   id: number;
   name: string;
   icon: string;
-  category: '+' | '-';
+  category: Category;
 }
 type Category = '-' | '+'
