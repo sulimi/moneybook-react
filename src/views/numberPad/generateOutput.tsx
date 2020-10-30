@@ -14,7 +14,13 @@ const generateOutPut = (text: InputString, output = '0') => {
       if (output === '0') {
         return text;
       } else {
-        return output + text;
+        let p = output + text;
+        if (p.split('.').length === 2) {
+          const l = p.split('.')[0];
+          const r = p.split('.')[1].substring(0, 2);
+          p = l + '.' + r;
+        }
+        return p;
       }
     case '.':
       if (output.indexOf('.') >= 0) {
@@ -23,12 +29,12 @@ const generateOutPut = (text: InputString, output = '0') => {
       return output + '.';
     case '删除':
       if (output.length === 1) {
-        return output;
+        return '0';
       } else {
-        return output.slice(0, -1)
+        return output.slice(0, -1);
       }
     case '清空':
-      return output;
+      return '0';
     default:
       return '';
   }
