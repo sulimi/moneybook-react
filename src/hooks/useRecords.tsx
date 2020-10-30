@@ -17,7 +17,7 @@ const useRecords = () => {
       alert('金额小于0');
       return false;
     }
-    if (!record.tag) {
+    if (!record.tag||record.tag.name===undefined) {
       alert('请选择标签');
       return false;
     }
