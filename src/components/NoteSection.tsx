@@ -4,6 +4,12 @@ import {Input} from './Input';
 
 const Wrapper = styled.section`
   font-size: 14px; 
+  > label{
+    > input{
+    width: 20vw;
+    padding: 6px 0;
+  }
+  }
 `;
 
 

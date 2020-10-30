@@ -29,6 +29,8 @@ function Tags() {
   const [isClick, setIsClick] = useState(0);
   const [pop, setPop] = useState(false);
   const [success, setSuccess] = useState(false);
+
+
   const onIsClick = (e: any, tag: Tag) => {
     e.stopPropagation();
     setPop(false);
@@ -53,7 +55,7 @@ function Tags() {
     setSuccess(true);
     setTimeout(() => {
       setSuccess(false);
-    }, 1000);
+    }, 1500);
   };
   const history = useHistory();
   const goBack = () => {

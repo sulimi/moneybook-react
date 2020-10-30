@@ -56,6 +56,9 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^17.0.0",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-navigation": "^4.4.3",
+    "react-navigation-stack": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.2",
@@ -96,6 +99,7 @@
   },
   "devDependencies": {
     "@types/classnames": "2.2.6",
+    "@types/react-navigation": "^3.4.0",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
     "@types/webpack-env": "^1.15.3",

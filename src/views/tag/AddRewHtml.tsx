@@ -5,9 +5,9 @@ const AddRewHtml=styled.div`
   height: 100vh;
 `
 const TagWrapper = styled.div`
-  background: #fff;padding: 0 16px;margin-top: 16px;display: flex;align-items: center;
+  background: #fff;padding: 0 16px;margin-top: 16px;display: flex;align-items: flex-end;
   .icon{
-    width: 3em;height: 3em;
+    width: 3em;height: 3em;margin-right: 5px;
   }
 `;
 const Topbar = styled.header`
