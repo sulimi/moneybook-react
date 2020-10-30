@@ -57,10 +57,13 @@ function Tags() {
       setSuccess(false);
     }, 1500);
   };
-  const [cate,setCate]=useState<Category>('-')
+
+  //稀里糊涂就实现了，哈哈哈
+  const [cate, setCate] = useState<Category>('-');
   const onChange = (category: Category) => {
-    setCate(category)
+    setCate(category);
   };
+
   const history = useHistory();
   const goBack = () => {
     history.goBack();
@@ -80,7 +83,7 @@ function Tags() {
       </div>
       <TagList>
         {success ? <Message>删除成功</Message> : ''}
-        {tags.map(tag =>
+        {tags.filter(t => t.category === cate).map(tag =>
           <React.Fragment key={tag.id}>
             <li key={tag.id} onClick={(e) => onIsClick(e, tag)}>
               <div className='oneLine'>
