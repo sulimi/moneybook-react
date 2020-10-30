@@ -59,6 +59,7 @@ const AddMoney = () => {
         setSuccess(false);
       }, 1500);
     }
+    setRecord({...record,amount: 0})
   };
   const history = useHistory();
   const goBack = () => {

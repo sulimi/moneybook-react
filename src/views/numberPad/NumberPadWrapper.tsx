@@ -26,6 +26,9 @@ const Wrapper = styled.section`
         .cny{
           font-size: 12px;margin-right: 2px;color: #AAAAAA;
         }
+        .small{
+          font-size: 20px;
+        }
       }
      };
     //  @media (max-width:570px){
