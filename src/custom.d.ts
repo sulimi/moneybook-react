@@ -1,6 +1,6 @@
 type RecordItem = {
   id: number
-  tagsId: number[]
+  tag:Tag
   note: string
   category: Category
   amount: number

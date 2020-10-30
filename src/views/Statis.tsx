@@ -50,7 +50,7 @@ function Statistics() {
           {records.map(r => {
             return (
               <Item key={r.id}>
-                <div className="tags">{r.tagsId.map(tagId => <span key={tagId}>{getName(tagId)}</span>)}</div>
+                <div className="tags">{<span>{getName(r.tag.id)}</span>}</div>
                 {r.note && <div className="note">{r.note}</div>}
                 <div className="amount">￥{r.amount}</div>
                 {/*<div className="date">{dayjs(r.createdAt).format('YYYY-MM-DD')}</div>*/}

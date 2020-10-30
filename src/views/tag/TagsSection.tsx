@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 import {useTags} from '../../hooks/useTags';
 import Icon from '../../components/Icon';
 import {Link} from 'react-router-dom';
@@ -58,26 +58,22 @@ const Wrapper = styled.section`
      //}
 }`;
 
-type Props = { tagsId: number[], onChange: (selected: number[]) => void }
+type Props = { tagId: number, onChange: (selectedTag: Tag) => void }
 const TagsSection: React.FC<Props> = (props) => {
   const {tags} = useTags();
-  const selectedTags = props.tagsId;
+  const [selectedId,setSelectedId] = useState(props.tagId);
 
-  const onToggleTag = (tagId: number) => {
-    const index = selectedTags.indexOf(tagId);
-    if (index >= 0) {  //如果有，我就把除了你之外的所有人拿走组队不带你（Vue的话可以直接改，但是React不推荐直接改）
-      props.onChange(selectedTags.filter(t => t !== tagId));
-    } else {
-      props.onChange([...selectedTags, tagId]);
-    }
+  const onToggleTag = (tag:Tag) => {
+    setSelectedId(tag.id)
+    props.onChange(tag)
   };
-  const getClass1 = (tagId: number) => selectedTags.indexOf(tagId) >= 0 ? 'selected' : '';
+  const getClass1 = (id: number) => selectedId===id ? 'selected' : '';
   const getClass2 = (name: string) => name.length >= 3 ? 'long' : '';
   return (
     <Wrapper>
       <ol>
         {tags.map(tag =>
-          <li key={tag.id} onClick={() => {onToggleTag(tag.id)}} className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
+          <li key={tag.id} onClick={() => {onToggleTag(tag)}} className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
             <Icon name={tag.icon} />
             <span>{tag.name}</span>
         </li>

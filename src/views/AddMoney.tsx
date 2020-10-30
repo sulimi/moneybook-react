@@ -23,7 +23,7 @@ const Header = styled.header`
 
 const defaultRecordData = {
   // id: 0,
-  tagsId: [] as number[],
+  tag:{} as Tag,
   note: '',
   category: '-' as Category,
   amount: 0,
@@ -57,8 +57,8 @@ const AddMoney = () => {
                          onChange={category => onChange({category: category})}/>
         <Icon/>
       </Header>
-      <TagsSection tagsId={record.tagsId}
-                   onChange={tagsId => onChange({tagsId})}/>
+      <TagsSection tagId={record.tag.id}
+                   onChange={tag => onChange({tag})}/>
 
       <NumberPadSection amount={record.amount}
                         onChange={amount => onChange({amount: amount})}
