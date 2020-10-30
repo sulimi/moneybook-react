@@ -57,11 +57,15 @@ function Tags() {
       setSuccess(false);
     }, 1500);
   };
+  const [cate,setCate]=useState<Category>('-')
+  const onChange = (category: Category) => {
+    setCate(category)
+  };
   const history = useHistory();
   const goBack = () => {
     history.goBack();
   };
-  const onChange = () => {};
+
   return (
     <Wrapper>
       <Header>
@@ -72,7 +76,7 @@ function Tags() {
         </Link>
       </Header>
       <div className='type'>
-        <CategorySection category='-' onChange={category => onChange()}/>
+        <CategorySection category={cate} onChange={category => onChange(category)}/>
       </div>
       <TagList>
         {success ? <Message>删除成功</Message> : ''}

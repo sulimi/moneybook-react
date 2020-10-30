@@ -23,7 +23,6 @@ const Header = styled.header`
   }
 `;
 
-
 const AddMoney = () => {
   const {tags} = useTags();
   let [defaultRecordData, setDef] = useState({
@@ -74,7 +73,7 @@ const AddMoney = () => {
                          onChange={category => onChange({category: category})}/>
         <Icon/>
       </Header>
-      <TagsSection tagId={record.tag.id}
+      <TagsSection tagId={record.tag.id} tagCategory={record.category}
                    onChange={tag => onChange({tag})}/>
 
       <NumberPadSection amount={record.amount}

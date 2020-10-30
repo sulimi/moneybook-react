@@ -5,16 +5,16 @@ import {Link} from 'react-router-dom';
 import {ChooseTag} from '../record/RecordChooseTag';
 
 
-type Props = { tagId: number, onChange: (selectedTag: Tag) => void }
+type Props = { tagId: number, tagCategory: Category, onChange: (selectedTag: Tag) => void }
 
 const TagsSection: React.FC<Props> = (props) => {
   const {tags} = useTags();
   const [selectedIcon, setSelectedIcon] = useState();
-  useEffect(()=>{
-    if (props.tagId){
-      setSelectedIcon(props.tagId)
+  useEffect(() => {
+    if (props.tagId) {
+      setSelectedIcon(props.tagId);
     }
-  },[props.tagId])
+  }, [props.tagId]);
   const onToggleTag = (tag: Tag) => {
     setSelectedIcon(tag.id);
     props.onChange(tag);
@@ -24,8 +24,9 @@ const TagsSection: React.FC<Props> = (props) => {
   return (
     <ChooseTag>
       <ol>
-        {tags.map(tag =>
-          <li key={tag.id} onClick={() => {onToggleTag(tag);}} className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
+        {tags.filter(tag=>tag.category===props.tagCategory).map(tag =>
+          <li key={tag.id} onClick={() => {onToggleTag(tag);}}
+              className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
             <Icon name={tag.icon}/>
             <span>{tag.name}</span>
           </li>
