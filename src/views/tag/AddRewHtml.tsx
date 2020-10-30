@@ -7,7 +7,7 @@ const AddRewHtml=styled.div`
 const TagWrapper = styled.div`
   background: #fff;padding: 0 16px;margin-top: 16px;display: flex;align-items: flex-end;
   .icon{
-    width: 3em;height: 3em;margin-right: 5px;
+    width: 2em;height: 2em;margin-right: 5px;
   }
 `;
 const Topbar = styled.header`
@@ -25,13 +25,13 @@ const Topbar = styled.header`
     width: 23.5vw;
   }
   > span{
-    font-size: 20px;font-weight: bold;
+    font-size: 18px;font-weight: bold;
   }
 `;
 const IconList=styled.div`
-  flex-grow: 1;overflow-y: auto;
+  flex-grow: 1;overflow-y: auto;background: #F8F8F6;
   display: flex;flex-wrap: wrap;
-  margin-top: 16px;padding: 0 16px;
+  padding: 16px;
   .icon{
     width: 3em;height: 3em;
     &.selected{
@@ -42,7 +42,7 @@ const IconList=styled.div`
 `
 const Button=styled.div`
   display: flex;justify-content: center;align-items: center;
-  margin-top: 10px;
+  padding-top: 10px;background: #F8F8F6;margin-top: 16px;
   > div{
     background: #65C6BB;padding: 10px 16px;color: #ffff;font-weight: bold;border-radius: 20px;
   }

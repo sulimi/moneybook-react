@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useTags} from '../../hooks/useTags';
 import {useParams, useHistory} from 'react-router-dom';
 import Icon from '../../components/Icon';
@@ -9,40 +9,73 @@ import {useUpdate} from '../../hooks/useUpdate';
 import {AddRewHtml, Button, IconList, TagWrapper, Topbar} from './AddRewHtml';
 import {TagsIcon} from '../../datas/manageTags';
 import {Message} from '../../components/Message';
-
-
+import {Pop} from '../../components/Pop';
 
 
 const TagEdit: React.FC = () => {
   type Params = {
     id: string
   }
-  const {tags,findTag, updateTag} = useTags();
+  const {tags, findTag, updateTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
 
   //图标选择：
-  const TagsIconList=TagsIcon
-  useUpdate(() => {
-    setIconSelect(tag.icon)
-  }, [tag]);
+  const TagsIconList = TagsIcon;
   const [iconSelect, setIconSelect] = useState();
+  const [initIcon, setInitIcon] = useState();
+  const [tagName, setTagName] = useState();
+  const [initName, setInitName]=useState()
+  useUpdate(() => {
+    setInitIcon(tag.icon);
+    setInitName(tag.name)
+  }, [tag]);
+  useEffect(() => {
+    setIconSelect(initIcon);
+  },[initIcon]);
+  useEffect(()=>{
+    setTagName(initName)
+  },[initName])
   const setClass = (icon: string) => icon === iconSelect ? 'selected' : '';
   const chooseIcon = (icon: string) => {
     setIconSelect(icon);
   };
-
+  const [maxlengthValue, setMax] = useState();
+  const nameInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length >= 4) {
+      setMax(4);
+    }
+    setTagName(value.split(' ').join(''));
+  };
 
 
   const [isNone, setIsNone] = useState(false);
   const [success, setSuccess] = useState(false);
+  const equalTag = tags.filter(t => t.name === tagName)[0];
+  const isEqual = tags && equalTag && equalTag.name === tagName;
+  const save = () => {
+    if (!tagName || tagName === '') {
+      setIsNone(true);
+    } else if (isEqual) {
+      setIsNone(true);
+    } else {
+      updateTag(tag.id, {
+        id:tag.id,
+        name: tagName,
+        icon: iconSelect,
+        category: TagsIconList.filter(t => t.icon === iconSelect)[0].category
+      });
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1500);
+    }
+  };
 
-
-  const save=()=>{
-
-  }
-
-
+  const onCoOn = () => {
+    setIsNone(false);
+  };
   //返回：
   const history = useHistory();
   const onClickBack = () => {
@@ -54,7 +87,7 @@ const TagEdit: React.FC = () => {
   return (
     <AddRewHtml>
       {success ? <Message>添加成功</Message> : ''}
-{/*      {isNone ? <Pop message={isEqual ? '该分类名称已存在' : '分类名称不能为空'} onChangeDel={onCoOn}/> : ''}*/}
+      {isNone ? <Pop message={isEqual ? '该分类名称已存在' : '分类名称不能为空'} onChangeDel={onCoOn}/> : ''}
       <Topbar>
         <div className='back' onClick={onClickBack}>
           <Icon name='left'/>
@@ -64,10 +97,10 @@ const TagEdit: React.FC = () => {
         <div className='save' onClick={save}>保存</div>
       </Topbar>
       {tag ? <TagWrapper>
-        <Icon name={iconSelect}/>
-        <Input placeholder="分类名称" defaultValue={tag.name}
-               onChange={(e) => {updateTag(tag.id, {name: e.target.value, icon: '', category: '-'});}}/>
-      </TagWrapper>
+          <Icon name={iconSelect}/>
+          <Input placeholder="分类名称" defaultValue={tagName}
+                 onChange={nameInput} maxLength={maxlengthValue}/>
+        </TagWrapper>
         : <div><Space/><Space/><Space/><Center>标签不存在</Center></div>}
       <Button>
         <div>选择图标</div>

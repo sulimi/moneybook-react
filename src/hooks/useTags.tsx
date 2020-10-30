@@ -48,8 +48,8 @@ const useTags = () => { //封装一个自定义Hook
   const addTag = (obj:{ id: number,name: string, icon: string, category:Category }) => {
       setTags([...tags, obj]);
   };
-  const updateTag = (id: number, obj: { name: string, icon: string, category:Category }) => {
-    setTags(tags.map(tag => tag.id === id ? {id, name: obj.name, icon: '', category:'-'} : tag));
+  const updateTag = (id: number, obj: Tag) => {
+    setTags(tags.map(tag => tag.id === id ? tag={...obj}: tag));
   };
   const deleteTag = (id: number) => {
     setTags(tags.filter(tag => tag.id !== id));
