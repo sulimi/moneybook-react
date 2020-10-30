@@ -3,6 +3,7 @@ import {Wrapper} from './NumberPadWrapper';
 import {generateOutPut} from './generateOutput';
 import {NoteSection} from '../../components/NoteSection';
 import {Message} from '../../components/Message';
+import {thousand} from '../../lib/thousandSeparator';
 
 type Props = {
   amount: number,
@@ -13,21 +14,6 @@ type Props = {
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.amount.toString());
-  const dealNumber = (num: string) => {
-    const arr = num.split('.');
-    let left = arr[0];
-    let right = '';
-    if (arr.length === 2) {
-      right = '.'+arr[1];
-    }
-    left = left.split('').reverse().join('');
-    left = left.replace(/(\d{3})/g, function (m, m1) { return m1 + ','; });
-    left = left.split('').reverse().join('');
-    if (left[0] === ',') {
-      left = left.slice(1);
-    }
-    return left + right;
-  };
   const [success, setSuccess] = useState(false);
   const setOutput = (output: string) => {
     let newOutput;
@@ -72,7 +58,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
           <NoteSection note={props.note}
                        onChange={props.onChangeNote}/>
           <div className='num'>
-            <span className='cny'>CNY</span><span className={output.length > 7 ? 'small' : ''}>{dealNumber(output)}</span>
+            <span className='cny'>CNY</span><span className={output.length > 7 ? 'small' : ''}>{thousand(output)}</span>
           </div>
 
         </div>
