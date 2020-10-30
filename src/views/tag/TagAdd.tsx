@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Icon from '../../components/Icon';
 import {Input} from '../../components/Input';
@@ -10,12 +10,13 @@ import {Pop} from '../../components/Pop';
 import {Message} from '../../components/Message';
 
 
-const TagAdd: React.FC = (props) => {
+const TagAdd: React.FC = () => {
   const {tags, addTag} = useTags();
+
   const TagsIconList = TagsIcon;
   const [iconSelect, setIconSelect] = useState('fangdai');
   const setClass = (icon: string) => icon === iconSelect ? 'selected' : '';
-  const [maxlengthValue,setMax]=useState()
+
   const obj = {
     id: 0,
     name: '',
@@ -30,17 +31,20 @@ const TagAdd: React.FC = (props) => {
       ...obj
     });
   };
+
+  const [maxlengthValue,setMax]=useState()
+  const [tagName, setTagName] = useState('');
+  const equalTag = tags.filter(t => t.name === tagName)[0];
+  const isEqual = tags && equalTag && equalTag.name === tagName;
   const nameInput=(e:ChangeEvent<HTMLInputElement>) => {
     const value=e.target.value
     if (value.length>=4){
       setMax(4)
     }
-    setTagName(value)
+    setTagName(value.split(' ').join(''))
   }
+
   const [isNone, setIsNone] = useState(false);
-  const [tagName, setTagName] = useState('');
-  const equalTag = tags.filter(t => t.name === tagName)[0];
-  const isEqual = tags && equalTag && equalTag.name === tagName;
   const [success, setSuccess] = useState(false);
   const save = () => {
     if (!tagName || tagName === '') {
