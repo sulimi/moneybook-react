@@ -61,15 +61,16 @@ const DaysMain = styled.table`
 
 
 const Days = () => {
-  const {weekDay, showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay} = dateFunc();
+  const {weekDay, showData, showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay} = dateFunc();
   const [selectedDay, setSelDay] = useState(showDays().filter(d => isSelectDay(d))[0]);
   const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
   const selectClass = (day: Date) => dayjs(day).isSame(selectedDay, 'day') ? 'is-select' : '';
   const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
-
+const [dateTitle,setDateTitle]=useState(showData)
   const onClickFunc = (day: Date) => {
     onSelectDay(day);
     setSelDay(day);
+    setDateTitle({year: day.getFullYear(),month: day.getMonth(),day: day.getDate()})
   };
 
   return (
@@ -77,7 +78,7 @@ const Days = () => {
       <DaysHeader>
         <Icon name='yearleft'/>
         <Icon name='monthleft'/>
-        <span>xx年xx月xx日</span>
+        <span>{dateTitle.year}年{dateTitle.month}月{dateTitle.day}日</span>
         <Icon name='monthright'/>
         <Icon name='yearrigth'/>
         <div>今天</div>
