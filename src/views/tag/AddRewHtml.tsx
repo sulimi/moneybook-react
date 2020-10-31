@@ -42,9 +42,9 @@ const IconList=styled.div`
 `
 const Button=styled.div`
   display: flex;justify-content: center;align-items: center;
-  padding-top: 10px;background: #F8F8F6;margin-top: 16px;
+  background: #65C6BB;margin-top: 16px;
   > div{
-    background: #65C6BB;padding: 10px 16px;color: #ffff;font-weight: bold;border-radius: 20px;
+    padding: 10px 6px;color: #ffff;font-weight: bold;font-size: 16px;
   }
 `
 

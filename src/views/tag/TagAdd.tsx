@@ -8,6 +8,7 @@ import {createId} from '../../lib/createId';
 import {useTags} from '../../hooks/useTags';
 import {Pop} from '../../components/Pop';
 import {Message} from '../../components/Message';
+import {CategorySection} from '../../components/CategorySection';
 
 
 const TagAdd: React.FC = () => {
@@ -32,17 +33,17 @@ const TagAdd: React.FC = () => {
     });
   };
 
-  const [maxlengthValue,setMax]=useState()
+  const [maxlengthValue, setMax] = useState();
   const [tagName, setTagName] = useState('');
   const equalTag = tags.filter(t => t.name === tagName)[0];
   const isEqual = tags && equalTag && equalTag.name === tagName;
-  const nameInput=(e:ChangeEvent<HTMLInputElement>) => {
-    const value=e.target.value
-    if (value.length>=4){
-      setMax(4)
+  const nameInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length >= 4) {
+      setMax(4);
     }
-    setTagName(value.split(' ').join(''))
-  }
+    setTagName(value.split(' ').join(''));
+  };
 
   const [isNone, setIsNone] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -68,6 +69,10 @@ const TagAdd: React.FC = () => {
   const onCoOn = () => {
     setIsNone(false);
   };
+  const [cate, setCate] = useState<Category>('-');
+  const onChange = (category: Category) => {
+    setCate(category);
+  };
   //返回
   const history = useHistory();
   const onClickBack = () => {
@@ -89,14 +94,16 @@ const TagAdd: React.FC = () => {
       </Topbar>
       <TagWrapper>
         <Icon name={iconSelect}/>
-        <Input type='text' value={tagName}  placeholder="分类名称(4个字符)" onChange={nameInput} maxLength={maxlengthValue}
-              />
+        <Input type='text' value={tagName} placeholder="分类名称(4个字符)" onChange={nameInput} maxLength={maxlengthValue}
+        />
       </TagWrapper>
       <Button>
-        <div>选择图标</div>
+        <div>选择</div>
+        <CategorySection category={cate} onChange={category => onChange(category)} />
+        <div>图标</div>
       </Button>
       <IconList>
-        {TagsIconList.map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
+        {TagsIconList.filter(t=>t.category===cate).map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
                                        onClick={() => chooseIcon({icon: tag.icon, category: tag.category})}/>)}
       </IconList>
     </AddRewHtml>
