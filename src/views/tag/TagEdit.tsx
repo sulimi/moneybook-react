@@ -10,6 +10,7 @@ import {AddRewHtml, Button, IconList, TagWrapper, Topbar} from './AddRewHtml';
 import {TagsIcon} from '../../datas/manageTags';
 import {Message} from '../../components/Message';
 import {Pop} from '../../components/Pop';
+import {CategorySection} from '../../components/CategorySection';
 
 
 const TagEdit: React.FC = () => {
@@ -76,6 +77,11 @@ const TagEdit: React.FC = () => {
   const onCoOn = () => {
     setIsNone(false);
   };
+
+  const [cate, setCate] = useState<Category>('-');
+  const onChange = (category: Category) => {
+    setCate(category);
+  };
   //返回：
   const history = useHistory();
   const onClickBack = () => {
@@ -103,10 +109,12 @@ const TagEdit: React.FC = () => {
         </TagWrapper>
         : <div><Space/><Space/><Space/><Center>标签不存在</Center></div>}
       <Button>
-        <div>选择图标</div>
+        <div>改成</div>
+        <CategorySection category={cate} onChange={category => onChange(category)} />
+        <div>分类</div>
       </Button>
       <IconList>
-        {TagsIconList.map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
+        {TagsIconList.filter(t=>t.category===cate).map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
                                        onClick={() => chooseIcon(tag.icon)}/>)}
       </IconList>
     </AddRewHtml>
