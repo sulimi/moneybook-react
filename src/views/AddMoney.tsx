@@ -24,24 +24,26 @@ const Header = styled.header`
 `;
 
 const AddMoney = () => {
-  const {tags} = useTags();
-  let [defaultRecordData, setDef] = useState({
+  const initDefaul = {
     tag: {} as Tag,
     note: '',
     category: '-' as Category,
     amount: 0,
-  });
+  };
+  const {tags} = useTags();
+  let [defaultRecordData, setDef] = useState(initDefaul);
   useEffect(() => {
-    if (tags[0]){
-      setDef({...defaultRecordData,tag:tags[0]})
+    if (tags.length !== 0) {
+      setDef({...initDefaul, tag: tags[0]});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
   const [record, setRecord] = useState(defaultRecordData);
-  useEffect(()=>{
-    if (defaultRecordData.tag.id){
-      setRecord(defaultRecordData)
+  useEffect(() => {
+    if (defaultRecordData.tag.id) {
+      setRecord(defaultRecordData);
     }
-  },[defaultRecordData])
+  }, [defaultRecordData]);
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
       ...record,
@@ -58,7 +60,7 @@ const AddMoney = () => {
         setSuccess(false);
       }, 1500);
     }
-    setRecord({...record,amount: 0})
+    setRecord({...record, amount: 0});
   };
   const history = useHistory();
   const goBack = () => {

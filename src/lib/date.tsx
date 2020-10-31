@@ -13,18 +13,18 @@ const dateFunc = () => {
     const day = data.getDate();
     return {year, month, day};
   };
-  const getShowDate = (date: Date) => {
-    const {year, month, day} = getYearMonthDay(date);
+  const getShowDate = (date: { year: number,month: number, day:number }) => {
+    const {year, month, day} = date;
     showData = {
       year,
       month,
       day
-    };
+    }
   };
 
-  const showDays = () => {
+  const showDays = (date: { year: number,month: number, day:number }) => {
     const days = [];
-    const monthFirstDay = new Date(showData.year, showData.month, 1);
+    const monthFirstDay = new Date(date.year, date.month, 1);
     const firstDayWeek = monthFirstDay.getDay();
     const showStartDay = +monthFirstDay - firstDayWeek * 24 * 60 * 60 * 1000;
     for (let i = 0; i < 42; i++) {
@@ -34,8 +34,7 @@ const dateFunc = () => {
   };
 
   const onSelectDay = (date: Date) => {
-    getShowDate(date)
-    isSelectDay(date)
+    getShowDate(getYearMonthDay(date))
   };
   const isThisMonthDay = (date: Date) => {
     const {year, month} = getYearMonthDay(date);
@@ -43,8 +42,6 @@ const dateFunc = () => {
     return year === showYear && month === showMonth;
   };
   const isToday = (date: Date) => {
-    // console.log(date.getDate());
-    // console.log(dayjs(date).isSame(new Date(), 'day'));
     if (dayjs(date).isSame(new Date(), 'day')) {
       return true;
     }
@@ -52,7 +49,6 @@ const dateFunc = () => {
   const isSelectDay = (date: Date) => {
     const {year, month, day} = getYearMonthDay(date);
     const {year: selectYear, month: selectMonth, day: selectDay} = showData;
-    // console.log(year === selectYear && month === selectMonth && day === selectDay);
     return year === selectYear && month === selectMonth && day === selectDay;
   };
   const onChangMonth = (type: string) => {
