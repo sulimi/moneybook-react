@@ -65,9 +65,11 @@ const NumberPadSection: React.FC<Props> = (props) => {
     setShowDays((showDays)=>!showDays)
   }
   const onChangeDay=(d:Date)=>{
-    setShowDays((showDays)=>!showDays)
     props.onChangeDay(d)
     onSelectDay(d)
+  }
+  const onToggel=()=>{
+    setShowDays((showDays)=>!showDays)
   }
   const dayBtn=()=>{
     if (dayjs(dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year)).isSame(new Date(),'day')){
@@ -106,7 +108,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button className='zero'>0</button>
         <button>.</button>
       </div>
-      {showDays?<DaysBook createdAt={props.createdAt} onChangeDay={onChangeDay} />:''}
+      {showDays?<DaysBook createdAt={props.createdAt} onChangeDay={onChangeDay} onToggleClick={onToggel}/>:''}
     </Wrapper>
   );
 };

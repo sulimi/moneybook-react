@@ -102,7 +102,8 @@ const DaysFoot=styled.footer`
 
 type Props = {
   onChangeDay?: (d:Date) => void,
-  createdAt?:Date
+  createdAt?:Date,
+  onToggleClick:()=>void
 }
 const DaysBook: React.FC<Props> =(props)=>{
   const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
@@ -121,6 +122,7 @@ const DaysBook: React.FC<Props> =(props)=>{
     onSelectDay(d)
     if (props.onChangeDay){
       props.onChangeDay(d)
+      props.onToggleClick()
     }
   }
   return (
@@ -155,8 +157,8 @@ const DaysBook: React.FC<Props> =(props)=>{
         </tbody>
       </DaysMain>
       <DaysFoot>
-        <div className='no'>取消</div>
-        <div className='ok'>确定</div>
+        <div className='no' onClick={props.onToggleClick}>取消</div>
+        <div className='ok' onClick={props.onToggleClick}>确定</div>
       </DaysFoot>
     </DaysBody>
   );
