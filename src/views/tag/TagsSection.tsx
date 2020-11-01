@@ -10,26 +10,30 @@ type Props = { tagId: number, tagCategory: Category, onChange: (selectedTag: Tag
 const TagsSection: React.FC<Props> = (props) => {
   const {tags} = useTags();
   const [selectedIcon, setSelectedIcon] = useState();
-  useEffect(() => {
-    if (props.tagId) {
-      setSelectedIcon(props.tagId);
+  const showTags=tags.filter(tag=>tag.category===props.tagCategory)
+  const firstTag=showTags.map((t,i,arr)=>arr[0])[0]
+  useEffect(()=>{
+    if (firstTag){
+      setSelectedIcon(firstTag.id);
+      props.onChange(firstTag);
     }
-  }, [props.tagId]);
+  },[firstTag])
   const onToggleTag = (tag: Tag) => {
     setSelectedIcon(tag.id);
     props.onChange(tag);
   };
+
   const getClass1 = (id: number) => selectedIcon === id ? 'selected' : '';
   const getClass2 = (name: string) => name.length >= 3 ? 'long' : '';
   return (
     <ChooseTag>
       <ol>
-        {tags.filter(tag=>tag.category===props.tagCategory).map(tag =>
-          <li key={tag.id} onClick={() => {onToggleTag(tag);}}
-              className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
-            <Icon name={tag.icon}/>
-            <span>{tag.name}</span>
-          </li>
+        {showTags.map(tag =>
+            <li key={tag.id} onClick={() => {onToggleTag(tag);}}
+                className={`${getClass1(tag.id)} ${getClass2(tag.name)}`}>
+              <Icon name={tag.icon}/>
+              <span>{tag.name}</span>
+            </li>
         )}
         <li className='long'><Link to='/tags' className='manage'><Icon name='guanli'/><span>管理标签</span></Link></li>
       </ol>

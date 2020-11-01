@@ -46,8 +46,6 @@ const AddMoney = () => {
     }
   }, [defaultRecordData]);
   const onChange = (obj: Partial<typeof record>) => {
-
-    console.log(obj);
     setRecord({
       ...record,
       ...obj
