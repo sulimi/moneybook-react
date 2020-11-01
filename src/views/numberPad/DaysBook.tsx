@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
 import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 
@@ -86,12 +86,28 @@ const DaysMain = styled.table`
   }
 `;
 
-const Days = () => {
-  const {weekDay, showData, showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
+
+type Props = {
+  onChange: (d:Date) => void,
+}
+const DaysBook: React.FC<Props> =(props)=>{
+  const {weekDay, showData, selectedDay,setSelectedDay,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
   const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
   const selectClass = (day: Date) => isSelectDay(day) ? 'is-select' : '';
   const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
 
+  const onSetToday=()=>{
+    updateShowDate({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      day: new Date().getDate()
+    })
+  }
+  const onClickFunc=(d:Date)=>{
+    onSelectDay(d)
+    setSelectedDay(d)
+    props.onChange(d)
+  }
   return (
     <DaysBody>
       <DaysHeader>
@@ -99,15 +115,11 @@ const Days = () => {
         <DaysHeader>
           <Icon name='yearleft' onClick={() => onChangYear('last')}/>
           <Icon name='monthleft' onClick={() => onChangMonth('last')}/>
-          <span className='title'>{showData.year}年{showData.month + 1}月{showData.day}日</span>
+          <span className='title' onClick={onSetToday}>{showData.year}年{showData.month + 1}月{showData.day}日</span>
           <Icon name='monthright' onClick={() => onChangMonth('next')}/>
           <Icon name='yearrigth' onClick={() => onChangYear('next')}/>
         </DaysHeader>
-        <div className='now' onClick={()=>updateShowDate({
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
-          day: new Date().getDate()
-        })}>今天</div>
+        <div className='now' onClick={onSetToday}>今天</div>
       </DaysHeader>
       <DaysMain>
         <thead>
@@ -119,7 +131,8 @@ const Days = () => {
         <tr>
           {showDays(showData).map(d =>
             <td key={d.toISOString()} className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)}`}
-                onClick={() => onSelectDay(d)}>
+                onClick={() => onClickFunc(d)}
+            >
               {d.getDate()}
             </td>
           )}
@@ -128,7 +141,6 @@ const Days = () => {
       </DaysMain>
     </DaysBody>
   );
-};
+}
 
-export {Days};
-
+export {DaysBook}

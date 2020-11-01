@@ -5,7 +5,8 @@ import {NoteSection} from '../../components/NoteSection';
 import {Message} from '../../components/Message';
 import {thousand} from '../../lib/thousandSeparator';
 import {useDate} from '../../hooks/useDate';
-import {Days} from './Days';
+import dayjs from 'dayjs';
+import {DaysBook} from './DaysBook';
 
 type Props = {
   amount: number,
@@ -54,16 +55,27 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
 
   //日期
-  const {showData,onSelectDay} = useDate();
+  const {setSelectedDay,selectedDay} = useDate();
   const [showDays,setShowDays]=useState(false)
   const onShowDays=()=>{
     setShowDays((showDays)=>showDays=!showDays)
+  }
+  const onChange=(d:Date)=>{
+    console.log(d);
+    setSelectedDay(d)
+  }
+  const dayBtn=()=>{
+    if (dayjs(selectedDay).isSame(new Date(),'day')){
+      return '今天'
+    }else {
+      return dayjs(selectedDay).format('MM/DD')
+    }
   }
   return (
     <Wrapper>
       {success ? <Message>金额太大啦！先存一笔吧~</Message> : ''}
       <div className='top'>
-        <div className='day' onClick={onShowDays}>{showData.year + '/' + (showData.month + 1) + '/' + showData.day + '/'}</div>
+        <div className='day' onClick={onShowDays}>{dayBtn()}</div>
         <div className='output'>
           <NoteSection note={props.note}
                        onChange={props.onChangeNote}/>
@@ -89,7 +101,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button className='zero'>0</button>
         <button>.</button>
       </div>
-      {showDays?<Days />:''}
+      {showDays?<DaysBook onChange={onChange}/>:''}
     </Wrapper>
   );
 };

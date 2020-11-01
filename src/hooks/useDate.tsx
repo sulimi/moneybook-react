@@ -9,6 +9,7 @@ const useDate = () => {
     day: new Date().getDate()
   };
   const [showData,setShowData]=useState(obj)
+  const [selectedDay,setSelectedDay]=useState(new Date())
 
   const getYearMonthDay = (data: Date) => {
     const year = data.getFullYear();
@@ -37,6 +38,7 @@ const useDate = () => {
 
   const onSelectDay = (date: Date) => {
     updateShowDate(getYearMonthDay(date));
+    setSelectedDay((selectedDay)=>date)
   };
   const isThisMonthDay = (date: Date) => {
     const {year, month} = getYearMonthDay(date);
@@ -70,6 +72,8 @@ const useDate = () => {
     weekDay,
     showData,
     setShowData,
+    selectedDay,
+    setSelectedDay,
     updateShowDate,
     getYearMonthDay,
     getShowDate: updateShowDate,
