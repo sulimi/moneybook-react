@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
 import Icon from './Icon';
-import {dateFunc} from '../lib/date';
-import dayjs from 'dayjs';
+import {useDate} from '../hooks/useDate';
 
 const DaysBody = styled.div`
   display: flex;flex-direction: column;align-items: center;
@@ -38,19 +37,18 @@ const DaysMain = styled.table`
   line-height: 40px;
   text-align: center;
   &.is-today {
-            color: #DE7873;
+            color: #65C6BB;
+            border: 1px solid #65C6BB;
             font-weight: 700;
           }
 
           &.is-select {
-            border-radius: 50%;
-            background: #DE7873;
+            background: #65C6BB;
             font-weight: 700;
             color: #fff;
           }
 
           &.other-month {
-            border-radius: 50%;
             color: #b5b5b5;
           }
   }
@@ -58,51 +56,21 @@ const DaysMain = styled.table`
    
   }
 `;
-// {year:new Date().getFullYear(),month: new Date().getMonth(),day: new Date().getDate()}
 
 const Days = () => {
-  const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth} = dateFunc();
-  const [dateTitle, setDateTitle] = useState({...showData});
-  const [selectedDay, setSelDay] = useState(showDays(dateTitle).filter(d => isSelectDay(d))[0]);
-  // const [othermonth,setOtherMonth]=useState(showDays(dateTitle).filter(d => isThisMonthDay(d)))
-  // console.log(othermonth.map(d=>d.getMonth()+'月'+d.getDate()));
-  const onClickDayFunc = (day: Date) => {
-    onSelectDay(day);
-    setSelDay(day);
-    setDateTitle({year: day.getFullYear(), month: day.getMonth(), day: day.getDate()});
-  };
-  const onClickMonthFunc = (type: string) => {
-    onChangMonth(type);
-    if (type === 'last') {
-      setDateTitle({...dateTitle, month: dateTitle.month - 1});
-      if (dateTitle.month <= 0) {
-        setDateTitle({...dateTitle, year: dateTitle.year - 1, month: 11});
-      }
-    } else {
-      setDateTitle({...dateTitle, month: dateTitle.month + 1});
-      if (dateTitle.month >= 11) {
-        setDateTitle({...dateTitle, year: dateTitle.year + 1, month: 0});
-      }
-    }
-  };
-  const onClickYearFunc = (type: string) => {
-    onChangYear(type);
-    type === 'last' ?
-      setDateTitle({...dateTitle, year: dateTitle.year - 1})
-      : setDateTitle({...dateTitle, year: dateTitle.year + 1});
-  };
+  const {weekDay,showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth} = useDate();
   const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
-  const selectClass = (day: Date) => dayjs(day).isSame(selectedDay, 'day') ? 'is-select' : '';
+  const selectClass = (day: Date) => isSelectDay(day)? 'is-select' : '';
   const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
 
   return (
     <DaysBody>
       <DaysHeader>
-        <Icon name='yearleft' onClick={() => onClickYearFunc('last')}/>
-        <Icon name='monthleft' onClick={() => onClickMonthFunc('last')}/>
-        <span>{dateTitle.year}年{dateTitle.month+1}月{dateTitle.day}日</span>
-        <Icon name='monthright' onClick={() => onClickMonthFunc('next')}/>
-        <Icon name='yearrigth' onClick={() => onClickYearFunc('next')}/>
+        <Icon name='yearleft' onClick={() => onChangYear('last')}/>
+        <Icon name='monthleft' onClick={() => onChangMonth('last')}/>
+        <span>{showData.year}年{showData.month+1}月{showData.day}日</span>
+        <Icon name='monthright' onClick={() => onChangMonth('next')}/>
+        <Icon name='yearrigth' onClick={() => onChangYear('next')}/>
         <div>今天</div>
       </DaysHeader>
       <DaysMain>
@@ -113,9 +81,9 @@ const Days = () => {
         </thead>
         <tbody>
         <tr>
-          {showDays(dateTitle).map(d =>
+          {showDays(showData).map(d =>
             <td key={d.toISOString()} className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)}`}
-                onClick={() => onClickDayFunc(d)}>
+                onClick={() => onSelectDay(d)}>
               {d.getDate()}
             </td>
           )}
