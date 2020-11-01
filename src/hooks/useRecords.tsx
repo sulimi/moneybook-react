@@ -21,8 +21,8 @@ const useRecords = () => {
       alert('请选择标签');
       return false;
     }
-    const recordAddTime = {...record, id: createRecordId(), createdAt: (new Date()).toISOString()};
-    setRecords([...records, recordAddTime]);
+    const recordAddId = {...record, id: createRecordId()};
+    setRecords([...records, recordAddId]);
     return true;
   };
   return {records, addRecord};

@@ -29,6 +29,7 @@ const AddMoney = () => {
     note: '',
     category: '-' as Category,
     amount: 0,
+    createdAt: new Date()
   };
   const {tags} = useTags();
   let [defaultRecordData, setDef] = useState(initDefaul);
@@ -45,6 +46,8 @@ const AddMoney = () => {
     }
   }, [defaultRecordData]);
   const onChange = (obj: Partial<typeof record>) => {
+
+    console.log(obj);
     setRecord({
       ...record,
       ...obj
@@ -53,6 +56,7 @@ const AddMoney = () => {
   const [success, setSuccess] = useState(false);
   const {addRecord} = useRecords();
   const submit = () => {
+    addRecord(record);
     if (addRecord(record)) {
       setRecord(defaultRecordData);
       setSuccess(true);
@@ -68,6 +72,7 @@ const AddMoney = () => {
   };
   return (
     <Wrapper>
+      {record.createdAt.getMonth() + ':' + record.createdAt.getDate()}
       {success ? <Message>记账成功</Message> : ''}
       <Header>
         <Icon name='quxiao' onClick={goBack}/>
@@ -81,7 +86,11 @@ const AddMoney = () => {
       <NumberPadSection amount={record.amount}
                         onChange={amount => onChange({amount: amount})}
                         onOk={submit}
-                        note={record.note} onChangeNote={note => onChange({note: note})}
+                        note={record.note}
+                        onChangeNote={note => onChange({note: note})}
+                        createdAt={record.createdAt}
+                        onChangeDay={createAt => onChange({createdAt: createAt})}
+
       />
     </Wrapper>
   );

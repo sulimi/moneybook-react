@@ -94,10 +94,11 @@ const DaysMain = styled.table`
 
 
 type Props = {
-  onChange: (d:Date) => void,
+  onChangeDay: (d:Date) => void,
+  createdAt:Date
 }
 const DaysBook: React.FC<Props> =(props)=>{
-  const {weekDay, showData,setSelectedDay,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
+  const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
   const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
   const selectClass = (day: Date) => isSelectDay(day) ? 'is-select' : '';
   const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
@@ -111,8 +112,7 @@ const DaysBook: React.FC<Props> =(props)=>{
   }
   const onClickFunc=(d:Date)=>{
     onSelectDay(d)
-    setSelectedDay(d)
-    props.onChange(d)
+    props.onChangeDay(d)
   }
   return (
     <DaysBody>

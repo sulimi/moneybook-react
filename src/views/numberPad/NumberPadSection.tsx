@@ -11,9 +11,11 @@ import {DaysBook} from './DaysBook';
 type Props = {
   amount: number,
   note: string,
+  createdAt: Date,
   onChange: (amount: number) => void,
   onOk?: () => void,
-  onChangeNote: (note: string) => void
+  onChangeNote: (note: string) => void,
+  onChangeDay:(createAt: Date)=>void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.amount.toString());
@@ -44,6 +46,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         props.onOk();
         setOutput('0');
         props.onChangeNote('');
+        props.onChangeDay(new Date())
       }
       return;
     }
@@ -55,20 +58,21 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
 
   //日期
-  const {setSelectedDay,selectedDay} = useDate();
+  const {showData,onSelectDay} = useDate();
   const [showDays,setShowDays]=useState(false)
   const onShowDays=()=>{
-    setShowDays((showDays)=>showDays=!showDays)
+    setShowDays((showDays)=>!showDays)
   }
-  const onChange=(d:Date)=>{
-    setSelectedDay(d)
-    setShowDays((showDays)=>showDays=!showDays)
+  const onChangeDay=(d:Date)=>{
+    setShowDays((showDays)=>!showDays)
+    props.onChangeDay(d)
+    onSelectDay(d)
   }
   const dayBtn=()=>{
-    if (dayjs(selectedDay).isSame(new Date(),'day')){
+    if (dayjs(dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year)).isSame(new Date(),'day')){
       return '今天'
     }else {
-      return dayjs(selectedDay).format('MM月DD日')
+      return dayjs(dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year)).format('MM月DD日')
     }
   }
   return (
@@ -101,7 +105,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button className='zero'>0</button>
         <button>.</button>
       </div>
-      {showDays?<DaysBook onChange={onChange}/>:''}
+      {showDays?<DaysBook createdAt={props.createdAt} onChangeDay={onChangeDay}/>:''}
     </Wrapper>
   );
 };

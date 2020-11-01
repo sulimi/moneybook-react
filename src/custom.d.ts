@@ -4,9 +4,9 @@ type RecordItem = {
   note: string
   category: Category
   amount: number
-  createdAt: string
+  createdAt: Date
 }
-type newRecordItem = Omit<RecordItem, 'id' | 'createdAt'>
+type newRecordItem = Omit<RecordItem, 'id'>
 type Tag = {
   id: number;
   name: string;

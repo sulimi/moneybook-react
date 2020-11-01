@@ -18,7 +18,6 @@ const NoteSection: React.FC<Props> = (props) => {
   const note = props.note;
   const changeNote:ChangeEventHandler<HTMLInputElement> = (e) => {
       props.onChange(e.target.value);
-    console.log(props.onChange(e.target.value));
   };
   return (
     <Wrapper>
