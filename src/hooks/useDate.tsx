@@ -10,14 +10,13 @@ const useDate = () => {
   };
   const [showData,setShowData]=useState(obj)
 
-
   const getYearMonthDay = (data: Date) => {
     const year = data.getFullYear();
     const month = data.getMonth();
     const day = data.getDate();
     return {year, month, day};
   };
-  const getShowDate = (date: { year: number, month: number, day: number }) => {
+  const updateShowDate = (date: { year: number, month: number, day: number }) => {
     const {year, month, day} = date;
     setShowData({
       year,
@@ -37,7 +36,7 @@ const useDate = () => {
   };
 
   const onSelectDay = (date: Date) => {
-    getShowDate(getYearMonthDay(date));
+    updateShowDate(getYearMonthDay(date));
   };
   const isThisMonthDay = (date: Date) => {
     const {year, month} = getYearMonthDay(date);
@@ -72,7 +71,7 @@ const useDate = () => {
     showData,
     setShowData,
     getYearMonthDay,
-    getShowDate,
+    getShowDate: updateShowDate,
     showDays,
     onSelectDay,
     isThisMonthDay,
