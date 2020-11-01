@@ -4,8 +4,8 @@ import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 
 const DaysBody = styled.div`
-  position: absolute;top:0;left: 0;background: rgba(255,255,255,0.1);z-index: 20;width: 100vw;
-  display: flex;flex-direction: column;align-items: center;height: 100vh;
+  position: absolute;top:0;left: 0;background: rgba(255,255,255,0.3);z-index: 20;width: 100vw;
+  display: flex;flex-direction: column;align-items: center;height: 100vh;justify-content: flex-end;
    @media (max-height:570px){
    font-size: 12px;
   }
@@ -93,7 +93,15 @@ const DaysMain = styled.table`
 `;
 const DaysFoot=styled.footer`
   display: flex;align-items: center;font-size: 16px;color: #65C6BB;text-align: center;background: #fff;width: 100%;padding: 0 16px;
-  > .ok,.no{flex-grow: 1;padding: 10px 16px;}
+    @media (max-height:570px){
+        font-size: 12px
+        }
+  > .ok,.no{flex-grow: 1;padding: 10px 16px;
+    @media (max-height:570px){
+        padding: 5px 16px;
+        }
+  
+  }
   > .ok{
       color: #fff;
       background: #65C6BB;
@@ -103,7 +111,7 @@ const DaysFoot=styled.footer`
 type Props = {
   onChangeDay?: (d:Date) => void,
   createdAt?:Date,
-  onToggleClick:()=>void
+  onToggleClick?:()=>void
 }
 const DaysBook: React.FC<Props> =(props)=>{
   const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
@@ -122,7 +130,9 @@ const DaysBook: React.FC<Props> =(props)=>{
     onSelectDay(d)
     if (props.onChangeDay){
       props.onChangeDay(d)
-      props.onToggleClick()
+      if (props.onToggleClick){
+        props.onToggleClick()
+      }
     }
   }
   return (
