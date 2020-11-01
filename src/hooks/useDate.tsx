@@ -1,16 +1,23 @@
 import dayjs from 'dayjs';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useUpdate} from './useUpdate';
 
 const useDate = () => {
   const weekDay = ['日', '一', '二', '三', '四', '五', '六'];
-  const obj={
+  const obj = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
     day: new Date().getDate()
   };
-  const [showData,setShowData]=useState(obj)
-  const [selectedDay,setSelectedDay]=useState(new Date())
-
+  const [showData, setShowData] = useState(obj);
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  useUpdate(() => {
+    if (showData.month > 11) {
+      setShowData({...showData,year:showData.year+1,month: 0})
+    } else if (showData.month < 0) {
+      setShowData({...showData,year:showData.year-1,month: 11})
+    }
+  }, [showData]);
   const getYearMonthDay = (data: Date) => {
     const year = data.getFullYear();
     const month = data.getMonth();
@@ -23,7 +30,7 @@ const useDate = () => {
       year,
       month,
       day
-    })
+    });
   };
   const showDays = (date: { year: number, month: number, day: number }) => {
     const days = [];
@@ -38,7 +45,7 @@ const useDate = () => {
 
   const onSelectDay = (date: Date) => {
     updateShowDate(getYearMonthDay(date));
-    setSelectedDay((selectedDay)=>date)
+    setSelectedDay((selectedDay) => date);
   };
   const isThisMonthDay = (date: Date) => {
     const {year, month} = getYearMonthDay(date);
@@ -57,16 +64,11 @@ const useDate = () => {
   };
   const onChangMonth = (type: string) => {
     const moveMonth = type === 'last' ? -1 : 1;
-   setShowData({...showData,month: showData.month+moveMonth})
-    if (showData.month >= 11) {
-      setShowData({...showData,year:showData.year+1,month: 0})
-    } else if (showData.month <= 0) {
-      setShowData({...showData,year:showData.year-1,month: 11})
-    }
+    setShowData({...showData, month: showData.month + moveMonth});
   };
   const onChangYear = (type: string) => {
     const moveYear = type === 'last' ? -1 : 1;
-    setShowData({...showData,year: showData.year+moveYear})
+    setShowData({...showData, year: showData.year + moveYear});
   };
   return {
     weekDay,
