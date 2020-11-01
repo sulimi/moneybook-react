@@ -15,6 +15,9 @@ const Wrapper = styled.section`
     > .output{
       display: flex;justify-content: space-between;align-items: center;
       background: #fff;font-size: 30px;
+      @media (max-height:570px){
+       font-size: 24px;
+     }
       padding: 5px 10px;width: 74%;
       border: 2px solid black;border-radius: 10px;
       margin: 5px 2%;overflow: hidden;
@@ -31,18 +34,13 @@ const Wrapper = styled.section`
         }
       }
      };
-    //  @media (max-width:570px){
-    //  > .day{
-    //    height: 34px;font-size: 18px;
-    //  }
-    //  .output{
-    //      line-height: 52px;
-    //  }
-    //}
   }
   > .pad{
       flex-wrap: wrap;
     > button{
+          @media (max-height:570px){
+            font-size: 18px;
+           }
         background: #fff;
         border: 2px solid black;border-radius: 10px;
         width: 22.5%;height: 44px;
@@ -51,6 +49,9 @@ const Wrapper = styled.section`
         &:nth-child(4),:nth-child(8){
             background: #FA8072;
             font-size: 20px;
+             @media (max-height:570px){
+            font-size: 18px;
+           }
         }
         &.ok{
           height: 98px;background: #FFCC22;

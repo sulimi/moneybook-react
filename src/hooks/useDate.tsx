@@ -58,7 +58,7 @@ const useDate = () => {
    setShowData({...showData,month: showData.month+moveMonth})
     if (showData.month >= 11) {
       setShowData({...showData,year:showData.year+1,month: 0})
-    } else if (showData.month < 0) {
+    } else if (showData.month <= 0) {
       setShowData({...showData,year:showData.year-1,month: 11})
     }
   };
@@ -70,6 +70,7 @@ const useDate = () => {
     weekDay,
     showData,
     setShowData,
+    updateShowDate,
     getYearMonthDay,
     getShowDate: updateShowDate,
     showDays,

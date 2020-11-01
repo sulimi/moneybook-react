@@ -4,6 +4,8 @@ import {generateOutPut} from './generateOutput';
 import {NoteSection} from '../../components/NoteSection';
 import {Message} from '../../components/Message';
 import {thousand} from '../../lib/thousandSeparator';
+import {useDate} from '../../hooks/useDate';
+import {Days} from './Days';
 
 type Props = {
   amount: number,
@@ -39,8 +41,8 @@ const NumberPadSection: React.FC<Props> = (props) => {
     if (text === 'ok') {
       if (props.onOk) {
         props.onOk();
-        setOutput('0')
-        props.onChangeNote('')
+        setOutput('0');
+        props.onChangeNote('');
       }
       return;
     }
@@ -49,11 +51,19 @@ const NumberPadSection: React.FC<Props> = (props) => {
       setOutput(generateOutPut((text as InputString), output));
     }
   };
+
+
+  //日期
+  const {showData,onSelectDay} = useDate();
+  const [showDays,setShowDays]=useState(false)
+  const onShowDays=()=>{
+    setShowDays((showDays)=>showDays=!showDays)
+  }
   return (
     <Wrapper>
       {success ? <Message>金额太大啦！先存一笔吧~</Message> : ''}
       <div className='top'>
-        <div className='day'>日期</div>
+        <div className='day' onClick={onShowDays}>{showData.year + '/' + (showData.month + 1) + '/' + showData.day + '/'}</div>
         <div className='output'>
           <NoteSection note={props.note}
                        onChange={props.onChangeNote}/>
@@ -79,6 +89,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button className='zero'>0</button>
         <button>.</button>
       </div>
+      {showDays?<Days />:''}
     </Wrapper>
   );
 };

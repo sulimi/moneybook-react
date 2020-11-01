@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import {Days} from '../components/Days';
+import {Days} from './numberPad/Days';
 
 const Detail = () => {
   return (
