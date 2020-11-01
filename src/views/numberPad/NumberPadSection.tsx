@@ -61,14 +61,14 @@ const NumberPadSection: React.FC<Props> = (props) => {
     setShowDays((showDays)=>showDays=!showDays)
   }
   const onChange=(d:Date)=>{
-    console.log(d);
     setSelectedDay(d)
+    setShowDays((showDays)=>showDays=!showDays)
   }
   const dayBtn=()=>{
     if (dayjs(selectedDay).isSame(new Date(),'day')){
       return '今天'
     }else {
-      return dayjs(selectedDay).format('MM/DD')
+      return dayjs(selectedDay).format('MM月DD日')
     }
   }
   return (

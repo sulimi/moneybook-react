@@ -11,6 +11,9 @@ const Wrapper = styled.section`
       background: #fff; margin: 5px 0 5px 2%;
       border: 2px solid black;border-radius: 10px;
       font-size: 18px;
+      @media (max-height:570px){
+       font-size: 14px;height: 34px;
+     }
     }
     > .output{
       display: flex;justify-content: space-between;align-items: center;
@@ -39,7 +42,7 @@ const Wrapper = styled.section`
       flex-wrap: wrap;
     > button{
           @media (max-height:570px){
-            font-size: 18px;
+            font-size: 18px;height: 34px;
            }
         background: #fff;
         border: 2px solid black;border-radius: 10px;
@@ -56,6 +59,9 @@ const Wrapper = styled.section`
         &.ok{
           height: 98px;background: #FFCC22;
           float: right;margin-right: 2%;
+           @media (max-height:570px){
+            font-size: 18px;height: 78px;
+           }
         }
         &.zero{
           width: 47%;

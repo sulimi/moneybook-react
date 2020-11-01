@@ -107,6 +107,7 @@ const DaysBook: React.FC<Props> =(props)=>{
     onSelectDay(d)
     setSelectedDay(d)
     props.onChange(d)
+
   }
   return (
     <DaysBody>
