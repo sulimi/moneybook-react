@@ -47,6 +47,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         setOutput('0');
         props.onChangeNote('');
         props.onChangeDay(new Date())
+        onSelectDay(new Date())
       }
       return;
     }
@@ -105,7 +106,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button className='zero'>0</button>
         <button>.</button>
       </div>
-      {showDays?<DaysBook createdAt={props.createdAt} onChangeDay={onChangeDay}/>:''}
+      {showDays?<DaysBook createdAt={props.createdAt} onChangeDay={onChangeDay} />:''}
     </Wrapper>
   );
 };

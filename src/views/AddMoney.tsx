@@ -72,7 +72,6 @@ const AddMoney = () => {
   };
   return (
     <Wrapper>
-      {record.createdAt.getMonth() + ':' + record.createdAt.getDate()}
       {success ? <Message>记账成功</Message> : ''}
       <Header>
         <Icon name='quxiao' onClick={goBack}/>

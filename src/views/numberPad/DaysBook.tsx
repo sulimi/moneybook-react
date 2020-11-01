@@ -4,14 +4,14 @@ import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 
 const DaysBody = styled.div`
-  position: absolute;top:0;left: 0;background: #fff;z-index: 20;width: 100vw;
-  display: flex;flex-direction: column;align-items: center;
+  position: absolute;top:0;left: 0;background: rgba(255,255,255,0.1);z-index: 20;width: 100vw;
+  display: flex;flex-direction: column;align-items: center;height: 100vh;
    @media (max-height:570px){
    font-size: 12px;
   }
 `;
 const DaysHeader = styled.header`
-  display: flex;justify-content: space-between;align-items: center;text-align: right;
+  display: flex;justify-content: space-between;align-items: center;text-align: right;background: #fff;
   width: 100vw; height: 3em;
      @media (max-height:570px){
     
@@ -33,7 +33,7 @@ const DaysHeader = styled.header`
   }
 `;
 const DaysMain = styled.table`
-  display: flex;flex-direction: column;align-items: center;width: 100vw;
+  display: flex;flex-direction: column;align-items: center;width: 100vw;background: #fff;
   > thead{
   width: 100%;
   > tr{
@@ -91,11 +91,18 @@ const DaysMain = styled.table`
    
   }
 `;
-
+const DaysFoot=styled.footer`
+  display: flex;align-items: center;font-size: 16px;color: #65C6BB;text-align: center;background: #fff;width: 100%;padding: 0 16px;
+  > .ok,.no{flex-grow: 1;padding: 10px 16px;}
+  > .ok{
+      color: #fff;
+      background: #65C6BB;
+  }
+`
 
 type Props = {
-  onChangeDay: (d:Date) => void,
-  createdAt:Date
+  onChangeDay?: (d:Date) => void,
+  createdAt?:Date
 }
 const DaysBook: React.FC<Props> =(props)=>{
   const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
@@ -112,12 +119,14 @@ const DaysBook: React.FC<Props> =(props)=>{
   }
   const onClickFunc=(d:Date)=>{
     onSelectDay(d)
-    props.onChangeDay(d)
+    if (props.onChangeDay){
+      props.onChangeDay(d)
+    }
   }
   return (
     <DaysBody>
       <DaysHeader>
-        {/*<div className='no' />*/}
+
         <DaysHeader>
           <Icon name='yearleft' onClick={() => onChangYear('last')}/>
           <Icon name='monthleft' onClick={() => onChangMonth('last')}/>
@@ -125,7 +134,7 @@ const DaysBook: React.FC<Props> =(props)=>{
           <Icon name='monthright' onClick={() => onChangMonth('next')}/>
           <Icon name='yearrigth' onClick={() => onChangYear('next')}/>
         </DaysHeader>
-        {/*<div className='now' onClick={onSetToday}>今天</div>*/}
+
       </DaysHeader>
       <DaysMain>
         <thead>
@@ -145,6 +154,10 @@ const DaysBook: React.FC<Props> =(props)=>{
         </tr>
         </tbody>
       </DaysMain>
+      <DaysFoot>
+        <div className='no'>取消</div>
+        <div className='ok'>确定</div>
+      </DaysFoot>
     </DaysBody>
   );
 }
