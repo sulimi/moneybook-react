@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useUpdate} from './useUpdate';
 
 const useDate = () => {
