@@ -138,6 +138,7 @@ useEffect(()=>{
   if (props.onChangeDay){
     props.onChangeDay(showData)
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 },[showData])
   const onMonth=(type:string)=>{
     onChangMonth(type)
@@ -157,7 +158,6 @@ useEffect(()=>{
   };
   return (
     <DaysBody>
-      {showData.month+1}
       <DaysHeader>
         <DaysHeader>
           <Icon name='yearleft' onClick={() => onYear('last')}/>

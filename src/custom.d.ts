@@ -20,3 +20,5 @@ type sDate={
   month:number,
   day:number
 }
+
+type HashRecord=[string, RecordItem[]]

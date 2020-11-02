@@ -5,7 +5,8 @@ import {useRecords} from '../hooks/useRecords';
 import dayjs from 'dayjs';
 import {hashCreate} from '../lib/hashCreate';
 import {thousand} from '../lib/thousandSeparator';
-import {DisplayWrapper, DisplayWrapper2, MyLayout, ThirtyDay, ThirtyDayHeader, ThirtyDayList} from './money/MoneyHTML';
+import {MyLayout} from './money/MoneyHTML';
+import {DetailList} from './detail/DetailList';
 
 
 
@@ -38,48 +39,8 @@ function Money() {
         {showR ? <Icon name='xia'/> : <Icon name='right'/>}
       </div>
       {showR &&
-      (recordArr.length>0?
-        <ThirtyDay>
-        {recordArr.map(([date, records]) =>
-          <ThirtyDay key={date}>
-            <ThirtyDayHeader>
-              <div className='day-header'>{dayjs(records[0].createdAt).isSame(new Date(), 'day') ?
-                <span className='today'>今天</span> : ''}<span>{dayjs(records[0].createdAt).format('MM月')}</span><span
-                className='day'>{dayjs(records[0].createdAt).format('D')}</span>
-              </div>
-              <div className='num'>
-                <span>
-                    {amountCalculate(records,'-') ?
-                      '支出￥' + thousand(amountCalculate(records,'-').toString()) : ''}
-                </span>
-                <span>
-                   {amountCalculate(records,'+')?
-                     '收入￥' + thousand(amountCalculate(records,'+').toString()) : ''}
-                </span>
-              </div>
-            </ThirtyDayHeader>
-            <ThirtyDay>
-              {records.map(r =>
-                <ThirtyDayList key={r.id}>
-                  <DisplayWrapper>
-                    <Icon name={r.tag.icon}/>
-                    <DisplayWrapper2>
-                      <div className='name'>{r.tag.name}</div>
-                      {r.note && <div className='note'>{r.note}</div>}
-                    </DisplayWrapper2>
-                  </DisplayWrapper>
-                  <div
-                    className={r.category === '-' ? 'amount' : 'amount zheng'}>{r.category === '-' ? '-' : '+'}￥{thousand(r.amount.toString())}</div>
-                </ThirtyDayList>
-              )}
-            </ThirtyDay>
-          </ThirtyDay>
-        )}
-      </ThirtyDay>
-        :<div className='none'>暂无记录...</div>
-      )
+      <DetailList records={recordArr}/>
       }
-
     </MyLayout>
   );
 }
