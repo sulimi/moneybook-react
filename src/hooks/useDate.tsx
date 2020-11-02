@@ -44,6 +44,7 @@ const useDate = () => {
 
   const onSelectDay = (date: Date) => {
     updateShowDate(getYearMonthDay(date));
+
   };
   const isThisMonthDay = (date: Date) => {
     const {year, month} = getYearMonthDay(date);

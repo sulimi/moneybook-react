@@ -17,7 +17,6 @@ import {AddMoney} from './views/AddMoney';
 import {Detail} from './views/Detail';
 import {TagAdd} from './views/tag/TagAdd';
 import {DayDetail} from './views/detail/DayDetail';
-import {NoneDetail} from './views/detail/NoneDetail';
 
 
 const AppWrapper = styled.div`
@@ -38,7 +37,7 @@ function App() {
           <Route exact path="/detail">
             <Detail/>
           </Route>
-          <Route exact path="/daydetail">
+          <Route exact path="/daydetail/:date">
             <DayDetail/>
           </Route>
           <Route exact path="/tags/:id">
