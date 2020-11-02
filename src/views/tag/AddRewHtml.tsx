@@ -22,7 +22,7 @@ const Topbar = styled.header`
   }
   .save{
    display: flex;align-items: center;justify-content: flex-end;
-    width: 23.5vw;
+    width: 23.5vw;color: #65C6BB;font-weight: bold;
   }
   > span{
     font-size: 18px;font-weight: bold;
