@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 import {useRecords} from '../../hooks/useRecords';
 import dayjs from 'dayjs';
+import {Link} from 'react-router-dom';
+import {NoneDetail} from './NoneDetail';
 
 const DaysBody = styled.div`
   display: flex;flex-direction: column;align-items: center;justify-content: flex-end;background: #F8F8F6;
@@ -100,9 +102,7 @@ const DaysMain = styled.div`
 
 type Props = {
   onChangeDay?: (d: sDate) => void,
-  createdAt?: Date,
-  onToggleClick?: () => void
-  category:string
+  category: string
 }
 const DetailDaysBook: React.FC<Props> = (props) => {
   const
@@ -126,33 +126,29 @@ const DetailDaysBook: React.FC<Props> = (props) => {
 
   const {records} = useRecords();
   const f = (d: Date) => {
-    const isHave=records.filter(r => dayjs(d).isSame(r.createdAt,'day'))
-    const typeRecord=isHave.filter(r=>r.category===props.category)
-    const count=typeRecord.reduce((sum,item)=>{return sum+=item.amount},0)
-    return {isHave,typeRecord,count};
+    const isHave = records.filter(r => dayjs(d).isSame(r.createdAt, 'day'));
+    const typeRecord = isHave.filter(r => r.category === props.category);
+    const count = typeRecord.reduce((sum, item) => {return sum += item.amount;}, 0);
+    return {isHave, typeRecord, count};
   };
-useEffect(()=>{
-  if (props.onChangeDay){
-    props.onChangeDay(showData)
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-},[showData])
-  const onMonth=(type:string)=>{
-    onChangMonth(type)
-  }
-  const onYear=(type:string)=>{
-    onChangYear(type)
-  }
-
+  useEffect(() => {
+    if (props.onChangeDay) {
+      props.onChangeDay(showData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showData]);
+  const onMonth = (type: string) => {
+    onChangMonth(type);
+  };
+  const onYear = (type: string) => {
+    onChangYear(type);
+  };
+  const [isNone, setIsNone] = useState(false);
   const onClickFunc = (d: Date) => {
     onSelectDay(d);
-    // if (props.onChangeDay) {
-    //   props.onChangeDay(d);
-    //   if (props.onToggleClick) {
-    //     props.onToggleClick();
-    //   }
-    // }
+    setIsNone((isNone)=>!isNone)
   };
+
   return (
     <DaysBody>
       <DaysHeader>
@@ -178,12 +174,13 @@ useEffect(()=>{
                    onClick={() => onClickFunc(d)}
               >
                 <div className='day'>{d.getDate()}</div>
-                <div className='record'>{f(d).count?props.category+'￥'+f(d).count:''}</div>
+                <div className='record'>{f(d).count ? props.category + '￥' + f(d).count : ''}</div>
               </div>
             )}
           </div>
         </div>
       </DaysMain>
+      {isNone && <NoneDetail onchange={()=>setIsNone((isNone)=>!isNone)}/>}
     </DaysBody>
   );
 };

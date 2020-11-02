@@ -34,7 +34,7 @@ padding: 40px 16px;color: #A5C9C0;
     font-size: 32px;font-weight: bold;padding: 16px;word-break: break-all;
 }
 .list{
-  padding: 10px 36px;color:#b5b5b5;background: #F8F8F6;;
+  padding: 10px 36px;color:#b5b5b5;background: #F8F8F6;
 }
 `;
 
