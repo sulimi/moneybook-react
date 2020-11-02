@@ -62,8 +62,13 @@ const AddMoney = () => {
         setSuccess(false);
       }, 1500);
     }
-    setRecord({...record, amount: 0});
   };
+  useEffect(()=>{
+    if (success){
+      setRecord(initDefaul)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[success])
   const history = useHistory();
   const goBack = () => {
     history.goBack();
