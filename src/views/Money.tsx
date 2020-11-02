@@ -14,18 +14,21 @@ function Money() {
   const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'day'));
   const recordArr = hashCreate(records).filter(([d, r], i, arr) =>
     dayjs(d) > dayjs(dayjs(arr[0][0]).subtract(29, 'day').format('YYYY-MM-DD')));
-
   const [showR, setShowR] = useState(false);
   const onShowR = () => {
     setShowR((showR) => !showR);
   };
+
+  const amountCalculate=(arr: RecordItem[],type:string)=>{
+    return arr.filter(r => r.category === type).reduce((sum, item) => {return sum + item.amount;}, 0)
+  }
   return (
     <MyLayout message='TODAY'>
       <div className='about'>
         <div className='paytext'>今日支出</div>
         <div
-          className='paynum'>-￥{thousand(todayRecord.filter(r => r.category === '-').reduce((sum, item) => {return sum += item.amount;}, 0).toString())}</div>
-        <div className='in'>收入￥{thousand(todayRecord.filter(r => r.category === '+').reduce((sum, item) => {return sum += item.amount;}, 0).toString())}</div>
+          className='paynum'>-￥{thousand(amountCalculate(todayRecord,'-').toString())}</div>
+        <div className='in'>收入￥{thousand(amountCalculate(todayRecord,'+').toString())}</div>
       </div>
       <Link className='add-wrapper' to='/addmoney'>
         <button className='addmoney'>记一笔</button>
@@ -43,12 +46,12 @@ function Money() {
               </div>
               <div className='num'>
                 <span>
-                    {records.filter(r => r.category === '-').reduce((sum, item) => {return sum + item.amount;}, 0) ?
-                      '支出￥' + thousand(records.filter(r => r.category === '-').reduce((sum, item) => {return sum + item.amount;}, 0).toString()) : ''}
+                    {amountCalculate(records,'-') ?
+                      '支出￥' + thousand(amountCalculate(records,'-').toString()) : ''}
                 </span>
                 <span>
-                   {records.filter(r => r.category === '+').reduce((sum, item) => {return sum + item.amount;}, 0) ?
-                     '收入￥' + thousand(records.filter(r => r.category === '+').reduce((sum, item) => {return sum + item.amount;}, 0).toString()) : ''}
+                   {amountCalculate(records,'+')?
+                     '收入￥' + thousand(amountCalculate(records,'+').toString()) : ''}
                 </span>
               </div>
             </ThirtyDayHeader>
