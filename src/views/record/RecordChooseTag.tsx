@@ -27,7 +27,7 @@ const ChooseTag = styled.section`
         }
         &.selected{
           border: 1px solid #65C6BB;
-          background: #CCE2DB;
+          background: #fff;
           font-weight: bold;
         }
         > .manage{

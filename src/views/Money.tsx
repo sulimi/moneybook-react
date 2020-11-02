@@ -22,6 +22,7 @@ function Money() {
   const amountCalculate=(arr: RecordItem[],type:string)=>{
     return arr.filter(r => r.category === type).reduce((sum, item) => {return sum + item.amount;}, 0)
   }
+
   return (
     <MyLayout message='TODAY'>
       <div className='about'>
@@ -36,7 +37,9 @@ function Money() {
       <div className='toggle' onClick={onShowR}>展示近30天账单 ({recordArr.map(([d, r]) => r.length).reduce((sum,item)=>{return sum+item},0)})
         {showR ? <Icon name='xia'/> : <Icon name='right'/>}
       </div>
-      {showR && <ThirtyDay>
+      {showR &&
+      (recordArr.length>0?
+        <ThirtyDay>
         {recordArr.map(([date, records]) =>
           <ThirtyDay key={date}>
             <ThirtyDayHeader>
@@ -72,7 +75,10 @@ function Money() {
             </ThirtyDay>
           </ThirtyDay>
         )}
-      </ThirtyDay>}
+      </ThirtyDay>
+        :<div className='none'>暂无记录...</div>
+      )
+      }
 
     </MyLayout>
   );

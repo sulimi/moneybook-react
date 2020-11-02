@@ -17,6 +17,7 @@ const TagsSection: React.FC<Props> = (props) => {
       setSelectedIcon(firstTag.id);
       props.onChange(firstTag);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[firstTag])
   const onToggleTag = (tag: Tag) => {
     setSelectedIcon(tag.id);
