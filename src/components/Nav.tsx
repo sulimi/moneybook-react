@@ -6,7 +6,6 @@ import Icon from './Icon';
 
 const NavWrapper = styled.div`
   line-height: 24px;
-  box-shadow: 0 0 3px rgba(0,0,0,0.25);
   background: #fff;
   ul{
     display: flex;
@@ -20,6 +19,7 @@ const NavWrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        color: #AAA;
         &.selected{
           color: #A1DECF;
         .icon{
@@ -29,6 +29,7 @@ const NavWrapper = styled.div`
         .icon{
           width: 24px;
           height: 24px;
+          fill:#AAA
         }
       }
  
