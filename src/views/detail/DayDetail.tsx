@@ -39,12 +39,23 @@ width: 33.333%;
   &.shou{
     color: #A5C9C0;
   }
+  &.greed{
+     color: #A5C9C0;
+  }
+  &.red{
+     color: #FA8072;
+  }
 }
 .text{
-  color: #AAA;padding: 5px;text-align: center;font-size: 10px;
+  color: #AAA;padding: 5px;text-align: center;font-size: 12px;
 }
 }
 
+`;
+
+const Length = styled.div`
+  color: #AAA;padding: 5px 16px;font-size: 12px;
+  border-top: 1px solid  #F8F8F6;
 `;
 
 
@@ -58,11 +69,14 @@ const DayDetail = () => {
   const onChange = (category: Category) => {
     setCate(category);
   };
-  const todayRecords=records.filter(r=>dayjs(date).isSame(r.createdAt,'day'))
-  const todayTypeRecords=todayRecords.filter(r=>r.category===cate)
-  const count=(type:string)=>{
-    return thousand(todayRecords.filter(r=>r.category===type).reduce((sum,item)=>{return sum+=item.amount},0).toString())
-  }
+  const todayRecords = records.filter(r => dayjs(date).isSame(r.createdAt, 'day'));
+  const todayTypeRecords = todayRecords.filter(r => r.category === cate);
+  const amountType = (type: string) => todayRecords.filter(r => r.category === type).reduce((sum, item) => {return sum += item.amount;}, 0);
+  const lastAmount = () => -amountType('-') + amountType('+');
+  const showNum = (type: string) => {
+    return thousand(amountType(type).toString());
+  };
+
   //返回
   const history = useHistory();
   const onClickBack = () => {
@@ -89,20 +103,21 @@ const DayDetail = () => {
         </Middle>
         <Bottom>
           <div className='item'>
-            <div className='num'>{records.length}</div>
-            <div className='text'>账目条数</div>
+            <div className={lastAmount()>0?'num greed':'num red'}>{lastAmount()>0?'+':'-'}￥{thousand(Math.abs(lastAmount()).toString())}</div>
+            <div className='text'>结余</div>
           </div>
           <div className='item'>
-            <div className='num'>-￥{count('-')}</div>
+            <div className='num'>-￥{showNum('-')}</div>
             <div className='text'>总支出</div>
           </div>
           <div className='item'>
-            <div className='num shou'>+￥{count('+')}</div>
+            <div className='num shou'>+￥{showNum('+')}</div>
             <div className='text'>总收入</div>
           </div>
         </Bottom>
       </Header>
-      <DayDetailList records={todayTypeRecords} />
+      <Length>账单({records.length})：</Length>
+      <DayDetailList records={todayTypeRecords}/>
     </Wrapper>
   );
 };
