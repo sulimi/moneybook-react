@@ -17,6 +17,7 @@ import {AddMoney} from './views/AddMoney';
 import {Detail} from './views/Detail';
 import {TagAdd} from './views/tag/TagAdd';
 import {DayDetail} from './views/detail/DayDetail';
+import {NoneDetail} from './views/detail/NoneDetail';
 
 
 const AppWrapper = styled.div`

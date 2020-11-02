@@ -125,7 +125,7 @@ const DetailDaysBook: React.FC<Props> = (props) => {
   };
 
   const {records} = useRecords();
-  const f = (d: Date) => {
+  const getAmount = (d: Date) => {
     const isHave = records.filter(r => dayjs(d).isSame(r.createdAt, 'day'));
     const typeRecord = isHave.filter(r => r.category === props.category);
     const count = typeRecord.reduce((sum, item) => {return sum += item.amount;}, 0);
@@ -146,9 +146,10 @@ const DetailDaysBook: React.FC<Props> = (props) => {
   const [isNone, setIsNone] = useState(false);
   const onClickFunc = (d: Date) => {
     onSelectDay(d);
-    setIsNone((isNone)=>!isNone)
+    if (!getAmount(d).count) {
+      setIsNone((isNone) => !isNone);
+    }
   };
-
   return (
     <DaysBody>
       <DaysHeader>
@@ -170,17 +171,26 @@ const DetailDaysBook: React.FC<Props> = (props) => {
         <div className='tbody'>
           <div className='tr'>
             {showDays(showData).map(d =>
-              <div key={d.toISOString()} className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
-                   onClick={() => onClickFunc(d)}
+              getAmount(d).count?
+                <Link to='/daydetail' key={d.toISOString()}
+                     className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
+                     onClick={() => onClickFunc(d)}
+                >
+                  <div className='day'>{d.getDate()}</div>
+                  <div className='record'>{getAmount(d).count ? props.category + '￥' + getAmount(d).count : ''}</div>
+                </Link>
+              :<div key={d.toISOString()}
+                    className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
+                    onClick={() => onClickFunc(d)}
               >
                 <div className='day'>{d.getDate()}</div>
-                <div className='record'>{f(d).count ? props.category + '￥' + f(d).count : ''}</div>
+                <div className='record'>{getAmount(d).count ? props.category + '￥' + getAmount(d).count : ''}</div>
               </div>
             )}
           </div>
         </div>
       </DaysMain>
-      {isNone && <NoneDetail onchange={()=>setIsNone((isNone)=>!isNone)}/>}
+      {isNone && <NoneDetail onchange={() => setIsNone((isNone) => !isNone)}/>}
     </DaysBody>
   );
 };

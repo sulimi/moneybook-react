@@ -15,9 +15,11 @@ const Content = styled.div`
     color: #AAA;
   }
   .record{
+  font-size: 18px;
     border-bottom: 1px solid #F8F8F6;text-align: center;padding: 16px;color: #65C6BB;font-weight: bold;
   }
   .no{
+  font-size: 18px;
     text-align: center;padding: 16px;color: #65C6BB;font-weight: bold;
   }
 `;
@@ -28,13 +30,13 @@ type Props = {
 const NoneDetail: React.FC<Props> = (props) => {
   const onClickFunc=(e: any)=>{
     e.stopPropagation()
-    props.onchange()
+      props.onchange()
   }
   return (
     <Wrapper onClick={onClickFunc}>
       <Content>
         <div className='header'>该日暂无记账记录，要去记一笔吗？</div>
-        <Link to='/addmoney' className='record'>记一笔</Link>
+        <Link to='/addmoney' className='record'>去记一笔</Link>
         <div onClick={onClickFunc} className='no'>取消</div>
       </Content>
     </Wrapper>
