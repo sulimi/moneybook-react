@@ -20,13 +20,10 @@ const DaysHeader = styled.header`
   > .icon{
     margin: 0 10px;
     height: 100%;
-    width: 2em;fill:#65C6BB;
-  }
-  .no,.now{
-    color: #65C6BB;font-weight: bold;padding: 0 16px;
+    width: 2em;fill:#A5C9C0;
   }
   .title{
-    color: #65C6BB;
+    color: #A5C9C0;
     font-size: 16px;
   }
   .no,.now,.title{
@@ -43,7 +40,7 @@ const DaysMain = styled.div`
         justify-content: space-around;
         align-items: center;
         border-bottom: 1px solid #ebeef5;
-        height: 30px; color: #65C6BB;
+        height: 30px; color: #A5C9C0;
       @media (max-height:570px){
         height: 30px;
         }
@@ -82,7 +79,7 @@ const DaysMain = styled.div`
           }
 
           &.is-select {
-            background: #65C6BB;
+            background: #A5C9C0;
             font-weight: 700;
           }
 
@@ -92,7 +89,7 @@ const DaysMain = styled.div`
           
      .record{
         font-size: 8px;width: 100%;text-overflow: ellipsis;white-space: nowrap;overflow:hidden;padding-bottom: 5px;
-        text-align: center;
+        text-align: center;height: 1.5em;
      }
   }
   }
@@ -181,7 +178,7 @@ useEffect(()=>{
                    onClick={() => onClickFunc(d)}
               >
                 <div className='day'>{d.getDate()}</div>
-                {f(d).count?<div className='record'>{props.category}￥{f(d).count}</div>:''}
+                <div className='record'>{f(d).count?props.category+'￥'+f(d).count:''}</div>
               </div>
             )}
           </div>
