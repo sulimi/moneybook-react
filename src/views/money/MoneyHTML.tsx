@@ -28,9 +28,7 @@ const MyLayout = styled(Layout)`
       fill: #AAAAAA;margin-left: 10px;
     }
   }
-  .none{
-    color: #AAAAAA;
-  }
+
 `;
 const ThirtyDay = styled.div`
   display: flex;flex-direction: column;width: 100%;flex-grow: 1;flex-shrink: 0;
@@ -78,6 +76,8 @@ const DisplayWrapper2 = styled.div`
       font-size: 10px;color: #AAA;padding: 0 3px 5px;height: 1.5em;max-width: 28vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
   }
 `;
+const None=styled.div`
+    color: #AAAAAA;text-align: center;
+`
 
-
-export {MyLayout,ThirtyDay,ThirtyDayHeader,ThirtyDayList,DisplayWrapper,DisplayWrapper2}
+export {MyLayout,ThirtyDay,ThirtyDayHeader,ThirtyDayList,DisplayWrapper,DisplayWrapper2,None}

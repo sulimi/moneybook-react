@@ -1,4 +1,4 @@
-import {DisplayWrapper, DisplayWrapper2, ThirtyDay, ThirtyDayHeader, ThirtyDayList} from '../money/MoneyHTML';
+import {DisplayWrapper, DisplayWrapper2, None, ThirtyDay, ThirtyDayHeader, ThirtyDayList} from '../money/MoneyHTML';
 import dayjs from 'dayjs';
 import {thousand} from '../../lib/thousandSeparator';
 import Icon from '../../components/Icon';
@@ -50,7 +50,7 @@ const DetailList: React.FC<Props> = (props) => {
             </ThirtyDay>
           )}
         </ThirtyDay>
-        : <div className='none'>暂无记录...</div>
+        : <None>暂无记录...</None>
 
 };
 
