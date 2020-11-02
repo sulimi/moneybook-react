@@ -14,3 +14,9 @@ type Tag = {
   category: Category;
 }
 type Category = '-' | '+'
+
+type sDate={
+  year:number,
+  month:number,
+  day:number
+}

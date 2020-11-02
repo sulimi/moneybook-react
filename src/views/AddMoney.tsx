@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 const Header = styled.header`
-  display: flex;justify-content: space-between;align-items: center;padding: 0 6px;
+  display: flex;justify-content: space-between;align-items: center;padding: 0 6px;flex-shrink: 0;
   .icon{
     width:2em;
     height:2em;

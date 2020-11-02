@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 const Header=styled.header`
     font-size: 20px;font-weight: bold;color: #444;padding: 5px 10px;
-    display: flex;justify-content: center;align-items: center;flex-shrink: 0;
+    display: flex;justify-content: center;align-items: center;flex-shrink: 0;height: 5vh;
 `
 const Main = styled.div`
   flex-grow: 1;

@@ -61,8 +61,11 @@ const useDate = () => {
     return year === selectYear && month === selectMonth && day === selectDay;
   };
   const onChangMonth = (type: string) => {
-    const moveMonth = type === 'last' ? -1 : 1;
-    setShowData({...showData, month: showData.month + moveMonth});
+    if (type==='last'){
+      setShowData({...showData, month: showData.month -1});
+    }else {
+      setShowData({...showData, month: showData.month + 1});
+    }
   };
   const onChangYear = (type: string) => {
     const moveYear = type === 'last' ? -1 : 1;
