@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import React from 'react';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
+import {useRecords} from '../hooks/useRecords';
+import dayjs from 'dayjs';
+import {hashCreate} from '../lib/hashCreate';
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -39,9 +42,18 @@ const MyLayout = styled(Layout)`
   }
   
 `;
-
+const ThisMonth = styled.div`
+  display: flex;flex-direction: column;align-items: center;
+`;
+const ThisMonthR = styled.div`
+display: flex;align-items: center;
+`;
 
 function Money() {
+  const {records} = useRecords();
+  const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'day'));
+  const thisMonthRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'month'));
+ const recordArr=hashCreate(thisMonthRecord)
 
   return (
     <MyLayout message='TODAY'>
@@ -54,9 +66,18 @@ function Money() {
         <button className='addmoney'>记一笔</button>
       </Link>
       <div className='toggle'>展示近30日账单 (6)<Icon name='right'/></div>
+      <ThisMonth>
+        {thisMonthRecord.map(r => {
+          console.log(r);
+        })}
+      </ThisMonth>
     </MyLayout>
   );
 }
 
 export default Money;
 
+// <ThisMonth>
+//   <ThisMonthR> <div>{dayjs(r.createdAt).format('M月D')}</div><div>{r.category==='-'?'支出':'收入'}</div></ThisMonthR>
+//   <ThisMonthR><Icon name={r.tag.icon} /><div>{r.tag.name}</div><div>{r.amount}</div></ThisMonthR>
+// </ThisMonth>

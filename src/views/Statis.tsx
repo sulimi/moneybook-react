@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {CategorySection} from '../components/CategorySection';
 import {useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
-import dayjs from 'dayjs';
 import styled from 'styled-components';
+import {hashCreate} from '../lib/hashCreate';
 
 
 const Item = styled.div`
@@ -20,26 +20,8 @@ function Statistics() {
   const [category, setCategory] = useState<'-' | '+'>('-');
   const {records} = useRecords();
   const {getName} = useTags();
-  const hash: { [K: string]: RecordItem[] } = {}; //{'2020-10-23':[item,item],'2020-10-11':[item,item],'2020-10-13':[item,item,item,item]}
   const recordsType = records.filter(r => r.category === category);
-  recordsType.forEach(r => {
-    const key = dayjs(r.createdAt).format('YYYY-MM-DD');
-    if (!(key in hash)) {
-      hash[key] = [];
-    }
-    hash[key].push(r);
-  });
-  const array = Object.entries(hash).sort((a, b) => {
-    if (a[0] === b[0]) {
-      return 0;
-    } else if (a[0] > b[0]) {
-      return -1;
-    } else if (a[0] < b[0]) {
-      return 1;
-    } else {
-      return 0;  //解决TS报错
-    }
-  });
+  const array=hashCreate(recordsType)
   return (
     <Layout>
       <CategorySection category={category}
