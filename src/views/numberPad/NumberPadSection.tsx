@@ -59,7 +59,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
 
   //日期
-  const {showData,onSelectDay} = useDate();
+  const {onSelectDay,onSelectedDay} = useDate();
   const [showDays,setShowDays]=useState(false)
   const onShowDays=()=>{
     setShowDays((showDays)=>!showDays)
@@ -72,10 +72,10 @@ const NumberPadSection: React.FC<Props> = (props) => {
     setShowDays((showDays)=>!showDays)
   }
   const dayBtn=()=>{
-    if (dayjs(dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year)).isSame(new Date(),'day')){
+    if (dayjs(onSelectedDay).isSame(new Date(),'day')){
       return '今天'
     }else {
-      return dayjs(dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year)).format('MM月DD日')
+      return dayjs(onSelectedDay).format('MM月DD日')
     }
   }
   return (
