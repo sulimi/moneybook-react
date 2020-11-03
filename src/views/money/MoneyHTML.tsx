@@ -46,9 +46,10 @@ const ThirtyDayHeader = styled.div`
   }
 }
 .num{
+
   display: flex;align-items: center;justify-content: flex-end;flex-wrap: wrap;color: #AAAAAA;
-  > span{
-    padding-left: 10px;word-break: break-all;
+  > .item{
+    padding: 0 5px;word-break: break-all;
   }
 }
 `;

@@ -22,14 +22,10 @@ const DetailList: React.FC<Props> = (props) => {
               className='day'>{dayjs(records[0].createdAt).format('D')}</span>
             </div>
             <div className='num'>
-                <span>
-                    {amountCalculate(records, '-') ?
-                      '支出￥' + thousand(amountCalculate(records, '-').toString()) : ''}
-                </span>
-              <span>
-                   {amountCalculate(records, '+') ?
-                     '收入￥' + thousand(amountCalculate(records, '+').toString()) : ''}
-                </span>
+              {amountCalculate(records, '-') ?
+                <span className='item'>支出￥{thousand(amountCalculate(records, '-').toString())}</span> : ''}
+              {amountCalculate(records, '+') ?
+                <span className='item'>收入￥{thousand(amountCalculate(records, '+').toString())}</span> : ''}
             </div>
           </ThirtyDayHeader>
           <DayDetailList records={records}/>
