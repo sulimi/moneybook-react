@@ -93,7 +93,7 @@ const DayDetail = () => {
             <Icon name='left'/>
             <span>明细</span>
           </div>
-          <span>2020-11-03</span>
+          <span>{dayjs(date).format('YYYY-MM-DD')}</span>
           <Link to='/addmoney' className='save'>
             记一笔
           </Link>
@@ -103,16 +103,16 @@ const DayDetail = () => {
         </Middle>
         <Bottom>
           <div className='item'>
-            <div className={lastAmount()>0?'num greed':'num red'}>{lastAmount()>0?'+':'-'}￥{thousand(Math.abs(lastAmount()).toString())}</div>
-            <div className='text'>结余</div>
+            <div className='num shou'>+￥{showNum('+')}</div>
+            <div className='text'>总收入</div>
           </div>
           <div className='item'>
             <div className='num'>-￥{showNum('-')}</div>
             <div className='text'>总支出</div>
           </div>
           <div className='item'>
-            <div className='num shou'>+￥{showNum('+')}</div>
-            <div className='text'>总收入</div>
+            <div className={lastAmount()>0?'num greed':'num red'}>{lastAmount()>0?'+':'-'}￥{thousand(Math.abs(lastAmount()).toString())}</div>
+            <div className='text'>结余</div>
           </div>
         </Bottom>
       </Header>
