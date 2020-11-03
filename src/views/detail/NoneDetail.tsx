@@ -20,7 +20,8 @@ const Content = styled.div`
   }
   .no{
   font-size: 18px;
-    text-align: center;padding: 16px;color: #65C6BB;font-weight: bold;
+    text-align: center;padding: 16px 16px 30px 16px;color: #65C6BB;font-weight: bold;
+    
   }
 `;
 
