@@ -65,7 +65,7 @@ const AddMoney = () => {
   };
   useEffect(()=>{
     if (success){
-      setRecord(initDefaul)
+      setRecord(defaultRecordData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[success])
