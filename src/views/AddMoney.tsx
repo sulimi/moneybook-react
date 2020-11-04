@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import {CategorySection} from '../components/CategorySection';
 import {TagsSection} from './tag/TagsSection';
 import {NumberPadSection} from './numberPad/NumberPadSection';
@@ -8,20 +7,9 @@ import Icon from '../components/Icon';
 import {useHistory} from 'react-router-dom';
 import {useTags} from '../hooks/useTags';
 import {Message} from '../components/Message';
+import {AddHeader, AddMoneyWrapper} from './addMoney/AddMoneyHtml';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-`;
-const Header = styled.header`
-  display: flex;justify-content: space-between;align-items: center;padding: 0 6px;flex-shrink: 0;
-  .icon{
-    width:2em;
-    height:2em;
-  }
-`;
+
 
 const AddMoney = () => {
   const initDefaul = {
@@ -74,14 +62,14 @@ const AddMoney = () => {
     history.goBack();
   };
   return (
-    <Wrapper>
+    <AddMoneyWrapper>
       {success ? <Message>记账成功</Message> : ''}
-      <Header>
+      <AddHeader>
         <Icon name='quxiao' onClick={goBack}/>
         <CategorySection category={record.category}
                          onChange={category => onChange({category: category})}/>
         <Icon/>
-      </Header>
+      </AddHeader>
       <TagsSection tagId={record.tag.id} tagCategory={record.category}
                    onChange={tag => onChange({tag})}/>
 
@@ -94,7 +82,7 @@ const AddMoney = () => {
                         onChangeDay={createAt => onChange({createdAt: createAt})}
 
       />
-    </Wrapper>
+    </AddMoneyWrapper>
   );
 };
 
