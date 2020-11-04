@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import React from 'react';
 import {useRecords} from '../../hooks/useRecords';
-import {DayDetailList} from '../detail/DayDetailList';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {Topbar} from '../tag/AddRewHtml';
 import Icon from '../../components/Icon';
 import dayjs from 'dayjs';
 import {Space} from '../../components/Space';
-import {DisplayWrapper, DisplayWrapper2, ThirtyDayList} from '../money/MoneyHTML';
-import {thousand} from '../../lib/thousandSeparator';
+import {DetailItem} from '../detail/DetailItem';
 
 const Wrapper = styled.div`
 `;
@@ -64,17 +62,7 @@ const EditorRecord = () => {
         <div className='save'/>
       </Topbar>
       {record.map(r=>
-        <ThirtyDayList key={r.id}>
-          <DisplayWrapper>
-            <Icon name={r.tag.icon}/>
-            <DisplayWrapper2>
-              <div className='name'>{r.tag.name}</div>
-              {r.note && <div className='note'>{r.note}</div>}
-            </DisplayWrapper2>
-          </DisplayWrapper>
-          <div
-            className={r.category === '-' ? 'amount' : 'amount zheng'}>{r.category === '-' ? '-' : '+'}￥{thousand(r.amount.toString())}</div>
-        </ThirtyDayList>
+        <DetailItem record={r} key={r.id}/>
       )}
       <Tip>
         <div className='item'><span
