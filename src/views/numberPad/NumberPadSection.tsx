@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import {DaysBook} from './DaysBook';
 
 type Props = {
+  id?:number,
   amount: number,
   note: string,
   createdAt: Date,
@@ -44,6 +45,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     if (text === 'ok') {
       if (props.onOk) {
         props.onOk();
+        if (props.id){return;}
         setOutput('0');
         props.onChangeNote('');
         props.onChangeDay(new Date())
@@ -68,14 +70,15 @@ const NumberPadSection: React.FC<Props> = (props) => {
     props.onChangeDay(d)
     onSelectDay(d)
   }
-  const onToggel=()=>{
+  const onToggel=(e:any)=>{
+    e.stopPropagation()
     setShowDays((showDays)=>!showDays)
   }
   const dayBtn=()=>{
-    if (dayjs(onSelectedDay).isSame(new Date(),'day')){
+    if (dayjs(props.createdAt).isSame(new Date(),'day')){
       return '今天'
     }else {
-      return dayjs(onSelectedDay).format('MM月DD日')
+      return dayjs(props.createdAt).format('MM月DD日')
     }
   }
   return (

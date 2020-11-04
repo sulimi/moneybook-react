@@ -12,8 +12,12 @@ const useRecords = () => {
   useUpdate(() => {
     window.localStorage.setItem('records', JSON.stringify(records));
   }, records);
+  const findRecord = (id: number) => {
+    return records.filter(r => r.id === id)[0];
+  };
   const indexRecord = (record: RecordItem) => {
-    return records.indexOf(record);
+    const r=records.filter(r=>r.id===record.id)[0]
+    return records.indexOf(r);
   };
   const addRecord = (record: newRecordItem) => {
     if (record.amount <= 0) {
@@ -28,11 +32,14 @@ const useRecords = () => {
     setRecords([...records, recordAddId]);
     return true;
   };
+const updateRecord=(record:RecordItem)=>{
+  records.splice(indexRecord(record),1,record)
+}
   const deleteRecord = (record: RecordItem) => {
-    indexRecord(record)>=0 && records.splice(indexRecord(record), 1);
+    indexRecord(record) >= 0 && records.splice(indexRecord(record), 1);
     window.localStorage.setItem('records', JSON.stringify(records));
   };
-  return {records, addRecord,deleteRecord,indexRecord};
+  return {records, addRecord, deleteRecord, indexRecord, findRecord,setRecords,updateRecord};
 };
 
 export {useRecords};

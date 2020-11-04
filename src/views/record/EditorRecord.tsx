@@ -76,7 +76,7 @@ const EditorRecord = () => {
       <Space/>
       <Space/>
       <Space/>
-      <Link to='/addmoney'><Tip>
+      <Link to={'/editoring/' + id}><Tip>
         <div className='editor'>编辑</div>
       </Tip></Link>
       <Tip onClick={removeRecord}>

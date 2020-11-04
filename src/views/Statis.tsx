@@ -25,7 +25,7 @@ const Statistics = () => {
     return array;
   };
   const key = lineEchartsXKeyValue().map(i => i.date);
-  const value = lineEchartsXKeyValue().map(i => i.value);
+  // const value = lineEchartsXKeyValue().map(i => i.value);
 
 
   const option = {
