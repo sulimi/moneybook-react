@@ -7,6 +7,8 @@ import {Topbar} from '../tag/AddRewHtml';
 import Icon from '../../components/Icon';
 import dayjs from 'dayjs';
 import {Space} from '../../components/Space';
+import {DisplayWrapper, DisplayWrapper2, ThirtyDayList} from '../money/MoneyHTML';
+import {thousand} from '../../lib/thousandSeparator';
 
 const Wrapper = styled.div`
 `;
@@ -61,7 +63,19 @@ const EditorRecord = () => {
         <span>小票</span>
         <div className='save'/>
       </Topbar>
-      <DayDetailList records={record}/>
+      {record.map(r=>
+        <ThirtyDayList key={r.id}>
+          <DisplayWrapper>
+            <Icon name={r.tag.icon}/>
+            <DisplayWrapper2>
+              <div className='name'>{r.tag.name}</div>
+              {r.note && <div className='note'>{r.note}</div>}
+            </DisplayWrapper2>
+          </DisplayWrapper>
+          <div
+            className={r.category === '-' ? 'amount' : 'amount zheng'}>{r.category === '-' ? '-' : '+'}￥{thousand(r.amount.toString())}</div>
+        </ThirtyDayList>
+      )}
       <Tip>
         <div className='item'><span
           className='left'>日期：</span><span>{record.length > 0 && dayjs(record[0].createdAt).format('YYYY-MM-DD')}</span>
