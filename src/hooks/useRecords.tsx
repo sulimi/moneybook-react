@@ -12,12 +12,15 @@ const useRecords = () => {
   useUpdate(() => {
     window.localStorage.setItem('records', JSON.stringify(records));
   }, records);
+  const indexRecord = (record: RecordItem) => {
+    return records.indexOf(record);
+  };
   const addRecord = (record: newRecordItem) => {
     if (record.amount <= 0) {
       alert('金额小于0');
       return false;
     }
-    if (!record.tag||record.tag.name===undefined) {
+    if (!record.tag || record.tag.name === undefined) {
       alert('请选择标签');
       return false;
     }
@@ -25,7 +28,11 @@ const useRecords = () => {
     setRecords([...records, recordAddId]);
     return true;
   };
-  return {records, addRecord};
+  const deleteRecord = (record: RecordItem) => {
+    indexRecord(record)>=0 && records.splice(indexRecord(record), 1);
+    window.localStorage.setItem('records', JSON.stringify(records));
+  };
+  return {records, addRecord,deleteRecord,indexRecord};
 };
 
 export {useRecords};

@@ -17,6 +17,7 @@ import {Detail} from './views/Detail';
 import {TagAdd} from './views/tag/TagAdd';
 import {DayDetail} from './views/detail/DayDetail';
 import {Statistics} from './views/Statis';
+import {EditorRecord} from './views/record/EditorRecord';
 
 
 const AppWrapper = styled.div`
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/daydetail/:date">
             <DayDetail/>
+          </Route>
+          <Route exact path="/editorrecord/:id">
+            <EditorRecord/>
           </Route>
           <Route exact path="/tags/:id">
             <TagEdit/>
