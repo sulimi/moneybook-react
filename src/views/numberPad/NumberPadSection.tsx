@@ -61,7 +61,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
 
   //日期
-  const {onSelectDay,onSelectedDay} = useDate();
+  const {onSelectDay} = useDate();
   const [showDays,setShowDays]=useState(false)
   const onShowDays=()=>{
     setShowDays((showDays)=>!showDays)

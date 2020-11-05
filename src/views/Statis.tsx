@@ -1,11 +1,13 @@
 import Layout from '../components/Layout';
-import React from 'react';
+import React, {useState} from 'react';
 import {useRecords} from '../hooks/useRecords';
 import {hashCreate} from '../lib/hashCreate';
 import dayjs from 'dayjs';
 import {Echarts} from './statis/Echarts';
 import styled from 'styled-components';
 import {option} from './statis/lineOption';
+import {StatisDay} from './statis/StatisDay';
+import {useDate} from '../hooks/useDate';
 
 
 const EchartsWrapper = styled.div`
@@ -48,14 +50,15 @@ const TypeWrapper = styled.div`
   }
     }
 `;
-const Have=styled.div`
+const Have = styled.div`
 display: flex;justify-content: flex-end;align-items: center;padding: 6px 16px;font-size: 10px;
   .have{
     color: #AAA;word-break: break-all;
   }
-`
+`;
 const Statistics = () => {
   // const [category, setCategory] = useState<'-' | '+'>('-');
+  const {showData,setShowData}=useDate()
   const {records} = useRecords();
   const paidRecord = records.filter(r => r.category === '-');
   const earningRecord = records.filter(r => r.category === '+');
@@ -78,10 +81,17 @@ const Statistics = () => {
   const paidValue = lineEchartsXKeyValue(paidHashRecord).map(i => i.value);
   const earningValue = lineEchartsXKeyValue(earningHashRecord).map(i => i.value);
   const paidCount = paidValue.reduce((prev, init) => {return prev + init;}, 0);
-  const earningCount=earningValue.reduce((prev, init) => {return prev + init;}, 0);
-
+  const earningCount = earningValue.reduce((prev, init) => {return prev + init;}, 0);
+  const [showChooseDay, setShow] = useState(false);
+  const onToggle = () => {
+    setShow((showChooseDay) => !showChooseDay);
+  };
+  const chooseDay=(d:number)=>{
+    setShowData({...showData,month: d})
+  }
   return (
-    <Layout message='2020-10'>
+    <Layout message={showData.year+'-'+showData.month} chooseDay={()=>onToggle()}>
+      {showChooseDay && <StatisDay chooseDay={(d)=>chooseDay(d)} onToggle={()=>onToggle()}/>}
       <EchartsWrapper>
         <Echarts option={option(keyX, paidValue, earningValue)}/>
       </EchartsWrapper>
@@ -96,8 +106,9 @@ const Statistics = () => {
         </div>
       </TypeWrapper>
       <Have>
-        <div className='have'>结余：{earningCount-paidCount>0?'+':'-'}￥{Math.abs(earningCount-paidCount)}</div>
+        <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
       </Have>
+      {/*<StatisDay chooseDay={(d)=>chooseDay(d)} onToggle={()=>onToggle()}/>*/}
     </Layout>
   );
 };
