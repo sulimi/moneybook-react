@@ -9,6 +9,7 @@ import {thousand} from '../lib/thousandSeparator';
 import {useDate} from '../hooks/useDate';
 import {hashCreate} from '../lib/hashCreate';
 import {DetailList} from './detail/DetailList';
+import Icon from '../components/Icon';
 
 const CateWrapper = styled.div`
 flex-shrink: 0;position: relative;
@@ -34,7 +35,11 @@ padding: 40px 16px;color: #A5C9C0;
     font-size: 32px;font-weight: bold;padding: 16px;word-break: break-all;
 }
 .list{
-  padding: 10px 36px;color:#b5b5b5;background: #F8F8F6;
+  padding: 10px 36px;color:#b5b5b5;background: #F8F8F6;display: flex;align-items: center;
+  .icon{
+  fill:#AAA;
+  margin-left: 5px;
+  }
 }
 `;
 
@@ -50,8 +55,12 @@ const Detail = () => {
   };
   const showDataValue = dayjs().set('date', showData.day).set('month', showData.month).set('year', showData.year);
   const calculateRecord = records.filter(r => dayjs(showDataValue).isSame(r.createdAt, 'month')).filter(r => r.category === cate);
-  const hashRecord=hashCreate(calculateRecord)
+  const hashRecord = hashCreate(calculateRecord);
   const count = thousand(calculateRecord.reduce((sum, item) => {return sum += item.amount;}, 0).toString());
+  const [showR, setShowR] = useState(false);
+  const onShowR = () => {
+    setShowR((showR) => !showR);
+  };
   return (
     <Layout>
       <CateWrapper>
@@ -61,9 +70,11 @@ const Detail = () => {
       <List>
         <div className='title'>{showData.month + 1}月总{cate === '-' ? '支出' : '收入'}</div>
         <div className='amount'>{cate === '-' ? '-' : '+'}￥{count}</div>
-        <div className='list'>{showData.month + 1}月{cate === '-' ? '支出' : '收入'}账单明细</div>
+        <div className='list' onClick={onShowR}>{showR ? '隐藏' : '展示'}{showData.month + 1}月{cate === '-' ? '支出' : '收入'}账单明细
+          {showR ? <Icon name='xia'/> : <Icon name='right'/>}
+        </div>
       </List>
-      <DetailList records={hashRecord} />
+      {showR && <DetailList records={hashRecord}/>}
     </Layout>
   );
 };
