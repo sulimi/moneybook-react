@@ -59,9 +59,9 @@ const Detail = () => {
       </CateWrapper>
       <DetailDaysBook category={cate} onChangeDay={(d) => onChangeDay(d)}/>
       <List>
-        <div className='title'>{showData.month + 1}月总支出</div>
+        <div className='title'>{showData.month + 1}月总{cate === '-' ? '支出' : '收入'}</div>
         <div className='amount'>{cate === '-' ? '-' : '+'}￥{count}</div>
-        <div className='list'>{showData.month + 1}月支出账单明细</div>
+        <div className='list'>{showData.month + 1}月{cate === '-' ? '支出' : '收入'}账单明细</div>
       </List>
       <DetailList records={hashRecord} />
     </Layout>
