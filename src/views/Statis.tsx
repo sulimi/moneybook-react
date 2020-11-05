@@ -59,9 +59,22 @@ display: flex;justify-content: flex-end;align-items: center;padding: 6px 16px;fo
 const Statistics = () => {
   // const [category, setCategory] = useState<'-' | '+'>('-');
   const {showData,setShowData}=useDate()
+  const [showChooseDay, setShow] = useState(false);
+  const onToggle = () => {
+    setShow((showChooseDay) => !showChooseDay);
+  };
+  const chooseDay=(d:number)=>{
+    if (d===13){
+      setShowData({...showData,year: showData.year+1})
+    }else if (d===-1){
+      setShowData({...showData,year: showData.year-1})
+    }else {
+      setShowData({...showData,month: d})
+    }
+  }
   const {records} = useRecords();
-  const paidRecord = records.filter(r => r.category === '-');
-  const earningRecord = records.filter(r => r.category === '+');
+  const paidRecord = records.filter(r=>new Date(r.createdAt).getMonth()===showData.month).filter(r => r.category === '-');
+  const earningRecord = records.filter(r=>new Date(r.createdAt).getMonth()===showData.month).filter(r => r.category === '+');
   const paidHashRecord = hashCreate(paidRecord);
   const earningHashRecord = hashCreate(earningRecord);
   const lineEchartsXKeyValue = (hashTable: HashRecord[]) => {
@@ -82,13 +95,7 @@ const Statistics = () => {
   const earningValue = lineEchartsXKeyValue(earningHashRecord).map(i => i.value);
   const paidCount = paidValue.reduce((prev, init) => {return prev + init;}, 0);
   const earningCount = earningValue.reduce((prev, init) => {return prev + init;}, 0);
-  const [showChooseDay, setShow] = useState(false);
-  const onToggle = () => {
-    setShow((showChooseDay) => !showChooseDay);
-  };
-  const chooseDay=(d:number)=>{
-    setShowData({...showData,month: d})
-  }
+
   return (
     <Layout message={showData.year+'-'+showData.month} chooseDay={()=>onToggle()}>
       {showChooseDay && <StatisDay chooseDay={(d)=>chooseDay(d)} onToggle={()=>onToggle()}/>}
@@ -108,7 +115,6 @@ const Statistics = () => {
       <Have>
         <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
       </Have>
-      {/*<StatisDay chooseDay={(d)=>chooseDay(d)} onToggle={()=>onToggle()}/>*/}
     </Layout>
   );
 };
