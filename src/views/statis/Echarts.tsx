@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 
 const ChartWrapper=styled.div`
-      //max-width: 98vw;
-    min-height: 80vh;
+    min-height: 40vh;
     border-radius: 10px;
-    overflow: auto;
+    
 `
 
 type Props = {
