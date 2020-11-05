@@ -14,6 +14,46 @@ const EchartsWrapper = styled.div`
   display: none;
   }
 `;
+const TypeWrapper = styled.div`
+  display: flex;justify-content: center;align-items: center;
+    .item{
+    display: flex;align-items: center;padding:5px 10px;
+     .line{
+    height: 4px;
+    width: 45px;
+    border-radius: 2px;
+    margin-right: 5px;
+    &.in{
+    background: #A5C9C0;
+    }
+    &.out{
+    background: #ffc0cb;
+    }
+  }
+  .out{
+    color: #ffc0cb;
+    span{
+    font-weight: bold;
+    font-size: 10px;
+    word-break: break-all;
+    }
+  }
+  .in{
+    color: #A5C9C0;
+    span{
+    font-weight: bold;
+    font-size: 10px;
+    word-break: break-all;
+    }
+  }
+    }
+`;
+const Have=styled.div`
+display: flex;justify-content: flex-end;align-items: center;padding: 6px 16px;font-size: 10px;
+  .have{
+    color: #AAA;word-break: break-all;
+  }
+`
 const Statistics = () => {
   // const [category, setCategory] = useState<'-' | '+'>('-');
   const {records} = useRecords();
@@ -37,12 +77,27 @@ const Statistics = () => {
   const keyX = lineEchartsXKeyValue(paidHashRecord).map(i => i.date);
   const paidValue = lineEchartsXKeyValue(paidHashRecord).map(i => i.value);
   const earningValue = lineEchartsXKeyValue(earningHashRecord).map(i => i.value);
+  const paidCount = paidValue.reduce((prev, init) => {return prev + init;}, 0);
+  const earningCount=earningValue.reduce((prev, init) => {return prev + init;}, 0);
 
   return (
-    <Layout>
+    <Layout message='2020-10'>
       <EchartsWrapper>
-        <Echarts option={option(keyX,paidValue,earningValue)}/>
+        <Echarts option={option(keyX, paidValue, earningValue)}/>
       </EchartsWrapper>
+      <TypeWrapper>
+        <div className='item'>
+          <div className='line in'/>
+          <div className='in'>收入(<span>￥{earningCount}</span>)</div>
+        </div>
+        <div className='item'>
+          <div className='line out'/>
+          <div className='out'>支出(<span>￥{paidCount}</span>)</div>
+        </div>
+      </TypeWrapper>
+      <Have>
+        <div className='have'>结余：{earningCount-paidCount>0?'+':'-'}￥{Math.abs(earningCount-paidCount)}</div>
+      </Have>
     </Layout>
   );
 };

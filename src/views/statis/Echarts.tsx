@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const ChartWrapper=styled.div`
     min-height: 40vh;
     border-radius: 10px;
-    
 `
 
 type Props = {

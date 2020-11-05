@@ -36,7 +36,12 @@ const TagsSection: React.FC<Props> = (props) => {
               <span>{tag.name}</span>
             </li>
         )}
-        <li className='long'><Link to='/tags' className='manage'><Icon name='guanli'/><span>管理标签</span></Link></li>
+        <li className='long'>
+          <Link to='/tags' className='manage'>
+            <Icon name='guanli'/>
+            <span>管理标签</span>
+          </Link>
+        </li>
       </ol>
 
     </ChooseTag>

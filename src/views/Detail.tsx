@@ -53,7 +53,7 @@ const Detail = () => {
   const hashRecord=hashCreate(calculateRecord)
   const count = thousand(calculateRecord.reduce((sum, item) => {return sum += item.amount;}, 0).toString());
   return (
-    <Layout message='明细'>
+    <Layout>
       <CateWrapper>
         <CategorySection category={cate} onChange={category => onChange(category)}/>
       </CateWrapper>

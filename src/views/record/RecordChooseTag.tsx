@@ -12,6 +12,9 @@ const ChooseTag = styled.section`
         width: 20%;margin-bottom: 12px;
         border-radius: 18px;
         font-size: 14px;padding: 6px;
+    @media (max-height:570px){
+        font-size: 12px
+        }
         > .icon{
          width: 3em;
          height: 3em;
@@ -22,7 +25,10 @@ const ChooseTag = styled.section`
         }
         &.long{
           span{
-          font-size: 8px;
+          font-size: 14px;
+              @media (max-height:570px){
+        font-size: 12px
+        }
           }
         }
         &.selected{
@@ -42,16 +48,15 @@ const ChooseTag = styled.section`
         }
         &.long{
           span{
-          font-size: 8px;
+          font-size: 14px;
+              @media (max-height:570px){
+        font-size: 12px
+        }
           }
         }
         }
       }
-     // @media (max-width:570px){
-     // > li, .manage{
-     //   font-size: 10px;
-     // }
-     //}
+
 }`;
 
 export {ChooseTag}

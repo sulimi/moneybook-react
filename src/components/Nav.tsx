@@ -5,14 +5,14 @@ import Icon from './Icon';
 
 
 const NavWrapper = styled.div`
-  line-height: 24px;
+  line-height: 20px;
   background: #fff;
   ul{
     display: flex;
     li{
       width: 33.333333%;
       padding: 4px ;
-      font-size: 12px;
+      font-size: 10px;
       text-align: center;
       a{
         display: flex;
@@ -27,8 +27,8 @@ const NavWrapper = styled.div`
         }
         }
         .icon{
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
           fill:#AAA
         }
       }
@@ -43,13 +43,13 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <NavLink to="/detail" activeClassName="selected"><Icon name="detail"/>标签页</NavLink>
+          <NavLink to="/money" activeClassName="selected"><Icon name="home"/>记账</NavLink>
         </li>
         <li>
-          <NavLink to="/money" activeClassName="selected"><Icon name="home"/>记账页</NavLink>
+          <NavLink to="/detail" activeClassName="selected"><Icon name="detail"/>明细</NavLink>
         </li>
         <li>
-          <NavLink to="/statistics" activeClassName="selected"><Icon name="static"/>统计页</NavLink>
+          <NavLink to="/statistics" activeClassName="selected"><Icon name="static"/>统计</NavLink>
         </li>
       </ul>
     </NavWrapper>

@@ -23,9 +23,9 @@ import {EditorIng} from './views/record/EditorIng';
 
 const AppWrapper = styled.div`
 color: #333;
-//@media (max-width: 570px) {
-//   font-size: 12px;
-//}
+    @media (max-height:570px){
+        font-size: 12px
+        }
 `;
 
 function App() {

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `;
 const Header = styled.header`
   display: flex;justify-content: space-between;align-items: center;
-  font-size: 20px;font-weight: bold;padding: 10px;
+  font-size: 18px;font-weight: bold;padding: 10px;
   .icon{
     width: 1.5em;
     height: 1.5em;

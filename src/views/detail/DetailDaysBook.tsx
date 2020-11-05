@@ -160,7 +160,6 @@ const DetailDaysBook: React.FC<Props> = (props) => {
           <Icon name='monthright' onClick={() => onMonth('next')}/>
           <Icon name='yearrigth' onClick={() => onYear('next')}/>
         </DaysHeader>
-
       </DaysHeader>
       <DaysMain>
         <div className='thead'>

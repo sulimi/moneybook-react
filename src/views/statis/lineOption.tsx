@@ -19,6 +19,8 @@ const option = (key:any,paidValue:any,earningValue:any)=>{
     grid: {
       right: 16,
       left: 16,
+      top: 30,
+      bottom:20,
       containLabel: true
     },
     toolbox: {
