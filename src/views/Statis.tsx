@@ -97,7 +97,7 @@ const Statistics = () => {
   const earningCount = earningValue.reduce((prev, init) => {return prev + init;}, 0);
 
   return (
-    <Layout message={showData.year+'-'+showData.month} chooseDay={()=>onToggle()}>
+    <Layout message={showData.year+'-'+(showData.month+1)} chooseDay={()=>onToggle()}>
       {showChooseDay && <StatisDay chooseDay={(d)=>chooseDay(d)} onToggle={()=>onToggle()}/>}
       <EchartsWrapper>
         <Echarts option={option(keyX, paidValue, earningValue)}/>

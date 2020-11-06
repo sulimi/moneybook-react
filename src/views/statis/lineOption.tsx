@@ -48,10 +48,9 @@ const option = (key:any,paidValue:any,earningValue:any)=>{
         type: 'inside',
         xAxisIndex: [0],
         start: 0,
-        end: 40,
+        end: 30,
         zoomLock: true
       },
-
     ],
     yAxis: {
       type: 'value',

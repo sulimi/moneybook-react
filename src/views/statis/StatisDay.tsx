@@ -37,8 +37,8 @@ type Props={
 }
 const StatisDay:React.FC<Props> = (props) => {
   const {showData, setShowData, onChangYear} = useDate();
-  const chooseMonth = [['一月', 1], ['二月', 2], ['三月', 3], ['四月', 4], ['五月', 5], ['六月', 6],
-    ['七月', 7], ['八月', 8], ['九月', 9], ['十月', 10], ['十一月', 11], ['十二月', 12],];
+  const chooseMonth = [['一月', 0], ['二月', 1], ['三月', 2], ['四月', 3], ['五月', 4], ['六月', 5],
+    ['七月', 6], ['八月', 7], ['九月', 8], ['十月', 9], ['十一月', 10], ['十二月', 11],];
   const onChoose = (e:any,v: string | number) => {
     e.stopPropagation()
     setShowData({...showData, month: v as number});
