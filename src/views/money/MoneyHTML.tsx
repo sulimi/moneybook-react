@@ -69,10 +69,10 @@ const ThirtyDayList = styled.div`
   }
 `;
 const DisplayWrapper = styled.div`
-  display: flex;align-items: center;flex-grow: 1;flex-shrink: 1;border: 1px solid red;
+  display: flex;align-items: center;flex-grow: 1;flex-shrink: 1;
 `;
 const DisplayWrapper2 = styled.div`
-  display: flex;flex-direction:column;justify-content: center;border: 1px solid blue;width: 100%;
+  display: flex;flex-direction:column;justify-content: center;width: 100%;
   
   .name{
     flex-shrink: 0;padding: 0 3px 3px;height: 2em;display: flex;align-items: flex-end;
