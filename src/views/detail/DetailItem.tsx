@@ -14,7 +14,7 @@ const DetailItem:React.FC<Props> = (props)=>{
       <DisplayWrapper>
         <Icon name={record.tag.icon}/>
         <DisplayWrapper2>
-          <div className='name'>{record.tag.name}</div>
+          <div className='name'><span className='text'>{record.tag.name}</span></div>
           {record.note && <div className='note'>{record.note}</div>}
         </DisplayWrapper2>
       </DisplayWrapper>

@@ -59,22 +59,32 @@ const ThirtyDayList = styled.div`
     width: 3em;height: 3em;
   }
   .amount{
-    font-size: 18px;font-weight: bold;
+    font-size: 18px;font-weight: bold;flex-shrink: 0;max-width: 50vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
     &.zheng{
       color:#65C6BB
+    }
+    &.static{
+      font-size: 16px;
     }
   }
 `;
 const DisplayWrapper = styled.div`
-  display: flex;align-items: center;
+  display: flex;align-items: center;flex-grow: 1;flex-shrink: 1;border: 1px solid red;
 `;
 const DisplayWrapper2 = styled.div`
-  display: flex;flex-direction:column;justify-content: center;
+  display: flex;flex-direction:column;justify-content: center;border: 1px solid blue;width: 100%;
+  
   .name{
     flex-shrink: 0;padding: 0 3px 3px;height: 2em;display: flex;align-items: flex-end;
+    .text{
+      font-weight: bold;margin-right: 10px;
+    }
   }
   .note{
-      font-size: 10px;color: #AAA;padding: 0 3px 5px;height: 1.5em;max-width: 28vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
+      font-size: 10px;color: #AAA;padding: 0 3px 5px;height: 1.5em;max-width: 20vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
+      &.static{
+        max-width: 60vw;
+      }
   }
 `;
 const None=styled.div`
