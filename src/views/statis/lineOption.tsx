@@ -71,9 +71,7 @@ const option = (key:any,paidValue:any,earningValue:any)=>{
     },
     series: [
       {
-        name: '支出',
         type: 'line',
-        stack: '总量',
         lineStyle: {
           color: '#ffc0cb'
         },
@@ -103,9 +101,7 @@ const option = (key:any,paidValue:any,earningValue:any)=>{
         data: paidValue
       },
       {
-        name: '收入',
         type: 'line',
-        stack: '总量',
         lineStyle: {
           color: '#A5C9C0'
         },
