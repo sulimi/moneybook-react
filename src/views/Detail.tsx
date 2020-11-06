@@ -70,11 +70,11 @@ const Detail = () => {
       <List>
         <div className='title'>{showData.month + 1}月总{cate === '-' ? '支出' : '收入'}</div>
         <div className='amount'>{cate === '-' ? '-' : '+'}￥{count}</div>
-        <div className='list' onClick={onShowR}>{showR ? '隐藏' : '展示'}{showData.month + 1}月{cate === '-' ? '支出' : '收入'}账单明细
-          {showR ? <Icon name='xia'/> : <Icon name='right'/>}
+        <div className='list' onClick={onShowR}>{!showR ? '隐藏' : '展示'}{showData.month + 1}月{cate === '-' ? '支出' : '收入'}账单明细
+          {!showR ? <Icon name='xia'/> : <Icon name='right'/>}
         </div>
       </List>
-      {showR && <DetailList records={hashRecord}/>}
+      {!showR && <DetailList records={hashRecord}/>}
     </Layout>
   );
 };

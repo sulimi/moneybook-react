@@ -37,7 +37,7 @@ function Money() {
       </Link>
       <div className='toggle' onClick={onShowR}>{showR?'隐藏':'展示'}近30天账单
         ({recordArr.map(([d, r]) => r.length).reduce((sum,item)=>{return sum+item},0)})
-        {!showR ? <Icon name='xia'/> : <Icon name='right'/>}
+        {showR ? <Icon name='xia'/> : <Icon name='right'/>}
       </div>
       {showR &&
       <DetailList records={recordArr}/>
