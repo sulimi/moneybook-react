@@ -1,6 +1,6 @@
 type RecordItem = {
   id: number
-  tag:Tag
+  tag: Tag
   note: string
   category: Category
   amount: number
@@ -15,10 +15,12 @@ type Tag = {
 }
 type Category = '-' | '+'
 
-type sDate={
-  year:number,
-  month:number,
-  day:number
+type sDate = {
+  year: number,
+  month: number,
+  day: number
 }
 
-type HashRecord=[string, RecordItem[]]
+type HashRecord = [string, RecordItem[]]
+
+type ByTagList = [string, number]
