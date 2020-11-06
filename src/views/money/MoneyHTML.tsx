@@ -59,12 +59,16 @@ const ThirtyDayList = styled.div`
     width: 3em;height: 3em;
   }
   .amount{
+  display: flex;align-items: center;
     font-size: 18px;font-weight: bold;flex-shrink: 0;max-width: 50vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;
     &.zheng{
       color:#65C6BB
     }
     &.static{
       font-size: 16px;
+    }
+    .icon{
+      width: 0.7em;height: 0.7em;margin-left: 5px;fill: #AAA;
     }
   }
 `;

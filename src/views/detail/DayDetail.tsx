@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import Icon from '../../components/Icon';
 import {CategorySection} from '../../components/CategorySection';
 import {Link, useHistory, useParams} from 'react-router-dom';
@@ -51,7 +50,7 @@ const DayDetail = () => {
           <Link to='/addmoney' className='save'>
             记一笔
           </Link>
-        </Topbar>DayDetai
+        </Topbar>
         <DayDetailMiddle>
           <CategorySection category={cate} onChange={category => onChange(category)}/>
         </DayDetailMiddle>

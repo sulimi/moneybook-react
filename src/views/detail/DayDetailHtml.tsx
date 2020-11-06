@@ -39,6 +39,9 @@ width: 33.333%;
 .text{
   color: #AAA;padding: 5px;text-align: center;font-size: 12px;
 }
+&.bytag{
+  width: 100%; padding-top: 30px;
+}
 }
 
 `;

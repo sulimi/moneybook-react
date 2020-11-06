@@ -8,10 +8,11 @@ type Props = {
 }
 
 const StatiByTagItemWrapper: React.FC<Props> = (props) => {
-  const count = props.byTagListValue.reduce((sum, i) => {return sum += i[1];}, 0);
+  const {byTagListValue}=props
+  const count = byTagListValue.reduce((sum, i) => {return sum += i[1];}, 0);
   return <ThirtyDay>
-    {props.byTagListValue.map(([i, v]) =>
-      <Link to='/addmoney' key={i}>
+    {byTagListValue.map(([i, v]) =>
+      <Link to={'/allbytags/'+i} key={i}>
         <StatiByTagItem byTagItem={[i, v]} count={count}/>
       </Link>)}
   </ThirtyDay>;

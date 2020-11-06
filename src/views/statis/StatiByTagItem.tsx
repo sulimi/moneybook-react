@@ -56,7 +56,7 @@ const StatiByTagItem: React.FC<Props> = (props) => {
           </div>
         </DisplayWrapper2>
       </DisplayWrapper>
-      <div className={tagName[2] === '-' ? 'amount static' : 'amount zheng static'}>{percent}</div>
+      <div className={tagName[2] === '-' ? 'amount static' : 'amount zheng static'}>{percent}<Icon name='right'/></div>
     </ThirtyDayList>
   );
 };

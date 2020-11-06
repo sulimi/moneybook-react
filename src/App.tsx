@@ -19,6 +19,7 @@ import {DayDetail} from './views/detail/DayDetail';
 import {Statistics} from './views/Statis';
 import {EditorRecord} from './views/record/EditorRecord';
 import {EditorIng} from './views/record/EditorIng';
+import {AllByTags} from './views/statis/AllByTags';
 
 
 const AppWrapper = styled.div`
@@ -62,6 +63,9 @@ function App() {
           </Route>
           <Route exact path="/statistics">
             <Statistics/>
+          </Route>
+          <Route exact path="/allbytags/:tag">
+            <AllByTags/>
           </Route>
           <Redirect exact from="/" to="/money"/>
           <Route path="*">
