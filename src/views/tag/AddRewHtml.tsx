@@ -20,6 +20,12 @@ const Topbar = styled.header`
       margin-right: 5px;
     }
   }
+  .title{
+  
+    > .date{
+      font-size: 12px;padding-left:5px;
+    }
+  }
   .save{
    display: flex;align-items: center;justify-content: flex-end;
     width: 23.5vw;color: #65C6BB;font-weight: bold;
