@@ -10,9 +10,9 @@ const Wrapper = styled.section`
       display: flex;align-items: center;justify-content: center;
       background: #fff; margin: 5px 0 5px 2%;
       border: 2px solid black;border-radius: 10px;
-      font-size: 18px;
+      font-size: 16px;
       @media (max-height:570px){
-       font-size: 14px;height: 34px;
+       font-size: 12px;height: 34px;
      }
     }
     > .output{

@@ -32,6 +32,11 @@ const DaysBook: React.FC<Props> =(props)=>{
       }
     }
   }
+  // const onOk=(e:any)=>{
+  //   if (props.onToggleClick){
+  //     props.onToggleClick(e)
+  //   }
+  // }
   return (
     <DaysBody>
       <Top onClick={props.onToggleClick}/>
@@ -66,7 +71,7 @@ const DaysBook: React.FC<Props> =(props)=>{
       </DaysMain>
       <DaysFoot>
         <div className='no' onClick={props.onToggleClick}>取消</div>
-        <div className='ok' onClick={props.onToggleClick}>确定</div>
+        {/*<div className='ok' onClick={onOk}>确定</div>*/}
       </DaysFoot>
     </DaysBody>
   );
