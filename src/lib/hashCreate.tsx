@@ -9,7 +9,6 @@ const hashCreate = (arr: RecordItem[]) => {
     }
     hash[key].push(r);
   });
-
   return  Object.entries(hash).sort((a, b) => {
     if (a[0] === b[0]) {
       return 0;
