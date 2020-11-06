@@ -39,7 +39,7 @@ function Money() {
         ({recordArr.map(([d, r]) => r.length).reduce((sum,item)=>{return sum+item},0)})
         {!showR ? <Icon name='xia'/> : <Icon name='right'/>}
       </div>
-      {!showR &&
+      {showR &&
       <DetailList records={recordArr}/>
       }
     </MyLayout>
