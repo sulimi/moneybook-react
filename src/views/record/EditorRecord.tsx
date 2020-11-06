@@ -7,6 +7,7 @@ import Icon from '../../components/Icon';
 import dayjs from 'dayjs';
 import {Space} from '../../components/Space';
 import {DetailItem} from '../detail/DetailItem';
+import {thousand} from '../../lib/thousandSeparator';
 
 const Wrapper = styled.div`
 `;
@@ -17,9 +18,10 @@ const Tip = styled.div`
     .left{
     color: #A5C9C0;
   }
-  .note{
+  .note,.num{
     word-break: break-all;
   }
+  
   }
     .editor,.delete{
   text-align: center;font-weight: bold;
@@ -65,6 +67,9 @@ const EditorRecord = () => {
         <DetailItem record={r} key={r.id}/>
       )}
       <Tip>
+        <div className='item'><span
+          className='left'>金额：</span><span className='num'>{record.length > 0 && record[0].category === '-' ? '-' : '+'}￥{record.length > 0 && thousand(record[0].amount.toString())}</span>
+        </div>
         <div className='item'><span
           className='left'>日期：</span><span>{record.length > 0 && dayjs(record[0].createdAt).format('YYYY-MM-DD')}</span>
         </div>
