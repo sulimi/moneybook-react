@@ -2,28 +2,29 @@ import React from 'react';
 import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 import {DaysBody, DaysFoot, DaysHeader, DaysMain, Top} from './DaysBookHtml';
+import dayjs, {Dayjs} from 'dayjs';
 
 
 
 type Props = {
-  onChangeDay?: (d:Date) => void,
-  createdAt?:Date,
+  onChangeDay?: (d:Dayjs) => void,
+  createdAt?:Dayjs,
   onToggleClick?:(e:any)=>void
 }
 const DaysBook: React.FC<Props> =(props)=>{
   const {weekDay, showData,showDays, onSelectDay, isSelectDay, isToday, isThisMonthDay, onChangYear, onChangMonth,updateShowDate} = useDate();
-  const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
-  const selectClass = (day: Date) => isSelectDay(day) ? 'is-select' : '';
-  const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
+  const otherMonthClass = (day: Dayjs) => !isThisMonthDay(day) ? 'other-month' : '';
+  const selectClass = (day: Dayjs) => isSelectDay(day) ? 'is-select' : '';
+  const todayClass = (day: Dayjs) => isToday(day) ? 'is-today' : '';
 
   const onSetToday=()=>{
     updateShowDate({
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      day: new Date().getDate()
+      year: dayjs().year(),
+      month: dayjs().month(),
+      day: dayjs().date()
     })
   }
-  const onClickFunc=(e:any,d:Date)=>{
+  const onClickFunc=(e:any,d:Dayjs)=>{
     onSelectDay(d)
     if (props.onChangeDay){
       props.onChangeDay(d)
@@ -49,7 +50,6 @@ const DaysBook: React.FC<Props> =(props)=>{
           <Icon name='monthright' onClick={() => onChangMonth('next')}/>
           <Icon name='yearrigth' onClick={() => onChangYear('next')}/>
         </DaysHeader>
-
       </DaysHeader>
       <DaysMain>
         <thead>
@@ -63,7 +63,7 @@ const DaysBook: React.FC<Props> =(props)=>{
             <td key={d.toISOString()} className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)}`}
                 onClick={(e) => onClickFunc(e,d)}
             >
-              {d.getDate()}
+              {dayjs(d).date()}
             </td>
           )}
         </tr>

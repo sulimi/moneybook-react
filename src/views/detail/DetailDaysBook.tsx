@@ -3,9 +3,10 @@ import React, {useEffect, useState} from 'react';
 import Icon from '../../components/Icon';
 import {useDate} from '../../hooks/useDate';
 import {useRecords} from '../../hooks/useRecords';
-import dayjs from 'dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import {Link} from 'react-router-dom';
 import {NoneDetail} from './NoneDetail';
+import {sDate} from '../../custom';
 
 const DaysBody = styled.div`
   display: flex;flex-direction: column;align-items: center;justify-content: flex-end;background: #F8F8F6;
@@ -112,20 +113,20 @@ const DetailDaysBook: React.FC<Props> = (props) => {
     } = useDate();
   const weekDay = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
-  const otherMonthClass = (day: Date) => !isThisMonthDay(day) ? 'other-month' : '';
-  const selectClass = (day: Date) => isSelectDay(day) ? 'is-select' : '';
-  const todayClass = (day: Date) => isToday(day) ? 'is-today' : '';
+  const otherMonthClass = (day: Dayjs) => !isThisMonthDay(day) ? 'other-month' : '';
+  const selectClass = (day: Dayjs) => isSelectDay(day) ? 'is-select' : '';
+  const todayClass = (day: Dayjs) => isToday(day) ? 'is-today' : '';
 
   const onSetToday = () => {
     updateShowDate({
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      day: new Date().getDate()
+      year: dayjs().year(),
+      month: dayjs().month(),
+      day: dayjs().date()
     });
   };
 
   const {records} = useRecords();
-  const getAmount = (d: Date) => {
+  const getAmount = (d: Dayjs) => {
     const isHave = records.filter(r => dayjs(d).isSame(r.createdAt, 'day'));
     const typeRecord = isHave.filter(r => r.category === props.category);
     const count = typeRecord.reduce((sum, item) => {return sum += item.amount;}, 0);
@@ -144,7 +145,7 @@ const DetailDaysBook: React.FC<Props> = (props) => {
     onChangYear(type);
   };
   const [isNone, setIsNone] = useState(false);
-  const onClickFunc = (d: Date) => {
+  const onClickFunc = (d: Dayjs) => {
     onSelectDay(d);
     if (!getAmount(d).count) {
       setIsNone((isNone) => !isNone);
@@ -175,14 +176,14 @@ const DetailDaysBook: React.FC<Props> = (props) => {
                      className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
                      onClick={() => onClickFunc(d)}
                 >
-                  <div className='day'>{d.getDate()}</div>
+                  <div className='day'>{d.date()}</div>
                   <div className='record'>{getAmount(d).count ? props.category + '￥' + getAmount(d).count : ''}</div>
                 </Link>
               :<div key={d.toISOString()}
                     className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
                     onClick={() => onClickFunc(d)}
               >
-                <div className='day'>{d.getDate()}</div>
+                <div className='day'>{dayjs(d).date()}</div>
                 <div className='record'>{getAmount(d).count ? props.category + '￥' + getAmount(d).count : ''}</div>
               </div>
             )}

@@ -7,6 +7,7 @@ import Icon from '../../components/Icon';
 import {useRecords} from '../../hooks/useRecords';
 import {useHistory, useParams} from 'react-router-dom';
 import {AddHeader, AddMoneyWrapper} from '../addMoney/AddMoneyHtml';
+import {RecordItem} from '../../custom';
 
 
 const EditorIng = () => {

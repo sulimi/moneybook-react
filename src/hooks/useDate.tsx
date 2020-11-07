@@ -1,16 +1,16 @@
-import dayjs from 'dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import {useState} from 'react';
 import {useUpdate} from './useUpdate';
 
 const useDate = () => {
   const weekDay = ['日', '一', '二', '三', '四', '五', '六'];
   const obj = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    day: new Date().getDate()
+    year: dayjs().year(),
+    month: dayjs().month(),
+    day: dayjs().date()
   };
   const [showData, setShowData] = useState(obj);
-  const [onSelectedDay,setOnSelectedDay]=useState(new Date())
+  const [onSelectedDay,setOnSelectedDay]=useState(dayjs())
   useUpdate(() => {
     if (showData.month > 11) {
       setShowData({...showData,year:showData.year+1,month: 0})
@@ -18,10 +18,10 @@ const useDate = () => {
       setShowData({...showData,year:showData.year-1,month: 11})
     }
   }, [showData]);
-  const getYearMonthDay = (data: Date) => {
-    const year = data.getFullYear();
-    const month = data.getMonth();
-    const day = data.getDate();
+  const getYearMonthDay = (data: Dayjs) => {
+    const year = data.year();
+    const month = data.month();
+    const day = data.date();
     return {year, month, day};
   };
   const updateShowDate = (date: { year: number, month: number, day: number }) => {
@@ -38,26 +38,26 @@ const useDate = () => {
     const firstDayWeek = monthFirstDay.getDay();
     const showStartDay = +monthFirstDay - firstDayWeek * 24 * 60 * 60 * 1000;
     for (let i = 0; i < 42; i++) {
-      days.push(new Date(showStartDay + i * 24 * 60 * 60 * 1000));
+      days.push(dayjs(showStartDay + i * 24 * 60 * 60 * 1000));
     }
     return days;
   };
 
-  const onSelectDay = (date: Date) => {
+  const onSelectDay = (date: Dayjs) => {
     updateShowDate(getYearMonthDay(date));
     setOnSelectedDay(date)
   };
-  const isThisMonthDay = (date: Date) => {
+  const isThisMonthDay = (date: Dayjs) => {
     const {year, month} = getYearMonthDay(date);
     const {year: showYear, month: showMonth} = showData;
     return year === showYear && month === showMonth;
   };
-  const isToday = (date: Date) => {
-    if (dayjs(date).isSame(new Date(), 'day')) {
+  const isToday = (date: Dayjs) => {
+    if (dayjs(date).isSame(dayjs(), 'day')) {
       return true;
     }
   };
-  const isSelectDay = (date: Date) => {
+  const isSelectDay = (date: Dayjs) => {
     const {year, month, day} = getYearMonthDay(date);
     const {year: selectYear, month: selectMonth, day: selectDay} = showData;
     return year === selectYear && month === selectMonth && day === selectDay;

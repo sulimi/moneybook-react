@@ -12,6 +12,7 @@ import {hashCreateByTag} from '../lib/hashCreateByTag';
 import {StatiByTagItemWrapper} from './statis/StatiByTagItemWrapper';
 import {optionPie} from './statis/pieOption';
 import {None} from './money/MoneyHTML';
+import {ByTagList, Category, HashRecord} from '../custom';
 
 
 const EchartsWrapper = styled.div`
@@ -101,14 +102,14 @@ const Statistics = () => {
 
   //开始按日期和消费方式分类账单数据
   const {records} = useRecords();
-  const byDataRecords = records.filter(r => new Date(r.createdAt).getMonth() === showData.month && new Date(r.createdAt).getFullYear() === showData.year);
+  const byDataRecords = records.filter(r => dayjs(r.createdAt).month() === showData.month && dayjs(r.createdAt).year() === showData.year);
   const paidRecord = byDataRecords.filter(r => r.category === '-');
   const earningRecord = byDataRecords.filter(r => r.category === '+');
   const paidHashRecord = hashCreate(paidRecord);
   const earningHashRecord = hashCreate(earningRecord);
   //造图表所需数据
   const lineEchartsXKeyValue = (hashTable: HashRecord[]) => {
-    const today = new Date(byDataRecords[0]?byDataRecords[0].createdAt:showData.year+'-'+showData.month+'-'+showData.day);
+    const today = dayjs(byDataRecords[0]?byDataRecords[0].createdAt:showData.year+'-'+showData.month+'-'+showData.day);
     const monthLength = dayjs(today).daysInMonth();
     const array = [];
     for (let i = 1; i <= monthLength; i++) {

@@ -5,18 +5,18 @@ import {NoteSection} from '../../components/NoteSection';
 import {Message} from '../../components/Message';
 import {thousand} from '../../lib/thousandSeparator';
 import {useDate} from '../../hooks/useDate';
-import dayjs from 'dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import {DaysBook} from './DaysBook';
 
 type Props = {
   id?:number,
   amount: number,
   note: string,
-  createdAt: Date,
+  createdAt: Dayjs,
   onChange: (amount: number) => void,
   onOk?: () => void,
   onChangeNote: (note: string) => void,
-  onChangeDay:(createAt: Date)=>void
+  onChangeDay:(createAt: Dayjs)=>void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.amount.toString());
@@ -48,8 +48,8 @@ const NumberPadSection: React.FC<Props> = (props) => {
         if (props.id){return;}
         setOutput('0');
         props.onChangeNote('');
-        props.onChangeDay(new Date())
-        onSelectDay(new Date())
+        props.onChangeDay(dayjs())
+        onSelectDay(dayjs())
       }
       return;
     }
@@ -61,12 +61,12 @@ const NumberPadSection: React.FC<Props> = (props) => {
 
 
   //日期
-  const {onSelectDay,onSelectedDay} = useDate();
+  const {onSelectDay} = useDate();
   const [showDays,setShowDays]=useState(false)
   const onShowDays=()=>{
     setShowDays((showDays)=>!showDays)
   }
-  const onChangeDay=(d:Date)=>{
+  const onChangeDay=(d:Dayjs)=>{
     props.onChangeDay(d)
     onSelectDay(d)
   }
@@ -75,7 +75,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     setShowDays((showDays)=>!showDays)
   }
   const dayBtn=()=>{
-    if (dayjs(props.createdAt).isSame(new Date(),'day')){
+    if (dayjs(props.createdAt).isSame(dayjs(),'day')){
       return '今天'
     }else {
       return dayjs(props.createdAt).format('M月D日')

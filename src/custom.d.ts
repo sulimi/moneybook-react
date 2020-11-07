@@ -1,10 +1,12 @@
+import {Dayjs} from 'dayjs';
+
 type RecordItem = {
   id: number
   tag: Tag
   note: string
   category: Category
   amount: number
-  createdAt: Date
+  createdAt: Dayjs
 }
 type newRecordItem = Omit<RecordItem, 'id'>
 type Tag = {

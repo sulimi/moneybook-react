@@ -40,7 +40,7 @@ const StatiByTagItem: React.FC<Props> = (props) => {
     const {width} = percentElementBottom.current.getBoundingClientRect();
     const setWidth = width * (byTagItem[1] / count);
     percentElementTop.current.setAttribute('style', `width:${setWidth}px`);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <ThirtyDayList>

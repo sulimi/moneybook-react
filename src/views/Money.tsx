@@ -7,15 +7,16 @@ import {hashCreate} from '../lib/hashCreate';
 import {thousand} from '../lib/thousandSeparator';
 import {MyLayout} from './money/MoneyHTML';
 import {DetailList} from './detail/DetailList';
+import {RecordItem} from '../custom';
 
 
 
 function Money() {
   const {records} = useRecords();
-  const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'day'));
-  const byYearRecord=records.filter(r=>dayjs(r.createdAt).isSame(new Date(),'year'))
+  const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(dayjs(), 'day'));
+  const byYearRecord=records.filter(r=>dayjs(r.createdAt).isSame(dayjs(),'year'))
   const recordArr = hashCreate(byYearRecord).filter(([d]) =>{
-    return dayjs(d) > dayjs(dayjs(new Date()).subtract(29, 'day').format('YYYY-MM-DD'))
+    return dayjs(d) > dayjs(dayjs(dayjs()).subtract(29, 'day').format('YYYY-MM-DD'))
   })
 
   const [showR, setShowR] = useState(false);

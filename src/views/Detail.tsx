@@ -10,6 +10,7 @@ import {useDate} from '../hooks/useDate';
 import {hashCreate} from '../lib/hashCreate';
 import {DetailList} from './detail/DetailList';
 import Icon from '../components/Icon';
+import {Category, sDate} from '../custom';
 
 const CateWrapper = styled.div`
 flex-shrink: 0;position: relative;

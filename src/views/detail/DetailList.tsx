@@ -17,7 +17,7 @@ const DetailList: React.FC<Props> = (props) => {
       {props.records.map(([date, records]) =>
         <ThirtyDay key={date}>
           <ThirtyDayHeader>
-            <div className='day-header'>{dayjs(records[0].createdAt).isSame(new Date(), 'day') ?
+            <div className='day-header'>{dayjs(records[0].createdAt).isSame(dayjs(), 'day') ?
               <span className='today'>今天</span> : ''}<span>{dayjs(records[0].createdAt).format('MM月')}</span><span
               className='day'>{dayjs(records[0].createdAt).format('D')}</span>
             </div>

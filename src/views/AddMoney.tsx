@@ -8,6 +8,8 @@ import {useHistory} from 'react-router-dom';
 import {useTags} from '../hooks/useTags';
 import {Message} from '../components/Message';
 import {AddHeader, AddMoneyWrapper} from './addMoney/AddMoneyHtml';
+import dayjs from 'dayjs';
+import {Category, Tag} from '../custom';
 
 
 
@@ -17,7 +19,7 @@ const AddMoney = () => {
     note: '',
     category: '-' as Category,
     amount: 0,
-    createdAt: new Date()
+    createdAt: dayjs()
   };
   const {tags} = useTags();
   let [defaultRecordData, setDef] = useState(initDefaul);
