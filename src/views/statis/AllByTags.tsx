@@ -25,7 +25,6 @@ const AllByTags = () => {
     && new Date(r.createdAt).getFullYear() === new Date(splitTag[3]).getFullYear());
   const count = byTagRecords.reduce((sum, i) => {return sum += i.amount;}, 0);
   const showList = hashCreate(byTagRecords);
-  console.log(showList);
   //返回
   const history = useHistory();
   const onClickBack = () => {

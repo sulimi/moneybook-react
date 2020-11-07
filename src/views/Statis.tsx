@@ -108,14 +108,13 @@ const Statistics = () => {
   const earningHashRecord = hashCreate(earningRecord);
   //造图表所需数据
   const lineEchartsXKeyValue = (hashTable: HashRecord[]) => {
-    const today = new Date(byDataRecords[0]&&byDataRecords[0].createdAt);
+    const today = new Date(byDataRecords[0]?byDataRecords[0].createdAt:showData.year+'-'+showData.month+'-'+showData.day);
     const monthLength = dayjs(today).daysInMonth();
     const array = [];
     for (let i = 1; i <= monthLength; i++) {
-      const date = dayjs(today).date(i).format('YYYY-M-DD');
+      const date = dayjs(today).date(i).format('YYYY-MM-DD');
 
       const found = hashTable.filter(([k]) => k === date).map(([k, arr]) => arr);
-      // console.log(found);
       const value = found.map(r => r.reduce((s, i) => {return s += i.amount;}, 0))[0];
       array.push({date: date, value: value ? value : 0});
     }
