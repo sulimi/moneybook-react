@@ -11,6 +11,7 @@ import {useDate} from '../hooks/useDate';
 import {hashCreateByTag} from '../lib/hashCreateByTag';
 import {StatiByTagItemWrapper} from './statis/StatiByTagItemWrapper';
 import {optionPie} from './statis/pieOption';
+import {None} from './money/MoneyHTML';
 
 
 const EchartsWrapper = styled.div`
@@ -155,8 +156,12 @@ const Statistics = () => {
       <Have>
         <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
       </Have>
-      <Echarts option={optionPie(pieEchart,cate)}/>
-      <StatiByTagItemWrapper byTagListValue={byTagList}/>
+      {byTagList.length>0?<div>
+        <Echarts option={optionPie(pieEchart,cate)}/>
+        <StatiByTagItemWrapper byTagListValue={byTagList}/>
+      </div>:<None>暂无记录...</None>
+      }
+
     </Layout>
   );
 };

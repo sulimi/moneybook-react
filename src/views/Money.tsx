@@ -13,8 +13,11 @@ import {DetailList} from './detail/DetailList';
 function Money() {
   const {records} = useRecords();
   const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'day'));
-  const recordArr = hashCreate(records).filter(([d, r], i, arr) =>
-    dayjs(d) > dayjs(dayjs(arr[0][0]).subtract(29, 'day').format('YYYY-MM-DD')));
+  const byYearRecord=records.filter(r=>dayjs(r.createdAt).isSame(new Date(),'year'))
+  const recordArr = hashCreate(byYearRecord).filter(([d, r], i, arr) =>{
+    return dayjs(d) > dayjs(dayjs(new Date()).subtract(29, 'day').format('YYYY-MM-DD'))
+  })
+
   const [showR, setShowR] = useState(false);
   const onShowR = () => {
     setShowR((showR) => !showR);
