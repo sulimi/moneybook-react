@@ -15,6 +15,13 @@ const optionPie = (value: { value:number,name:string }[],cate:string) => {
     legend: {
       show: false
     },
+    // grid: {
+    //   right: 16,
+    //   left: 16,
+    //   top: 30,
+    //   bottom:20,
+    //   containLabel: true
+    // },
     series: [
       {
         type: 'pie',

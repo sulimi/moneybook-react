@@ -75,13 +75,20 @@ const TypeWrapper = styled.div`
   }
     }
 `;
+
 const Have = styled.div`
 display: flex;justify-content: flex-end;align-items: center;padding: 6px 16px;font-size: 10px;
   .have{
     color: #AAA;word-break: break-all;
   }
 `;
-
+const Title=styled.div`
+  margin-top: 16px;
+  padding:16px;
+  color: #AAA;
+  font-weight: bold;
+  
+`
 
 const Statistics = () => {
   //选择日期
@@ -159,7 +166,9 @@ const Statistics = () => {
         <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
       </Have>
       {byTagList.length>0?<div>
+        <Title>类别分析：</Title>
         <Echarts option={optionPie(pieEchart,cate)}/>
+        <Title>查看明细：</Title>
         <StatiByTagItemWrapper byTagListValue={byTagList}/>
       </div>:<None>暂无记录...</None>
       }

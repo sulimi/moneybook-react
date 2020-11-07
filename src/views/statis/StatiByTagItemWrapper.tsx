@@ -10,6 +10,7 @@ type Props = {
 
 const StatiByTagItemWrapper: React.FC<Props> = (props) => {
   const {byTagListValue}=props
+  byTagListValue.sort((a,b)=>b[1]-a[1])
   const count = byTagListValue.reduce((sum, i) => {return sum += i[1];}, 0);
   return <ThirtyDay>
     {byTagListValue.map(([i, v]) =>
