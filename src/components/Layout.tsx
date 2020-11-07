@@ -49,14 +49,14 @@ const Layout: React.FC<Props> = (props)=>{
   <Wrapper>
     {props.message&&
     <Header>
-      <div className='monthyear' onClick={props.toggleMonthYear}>
+      {props.toggleMonthYear&&<div className='monthyear' onClick={props.toggleMonthYear}>
         {props.monthYear?'按年':'按月'}
-      </div>
+      </div>}
       <div className='text' onClick={props.chooseDay}>
         {props.message}
         {props.chooseDay&&<Icon name='down'/>}
       </div>
-      <div className='monthyear'/>
+      {props.toggleMonthYear&&<div className='monthyear'/>}
     </Header>}
     <Main className={props.className}>
       {props.children}
