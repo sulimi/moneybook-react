@@ -8,6 +8,7 @@ import {useRecords} from '../../hooks/useRecords';
 import {useHistory, useParams} from 'react-router-dom';
 import {AddHeader, AddMoneyWrapper} from '../addMoney/AddMoneyHtml';
 import {RecordItem} from '../../custom';
+import {FalseAlert} from '../../components/FalseAlert';
 
 
 const EditorIng = () => {
@@ -15,7 +16,7 @@ const EditorIng = () => {
     id: string
   }
   const {id} = useParams<Params>();
-  const {updateRecord} = useRecords();
+  const {updateRecord,alertNum} = useRecords();
   const records = JSON.parse(window.localStorage.getItem('records') || '[]') as RecordItem[];
   const [record,setRecord] = useState(records.filter(r => r.id === parseFloat(id))[0]);
   const onChange = (obj: Partial<typeof record>) => {
@@ -25,10 +26,12 @@ const EditorIng = () => {
   const [success, setSuccess] = useState(false);
   const submit = () => {
     updateRecord(record)
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-    }, 1500);
+    if (updateRecord(record)){
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1500);
+    }
   };
   const history = useHistory();
   const goBack = () => {
@@ -36,6 +39,7 @@ const EditorIng = () => {
   };
   return (
     <AddMoneyWrapper>
+      {alertNum && <FalseAlert>金额不能小于等于0</FalseAlert>}
       {success ? <Message>编辑成功</Message> : ''}
       <AddHeader>
         <Icon name='quxiao' onClick={goBack}/>
