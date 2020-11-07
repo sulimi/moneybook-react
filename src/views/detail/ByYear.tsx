@@ -13,10 +13,16 @@ position: relative;padding: 16px;
     margin: 0 10px;
     height: 100%;
     width: 5em;fill:#A5C9C0;
+        @media (max-height:570px){
+         width: 4em;
+     }
   }
   .title{
     color: #A5C9C0;
     font-size: 40px;
+     @media (max-height:570px){
+        font-size: 30px;
+     }
   }
 `;
 

@@ -19,6 +19,9 @@ flex-shrink: 0;position: relative;display: flex;
   width: 30vw;display: flex;justify-content: center;align-items: center;
   font-weight: bold;font-size: 16px;background: #A5C9C0;
   border-bottom-right-radius: 30px;border-top-right-radius: 30px;color: #fff;
+   @media (max-height:570px){
+       font-size: 14px;
+     }
   .icon{
     fill: #fff;margin-left: 5px;
   }
@@ -32,6 +35,9 @@ flex-grow: 1;
     background: #fff;margin-bottom: 0;color: #A5C9C0;font-weight: bold;
      li{
  padding: 16px;
+       @media (max-height:570px){
+        padding: 8px 16px;
+     }
      &.selected{
       color: #fff;
       }
