@@ -98,6 +98,17 @@ const Statistics = () => {
 
 
   const pieEchart=byTagList.map(([i,v])=>{return {value:v,name:i.split('&&')[0]}})
+
+  //结余
+  const num=()=>{
+    if (earningCount - paidCount > 0){
+      return '+'
+    }else if (earningCount - paidCount===0){
+      return ''
+    }else {
+      return '-'
+    }
+  }
   return (
     <Layout message={monthYear?showData.year+'':showData.year + '-' + (showData.month + 1)} chooseDay={() => onToggle()} monthYear={monthYear} toggleMonthYear={()=>toggleMonthYear()}>
       {showChooseDay && <StatisDay monthYear={monthYear} chooseDay={(d) => chooseDay(d)} onToggle={() => onToggle()}/>}
@@ -115,7 +126,7 @@ const Statistics = () => {
         </div>
       </StatisTypeWrapper>
       <StatisHave>
-        <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
+        <div className='have'>结余：{num}￥{Math.abs(earningCount - paidCount)}</div>
       </StatisHave>
       {byTagList.length>0?<div>
         <StatisTitle>类别分析：</StatisTitle>
