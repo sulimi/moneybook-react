@@ -14,7 +14,7 @@ function Money() {
   const {records} = useRecords();
   const todayRecord = records.filter(r => dayjs(r.createdAt).isSame(new Date(), 'day'));
   const byYearRecord=records.filter(r=>dayjs(r.createdAt).isSame(new Date(),'year'))
-  const recordArr = hashCreate(byYearRecord).filter(([d, r], i, arr) =>{
+  const recordArr = hashCreate(byYearRecord).filter(([d]) =>{
     return dayjs(d) > dayjs(dayjs(new Date()).subtract(29, 'day').format('YYYY-MM-DD'))
   })
 
