@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
 import {Category, Tag} from '../custom';
+import {initTags} from '../datas/initTags';
 
 
 const useTags = () => { //封装一个自定义Hook
@@ -9,26 +10,7 @@ const useTags = () => { //封装一个自定义Hook
   useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
     if (localTags.length === 0) {
-      localTags = [
-        {
-          id: createId(),
-          name: '旅游',
-          icon:'lvxing',
-          category: '-'
-        },
-        {
-          id: createId(),
-          name: '房贷',
-          icon:'fangdai',
-          category: '-'
-        },
-        {
-          id: createId(),
-          name: '收入',
-          icon:'shouru',
-          category: '+'
-        },
-      ];
+      localTags = initTags;
     }
     setTags(localTags);
   }, []);

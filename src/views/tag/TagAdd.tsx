@@ -16,7 +16,7 @@ const TagAdd: React.FC = () => {
   const {tags, addTag} = useTags();
 
   const TagsIconList = TagsIcon;
-  const [iconSelect, setIconSelect] = useState('fangdai');
+  const [iconSelect, setIconSelect] = useState('lvxing');
   const setClass = (icon: string) => icon === iconSelect ? 'selected' : '';
 
   const obj = {
@@ -63,7 +63,7 @@ const TagAdd: React.FC = () => {
       setTimeout(() => {
         setSuccess(false);
       }, 1500);
-      setIconSelect('fangdai');
+      setIconSelect('lvxing');
       setTagName('');
     }
   };
