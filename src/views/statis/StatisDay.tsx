@@ -15,7 +15,10 @@ const Header = styled.div`
   display: flex;justify-content: space-between;align-items: center;
   width: 100%;font-weight: bold;background: #CCE2DB;
 .item{
-  width: 30%;text-align: center;padding: 16px 10px;
+  width: 20%;text-align: center;padding: 16px 10px;
+  &:nth-child(1){
+    border-right: 1px solid #AAA;
+  }
   .icon{
     width: 1.5em;height: 1.5em;
   }
@@ -34,6 +37,7 @@ width: 100%;background:transparent;flex-grow: 1;
 type Props={
   chooseDay:(d:number)=>void
   onToggle:()=>void
+  monthYear:boolean
 }
 const StatisDay:React.FC<Props> = (props) => {
   const {showData, setShowData, onChangYear} = useDate();
@@ -57,13 +61,18 @@ const StatisDay:React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <Header>
+        <div className='item' onClick={props.onToggle}>取消</div>
         <div className='item' onClick={() => onYear('last')}><Icon name='yearleft'/></div>
-        <div>点击两边按钮选择年份</div>
+        <div>{showData.year}</div>
         <div className='item' onClick={() => onYear('next')}><Icon name='yearrigth'/></div>
+        <div className='item' />
       </Header>
-      <Body>
-        {chooseMonth.map(([k, v]) => <Item key={k} onClick={(e) => onChoose(e,v)}>{k}</Item>)}
-      </Body>
+      {props.monthYear?'':<Body>
+        {chooseMonth.map(([k, v]) =>
+          <Item key={k} onClick={(e) => onChoose(e,v)}>{k}</Item>
+        )
+        }
+      </Body>}
       <Bottom onClick={props.onToggle}/>
     </Wrapper>
   );

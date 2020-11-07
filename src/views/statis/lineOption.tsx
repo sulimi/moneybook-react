@@ -1,4 +1,4 @@
-const option = (key:string[],paidValue:number[],earningValue:number[])=>{
+const option = (key:string[],paidValue:number[],earningValue:number[],monthyear:boolean)=>{
   return {
     title: {
       show: false
@@ -35,7 +35,7 @@ const option = (key:string[],paidValue:number[],earningValue:number[])=>{
       },
       axisLabel: {
         formatter: function (value: string) {
-          return value.substr(8) + '日';
+          return monthyear?value.substr(5)+'月':value.substr(8) + '日';
         },
         fontSize: 10,
       },
@@ -48,7 +48,7 @@ const option = (key:string[],paidValue:number[],earningValue:number[])=>{
         type: 'inside',
         xAxisIndex: [0],
         start: 0,
-        end: 30,
+        end: monthyear?80:30,
         zoomLock: true
       },
     ],
