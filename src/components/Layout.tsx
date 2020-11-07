@@ -19,6 +19,9 @@ const Header=styled.header`
 const Main = styled.div`
   flex-grow: 1;
   overflow-y: auto;
+  &::-webkit-scrollbar{
+    display:none;
+  }
 `;
 type Props={
   message?: string
