@@ -39,7 +39,7 @@ const EditorIng = () => {
   };
   return (
     <AddMoneyWrapper>
-      {alertNum && <FalseAlert>金额不能小于等于0</FalseAlert>}
+      {alertNum && <FalseAlert>请输入有效金额</FalseAlert>}
       {success ? <Message>编辑成功</Message> : ''}
       <AddHeader>
         <Icon name='quxiao' onClick={goBack}/>

@@ -65,7 +65,7 @@ const AddMoney = () => {
   };
   return (
     <AddMoneyWrapper>
-      {alertNum && <FalseAlert>金额不能小于等于0</FalseAlert>}
+      {alertNum && <FalseAlert>请输入有效金额</FalseAlert>}
       {alertTag && <FalseAlert>选择一个分类</FalseAlert>}
       {success ? <Message>记账成功</Message> : ''}
       <AddHeader>
