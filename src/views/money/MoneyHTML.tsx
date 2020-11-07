@@ -32,6 +32,7 @@ const MyLayout = styled(Layout)`
 `;
 const ThirtyDay = styled.div`
   display: flex;flex-direction: column;width: 100%;flex-grow: 1;flex-shrink: 0;
+  
 `;
 
 const ThirtyDayHeader = styled.div`
@@ -55,6 +56,7 @@ const ThirtyDayHeader = styled.div`
 `;
 const ThirtyDayList = styled.div`
   display: flex;align-items: center;justify-content: space-between;padding: 16px;background: #F8F8F6;margin: 5px 16px;border-radius: 10px;
+  
   .icon{
     width: 3em;height: 3em;
   }
