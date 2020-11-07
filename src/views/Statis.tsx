@@ -126,7 +126,7 @@ const Statistics = () => {
         </div>
       </StatisTypeWrapper>
       <StatisHave>
-        <div className='have'>结余：{num}￥{Math.abs(earningCount - paidCount)}</div>
+        <div className='have'>结余：{num()}￥{Math.abs(earningCount - paidCount)}</div>
       </StatisHave>
       {byTagList.length>0?<div>
         <StatisTitle>类别分析：</StatisTitle>

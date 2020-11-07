@@ -12,9 +12,9 @@ position: relative;padding: 16px;
   > .icon{
     margin: 0 10px;
     height: 100%;
-    width: 5em;fill:#A5C9C0;
+    width: 4em;fill:#A5C9C0;
         @media (max-height:570px){
-         width: 4em;
+         width: 3em;
      }
   }
   .title{

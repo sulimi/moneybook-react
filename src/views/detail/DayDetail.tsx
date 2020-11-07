@@ -39,6 +39,15 @@ const DayDetail = () => {
 
 
   };
+  const num=()=>{
+    if (lastAmount()>0){
+      return '+'
+    }else if (lastAmount()===0){
+      return ;
+    }else {
+      return '-'
+    }
+  }
   return (
     <DayDetailWrapper>
       <DayDetailHeader>
@@ -65,7 +74,7 @@ const DayDetail = () => {
             <div className='text'>总支出</div>
           </div>
           <div className='item'>
-            <div className={lastAmount()>0?'num greed':'num red'}>{lastAmount()>0?'+':'-'}￥{thousand(Math.abs(lastAmount()).toString())}</div>
+            <div className={lastAmount()>0?'num greed':'num red'}>{num()}￥{thousand(Math.abs(lastAmount()).toString())}</div>
             <div className='text'>结余</div>
           </div>
         </DayDetailBottom>

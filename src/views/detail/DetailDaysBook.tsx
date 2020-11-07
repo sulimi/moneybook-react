@@ -172,7 +172,7 @@ const DetailDaysBook: React.FC<Props> = (props) => {
           <div className='tr'>
             {showDays(showData).map(d =>
               getAmount(d).count?
-                <Link to={'/daydetail/' + d} key={d.toISOString()}
+                <Link to={'/daydetail/' + d.toString()} key={d.toISOString()}
                      className={`${selectClass(d)} ${otherMonthClass(d)} ${todayClass(d)} td`}
                      onClick={() => onClickFunc(d)}
                 >
