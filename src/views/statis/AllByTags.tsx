@@ -6,9 +6,8 @@ import {
 } from '../detail/DayDetailHtml';
 import {Topbar} from '../tag/AddRewHtml';
 import Icon from '../../components/Icon';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {thousand} from '../../lib/thousandSeparator';
-import {DayDetailList} from '../detail/DayDetailList';
 import React from 'react';
 import {useRecords} from '../../hooks/useRecords';
 import {hashCreate} from '../../lib/hashCreate';

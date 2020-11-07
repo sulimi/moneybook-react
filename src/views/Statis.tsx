@@ -10,7 +10,7 @@ import {StatisDay} from './statis/StatisDay';
 import {useDate} from '../hooks/useDate';
 import {hashCreateByTag} from '../lib/hashCreateByTag';
 import {StatiByTagItemWrapper} from './statis/StatiByTagItemWrapper';
-// import {StatiByTagItemWrapper} from './statis/StatiByTagItemWrapper';
+import {optionPie} from './statis/pieOption';
 
 
 const EchartsWrapper = styled.div`
@@ -100,7 +100,7 @@ const Statistics = () => {
 
   //开始按日期和消费方式分类账单数据
   const {records} = useRecords();
-  const byDataRecords = records.filter(r => new Date(r.createdAt).getMonth() === showData.month&&new Date(r.createdAt).getFullYear() === showData.year);
+  const byDataRecords = records.filter(r => new Date(r.createdAt).getMonth() === showData.month && new Date(r.createdAt).getFullYear() === showData.year);
   const paidRecord = byDataRecords.filter(r => r.category === '-');
   const earningRecord = byDataRecords.filter(r => r.category === '+');
   const paidHashRecord = hashCreate(paidRecord);
@@ -132,7 +132,10 @@ const Statistics = () => {
     setCate(category);
   };
   const byTag = hashCreateByTag(byDataRecords.filter(r => r.category === cate));
-  const byTagList:ByTagList[] = byTag.map(([k, v]) => [k+"&&"+v[0].tag.icon+"&&"+v[0].category+'&&'+v[0].createdAt, v.reduce((sum, i) => {return sum += i.amount;}, 0)]);
+  const byTagList: ByTagList[] = byTag.map(([k, v]) =>
+    [k + '&&' + v[0].tag.icon + '&&' + v[0].category + '&&' + v[0].createdAt,
+      v.reduce((sum, i) => {return sum += i.amount;}, 0)]);
+  const pieEchart=byTagList.map(([i,v])=>{return {value:v,name:i.split('&&')[0]}})
   return (
     <Layout message={showData.year + '-' + (showData.month + 1)} chooseDay={() => onToggle()}>
       {showChooseDay && <StatisDay chooseDay={(d) => chooseDay(d)} onToggle={() => onToggle()}/>}
@@ -152,6 +155,7 @@ const Statistics = () => {
       <Have>
         <div className='have'>结余：{earningCount - paidCount > 0 ? '+' : '-'}￥{Math.abs(earningCount - paidCount)}</div>
       </Have>
+      <Echarts option={optionPie(pieEchart,cate)}/>
       <StatiByTagItemWrapper byTagListValue={byTagList}/>
     </Layout>
   );

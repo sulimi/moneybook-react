@@ -1,4 +1,4 @@
-const option = (key:any,paidValue:any,earningValue:any)=>{
+const option = (key:string[],paidValue:number[],earningValue:number[])=>{
   return {
     title: {
       show: false
