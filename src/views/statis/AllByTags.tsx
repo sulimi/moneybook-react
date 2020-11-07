@@ -19,13 +19,13 @@ const AllByTags = () => {
     tag: string
   }
   const {tag} = useParams<Params>();
-
   const splitTag = tag.split('&&');
   const {records} = useRecords();
-  const byTagRecords = records.filter(r => r.tag.name === splitTag[0]).filter(r => dayjs(r.createdAt).month() === dayjs(splitTag[3]).month()
-    && dayjs(r.createdAt).year() === dayjs(splitTag[3]).year());
-  const count = byTagRecords.reduce((sum, i) => {return sum += i.amount;}, 0);
-  const showList = hashCreate(byTagRecords);
+  const byTagRecords = records.filter(r => r.tag.name === splitTag[0]);
+  const byDateRecords = splitTag[4]==='true'?byTagRecords.filter(r=>dayjs(r.createdAt).year() === dayjs(splitTag[3]).year())
+    :byTagRecords.filter(r => dayjs(r.createdAt).month() === dayjs(splitTag[3]).month() && dayjs(r.createdAt).year() === dayjs(splitTag[3]).year());
+  const count = byDateRecords.reduce((sum, i) => {return sum += i.amount;}, 0);
+  const showList = hashCreate(byDateRecords);
   //返回
   const history = useHistory();
   const onClickBack = () => {
@@ -43,19 +43,19 @@ const AllByTags = () => {
             <span>统计</span>
           </div>
           <span className='title'>{splitTag[0]}<span
-            className='date'>({dayjs(splitTag[3]).year() + '-' + (dayjs(splitTag[3]).month() + 1)})</span></span>
+            className='date'>({splitTag[4]==='true'?dayjs(splitTag[3]).year():dayjs(splitTag[3]).year() + '-' + (dayjs(splitTag[3]).month() + 1)})</span></span>
           <div className='save'>
 
           </div>
         </Topbar>
         <DayDetailBottom>
           <div className='item bytag'>
-            <div className='num'>{splitTag[2]==="-"?'-':'+'}￥{thousand(count.toString())}</div>
-            <div className='text'>总{splitTag[2]==="-"?'支出':'收入'}</div>
+            <div className='num'>{splitTag[2] === '-' ? '-' : '+'}￥{thousand(count.toString())}</div>
+            <div className='text'>总{splitTag[2] === '-' ? '支出' : '收入'}</div>
           </div>
         </DayDetailBottom>
       </DayDetailHeader>
-      <DayDetailLength>流水({byTagRecords.length})：</DayDetailLength>
+      <DayDetailLength>流水({byDateRecords.length})：</DayDetailLength>
       <DetailList records={showList}/>
     </DayDetailWrapper>
   );

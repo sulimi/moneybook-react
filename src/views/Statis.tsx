@@ -90,10 +90,13 @@ const Statistics = () => {
   const onChange = (category: Category) => {
     setCate(category);
   };
+
   const byTag = hashCreateByTag(byDataRecords.filter(r => r.category === cate));
   const byTagList: ByTagList[] = byTag.map(([k, v]) =>
-    [k + '&&' + v[0].tag.icon + '&&' + v[0].category + '&&' + v[0].createdAt,
+    [k + '&&' + v[0].tag.icon + '&&' + v[0].category + '&&' + v[0].createdAt+'&&'+`${monthYear}`,
       v.reduce((sum, i) => {return sum += i.amount;}, 0)]);
+
+
   const pieEchart=byTagList.map(([i,v])=>{return {value:v,name:i.split('&&')[0]}})
   return (
     <Layout message={monthYear?showData.year+'':showData.year + '-' + (showData.month + 1)} chooseDay={() => onToggle()} monthYear={monthYear} toggleMonthYear={()=>toggleMonthYear()}>
