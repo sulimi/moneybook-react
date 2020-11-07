@@ -10,7 +10,7 @@ import {Message} from '../components/Message';
 import {AddHeader, AddMoneyWrapper} from './addMoney/AddMoneyHtml';
 import dayjs from 'dayjs';
 import {Category, Tag} from '../custom';
-
+import {FalseAlert} from '../components/FalseAlert';
 
 
 const AddMoney = () => {
@@ -42,7 +42,7 @@ const AddMoney = () => {
     });
   };
   const [success, setSuccess] = useState(false);
-  const {addRecord} = useRecords();
+  const {addRecord, alertNum,alertTag} = useRecords();
   const submit = () => {
     addRecord(record);
     if (addRecord(record)) {
@@ -53,18 +53,20 @@ const AddMoney = () => {
       }, 1500);
     }
   };
-  useEffect(()=>{
-    if (success){
-      setRecord(defaultRecordData)
+  useEffect(() => {
+    if (success) {
+      setRecord(defaultRecordData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[success])
+  }, [success]);
   const history = useHistory();
   const goBack = () => {
     history.goBack();
   };
   return (
     <AddMoneyWrapper>
+      {alertNum && <FalseAlert>输入记账金额</FalseAlert>}
+      {alertTag && <FalseAlert>选择一个分类</FalseAlert>}
       {success ? <Message>记账成功</Message> : ''}
       <AddHeader>
         <Icon name='quxiao' onClick={goBack}/>

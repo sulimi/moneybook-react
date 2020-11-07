@@ -7,6 +7,8 @@ import {newRecordItem, RecordItem} from '../custom';
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
+  const [alertTag,setAlertTag]=useState(false)
+  const [alertNum,setAlertNum]=useState(false)
   useEffect(() => {
     setRecords(JSON.parse(window.localStorage.getItem('records') || '[]'));
   }, []);
@@ -22,11 +24,17 @@ const useRecords = () => {
   };
   const addRecord = (record: newRecordItem) => {
     if (record.amount <= 0) {
-      alert('金额小于0');
+      setAlertNum(()=>true)
+      setTimeout(()=>{
+        setAlertNum(()=>false)
+      },1000)
       return false;
     }
     if (!record.tag || record.tag.name === undefined) {
-      alert('请选择标签');
+      setAlertTag(()=>true)
+      setTimeout(()=>{
+        setAlertTag(()=>false)
+      },1000)
       return false;
     }
     const recordAddId = {...record, id: createRecordId()};
@@ -40,7 +48,9 @@ const updateRecord=(record:RecordItem)=>{
     indexRecord(record) >= 0 && records.splice(indexRecord(record), 1);
     window.localStorage.setItem('records', JSON.stringify(records));
   };
-  return {records, addRecord, deleteRecord, indexRecord, findRecord,setRecords,updateRecord};
+  return {records, addRecord, deleteRecord, indexRecord, findRecord,setRecords,updateRecord,
+    alertTag,alertNum
+  };
 };
 
 export {useRecords};

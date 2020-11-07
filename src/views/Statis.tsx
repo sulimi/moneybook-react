@@ -137,7 +137,7 @@ const Statistics = () => {
 
     </Layout>
   );
-};
+}
 
 
 export {Statistics};

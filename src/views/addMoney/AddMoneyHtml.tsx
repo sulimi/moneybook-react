@@ -13,4 +13,5 @@ const AddHeader = styled.header`
     height:2em;
   }
 `;
+
 export {AddHeader,AddMoneyWrapper}
