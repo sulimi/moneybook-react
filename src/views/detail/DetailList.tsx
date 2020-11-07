@@ -13,6 +13,7 @@ const DetailList: React.FC<Props> = (props) => {
   const amountCalculate = (arr: RecordItem[], type: string) => {
     return arr.filter(r => r.category === type).reduce((sum, item) => {return sum + item.amount;}, 0);
   };
+  console.log(props.records);
   return props.records.length > 0 ?
     <ThirtyDay>
       {props.records.map(([date, records]) =>

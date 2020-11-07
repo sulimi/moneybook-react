@@ -16,7 +16,7 @@ const DaysBody = styled.div`
 `;
 const DaysHeader = styled.header`
   display: flex;justify-content: space-between;align-items: center;text-align: right;font-weight: bold;
-  width: 100vw; height: 2em;
+  width: 100vw;
      @media (max-height:570px){
     
   }
