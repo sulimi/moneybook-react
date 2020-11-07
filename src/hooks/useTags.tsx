@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
 import {Category, Tag} from '../custom';
 import {initTags} from '../datas/initTags';
