@@ -40,7 +40,7 @@ const TagsSection: React.FC<Props> = (props) => {
         <li className='long'>
           <Link to='/tags' className='manage'>
             <Icon name='guanli'/>
-            <span>管理标签</span>
+            <span>分类管理</span>
           </Link>
         </li>
       </ol>
