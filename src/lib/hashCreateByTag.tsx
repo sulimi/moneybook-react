@@ -1,3 +1,5 @@
+import {RecordItem} from '../custom';
+
 const hashCreateByTag=(arr:RecordItem[])=>{
   const hash: { [K: string]: RecordItem[] } = {};
   arr.forEach(r=>{

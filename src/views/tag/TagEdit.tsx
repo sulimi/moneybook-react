@@ -11,6 +11,7 @@ import {TagsIcon} from '../../datas/manageTags';
 import {Message} from '../../components/Message';
 import {Pop} from '../../components/Pop';
 import {CategorySection} from '../../components/CategorySection';
+import {Category} from '../../custom';
 
 
 const TagEdit: React.FC = () => {

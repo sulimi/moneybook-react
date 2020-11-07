@@ -3,6 +3,7 @@ import {useTags} from '../../hooks/useTags';
 import Icon from '../../components/Icon';
 import {Link} from 'react-router-dom';
 import {ChooseTag} from '../record/RecordChooseTag';
+import {Category, Tag} from '../../custom';
 
 
 type Props = { tagId: number, tagCategory: Category, onChange: (selectedTag: Tag) => void }

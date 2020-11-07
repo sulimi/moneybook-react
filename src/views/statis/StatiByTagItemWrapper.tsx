@@ -2,6 +2,7 @@ import {ThirtyDay} from '../money/MoneyHTML';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {StatiByTagItem} from './StatiByTagItem';
+import {ByTagList} from '../../custom';
 
 type Props = {
   byTagListValue: ByTagList[]

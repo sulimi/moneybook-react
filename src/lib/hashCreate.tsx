@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import {RecordItem} from '../custom';
 
 const hashCreate = (arr: RecordItem[]) => {
   const hash: { [K: string]: RecordItem[] } = {};

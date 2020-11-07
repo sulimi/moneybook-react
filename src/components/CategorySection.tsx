@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, {useEffect, useState} from 'react';
+import {Category} from '../custom';
 
 const Wrapper = styled.section` 
 

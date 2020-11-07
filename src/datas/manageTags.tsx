@@ -1,3 +1,5 @@
+import {Category} from '../custom';
+
 const TagsIcon=[
   {icon:'fangdai',category:'-' as Category},
   {icon:'shouru',category:'+' as Category},

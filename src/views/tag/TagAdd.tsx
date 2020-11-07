@@ -9,6 +9,7 @@ import {useTags} from '../../hooks/useTags';
 import {Pop} from '../../components/Pop';
 import {Message} from '../../components/Message';
 import {CategorySection} from '../../components/CategorySection';
+import {Category} from '../../custom';
 
 
 const TagAdd: React.FC = () => {

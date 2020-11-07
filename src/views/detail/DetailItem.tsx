@@ -2,6 +2,7 @@ import {DisplayWrapper, DisplayWrapper2, ThirtyDayList} from '../money/MoneyHTML
 import Icon from '../../components/Icon';
 import React from 'react';
 import {thousand} from '../../lib/thousandSeparator';
+import {RecordItem} from '../../custom';
 
 
 type Props={

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import {thousand} from '../../lib/thousandSeparator';
 import React from 'react';
 import {DayDetailList} from './DayDetailList';
+import {HashRecord, RecordItem} from '../../custom';
 
 
 type Props = {

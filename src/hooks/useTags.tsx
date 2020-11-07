@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
+import {Category, Tag} from '../custom';
 
 
 const useTags = () => { //封装一个自定义Hook

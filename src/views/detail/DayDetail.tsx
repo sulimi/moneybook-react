@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import {DayDetailList} from './DayDetailList';
 import {thousand} from '../../lib/thousandSeparator';
 import {DayDetailBottom, DayDetailHeader, DayDetailLength, DayDetailMiddle, DayDetailWrapper} from './DayDetailHtml';
+import {Category} from '../../custom';
 
 
 

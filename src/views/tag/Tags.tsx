@@ -8,6 +8,7 @@ import {Pop} from '../../components/Pop';
 import {Message} from '../../components/Message';
 import styled from 'styled-components';
 import {CategorySection} from '../../components/CategorySection';
+import {Category, Tag} from '../../custom';
 
 const Wrapper = styled.div`
   display: flex;flex-direction: column;
