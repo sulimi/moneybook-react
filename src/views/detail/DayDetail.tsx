@@ -79,7 +79,7 @@ const DayDetail = () => {
           </div>
         </DayDetailBottom>
       </DayDetailHeader>
-      <DayDetailLength>账单({records.length})：</DayDetailLength>
+      <DayDetailLength>账单({todayTypeRecords.length})：</DayDetailLength>
       <DayDetailList records={todayTypeRecords}/>
     </DayDetailWrapper>
   );
