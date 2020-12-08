@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 import {useRecords} from '../../hooks/useRecords';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {Topbar} from '../tag/AddRewHtml';
@@ -8,6 +8,8 @@ import dayjs from 'dayjs';
 import {Space} from '../../components/Space';
 import {DetailItem} from '../detail/DetailItem';
 import {thousand} from '../../lib/thousandSeparator';
+import {Message} from '../../components/Message';
+import {AddMoneyWrapper} from '../addMoney/AddMoneyHtml';
 
 const Wrapper = styled.div`
 `;
@@ -49,13 +51,19 @@ const EditorRecord = () => {
     // window.history.back();
     history.goBack();
   };
+  const [success, setSuccess] = useState(false);
   const removeRecord = () => {
+    setSuccess(true);
     record.length > 0 && deleteRecord(record[0]);
-    history.goBack();
+   setTimeout(()=>{
+     setSuccess(false);
+     history.goBack();
+   },900)
   };
   return (
     <Wrapper>
       <Topbar>
+        {success ? <Message>删除成功</Message> : ''}
         <div className='back' onClick={onClickBack}>
           <Icon name='left'/>
           <span>返回</span>

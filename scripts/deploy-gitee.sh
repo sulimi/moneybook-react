@@ -6,5 +6,5 @@ git init &&
 git add . &&
 git commit -m 'deploy' &&
 git remote add origin git@gitee.com:sulimi/moneybookwebsite-react.git &&
-git push -u origin master &&
+git push -u -f origin master &&
 cd -

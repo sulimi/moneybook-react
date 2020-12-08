@@ -50,6 +50,7 @@ const useRecords = () => {
       return false;
     }
     records.splice(indexRecord(record), 1, record);
+    return true
   };
   const deleteRecord = (record: RecordItem) => {
     indexRecord(record) >= 0 && records.splice(indexRecord(record), 1);

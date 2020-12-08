@@ -23,6 +23,7 @@ const EditorIng = () => {
     //收集信息的
     setRecord({...record,...obj})
   };
+  const history = useHistory();
   const [success, setSuccess] = useState(false);
   const submit = () => {
     updateRecord(record)
@@ -30,10 +31,11 @@ const EditorIng = () => {
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
-      }, 1500);
+        history.goBack();
+      }, 800);
     }
   };
-  const history = useHistory();
+
   const goBack = () => {
     history.goBack();
   };
