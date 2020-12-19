@@ -54,7 +54,7 @@ const TagEdit: React.FC = () => {
 
   const [isNone, setIsNone] = useState(false);
   const [success, setSuccess] = useState(false);
-  const equalTag = tags.filter(t => t.name === tagName&&t!==tag)[0];
+  const equalTag = tags.filter(t => t.name === tagName && t !== tag)[0];
   const isEqual = tags && equalTag && equalTag.name === tagName;
   const save = () => {
     if (!tagName || tagName === '') {
@@ -93,7 +93,7 @@ const TagEdit: React.FC = () => {
 
   return (
     <AddRewHtml>
-      {success ? <Message>添加成功</Message> : ''}
+      {success ? <Message>编辑成功</Message> : ''}
       {isNone ? <Pop message={isEqual ? '该分类名称已存在' : '分类名称不能为空'} onChangeDel={onCoOn}/> : ''}
       <Topbar>
         <div className='back' onClick={onClickBack}>
