@@ -9,7 +9,6 @@ import {Space} from '../../components/Space';
 import {DetailItem} from '../detail/DetailItem';
 import {thousand} from '../../lib/thousandSeparator';
 import {Message} from '../../components/Message';
-import {AddMoneyWrapper} from '../addMoney/AddMoneyHtml';
 
 const Wrapper = styled.div`
 `;

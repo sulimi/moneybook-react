@@ -27,17 +27,17 @@ const TagEdit: React.FC = () => {
   const [iconSelect, setIconSelect] = useState();
   const [initIcon, setInitIcon] = useState();
   const [tagName, setTagName] = useState();
-  const [initName, setInitName]=useState()
+  const [initName, setInitName] = useState();
   useUpdate(() => {
     setInitIcon(tag.icon);
-    setInitName(tag.name)
+    setInitName(tag.name);
   }, [tag]);
   useEffect(() => {
     setIconSelect(initIcon);
-  },[initIcon]);
-  useEffect(()=>{
-    setTagName(initName)
-  },[initName])
+  }, [initIcon]);
+  useEffect(() => {
+    setTagName(initName);
+  }, [initName]);
   const setClass = (icon: string) => icon === iconSelect ? 'selected' : '';
   const chooseIcon = (icon: string) => {
     setIconSelect(icon);
@@ -54,7 +54,7 @@ const TagEdit: React.FC = () => {
 
   const [isNone, setIsNone] = useState(false);
   const [success, setSuccess] = useState(false);
-  const equalTag = tags.filter(t => t.name === tagName)[0];
+  const equalTag = tags.filter(t => t.name === tagName&&t!==tag)[0];
   const isEqual = tags && equalTag && equalTag.name === tagName;
   const save = () => {
     if (!tagName || tagName === '') {
@@ -63,7 +63,7 @@ const TagEdit: React.FC = () => {
       setIsNone(true);
     } else {
       updateTag(tag.id, {
-        id:tag.id,
+        id: tag.id,
         name: tagName,
         icon: iconSelect,
         category: TagsIconList.filter(t => t.icon === iconSelect)[0].category
@@ -111,12 +111,13 @@ const TagEdit: React.FC = () => {
         : <div><Space/><Space/><Space/><Center>标签不存在</Center></div>}
       <Button>
         <div>改成</div>
-        <CategorySection category={cate} onChange={category => onChange(category)} />
+        <CategorySection category={cate} onChange={category => onChange(category)}/>
         <div>分类</div>
       </Button>
       <IconList>
-        {TagsIconList.filter(t=>t.category===cate).map(tag => <Icon className={setClass(tag.icon)} key={tag.icon} name={tag.icon}
-                                       onClick={() => chooseIcon(tag.icon)}/>)}
+        {TagsIconList.filter(t => t.category === cate).map(tag => <Icon className={setClass(tag.icon)} key={tag.icon}
+                                                                        name={tag.icon}
+                                                                        onClick={() => chooseIcon(tag.icon)}/>)}
       </IconList>
     </AddRewHtml>
   );
