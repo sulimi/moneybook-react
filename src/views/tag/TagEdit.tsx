@@ -54,14 +54,24 @@ const TagEdit: React.FC = () => {
 
   const [isNone, setIsNone] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [noEdit, setNoEdit] = useState(false);
   const equalTag = tags.filter(t => t.name === tagName && t !== tag)[0];
   const isEqual = tags && equalTag && equalTag.name === tagName;
   const save = () => {
     if (!tagName || tagName === '') {
       setIsNone(true);
     } else if (isEqual) {
+      //标签名重复的
       setIsNone(true);
     } else {
+      if (tagName === tag.name && tag.icon === iconSelect) {
+        //未作任何修改
+        setNoEdit(true);
+        setTimeout(() => {
+          setNoEdit(false);
+        }, 1500);
+        return;
+      }
       updateTag(tag.id, {
         id: tag.id,
         name: tagName,
@@ -73,6 +83,7 @@ const TagEdit: React.FC = () => {
         setSuccess(false);
       }, 1500);
     }
+
   };
 
   const onCoOn = () => {
@@ -94,6 +105,7 @@ const TagEdit: React.FC = () => {
   return (
     <AddRewHtml>
       {success ? <Message>编辑成功</Message> : ''}
+      {noEdit ? <Message>未做任何修改</Message> : ''}
       {isNone ? <Pop message={isEqual ? '该分类名称已存在' : '分类名称不能为空'} onChangeDel={onCoOn}/> : ''}
       <Topbar>
         <div className='back' onClick={onClickBack}>
